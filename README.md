@@ -8,16 +8,16 @@
 ## To do
 ### Calendar
 #### View Type Division
-[ ] Weekly `default`  
-[ ] Daily  
-[ ] Monthly
+- [ ] Weekly `default`  
+- [ ] Daily  
+- [ ] Monthly
 
 #### Add Schedules
-[ ] Drag and Drop Event
+- [ ] Drag and Drop Event
 
 ##### Services
-[ ] Service + Time + Price List `default`  
-[ ] Custom Time + Custom Price
+- [ ] Service + Time + Price List `default`  
+- [ ] Custom Time + Custom Price
 
 ``` md
 ### Service Lists
@@ -38,10 +38,10 @@
 ```
 
 ##### Reservation
-[ ] Customer Name + Contact - Auto Complete
+- [ ] Customer Name + Contact - Auto Complete
 
 ### Customer List
-[ ] Sort  
-[ ] Auto Complete(Customer Name, Contact)
+- [ ] Sort  
+- [ ] Auto Complete(Customer Name, Contact)
 
 ...
