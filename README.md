@@ -34,7 +34,8 @@
   * Women
     * 2 Hours ~ 2 Hours 30 Minutes `Basic`;
     * 2 Hours 30 Minutes ~ 3 Hours `Heat`;
-* ...  
+* Dye
+  * 1 Hour 30 Minutes;
 ```
 
 ##### Reservation
