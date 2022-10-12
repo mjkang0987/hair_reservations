@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styled from 'styled-components';
 
 import {ASIDE as asides} from '../../utils/constants/constants';
@@ -20,6 +22,7 @@ export const AsideComponent = () => {
                        inputIcon="search"
                        placeholder="사용자 검색"/>
             </form>
+            <Link href="/addressBook" passHref>주소록</Link>
         </Aside>
     );
 };
