@@ -1,6 +1,13 @@
 import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
+  :root {
+    --defaultFont: 18px;
+    --defaultBlack: #222;
+    --defaultGray: #9f9f9f;
+    --defaultWhite: #fff;
+  }
+
   html,
   body {
     padding: 0;
