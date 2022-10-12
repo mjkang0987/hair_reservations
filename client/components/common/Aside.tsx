@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {ASIDE as asides} from '../../utils/constants/constants';
 
 import {ButtonText} from './ButtonText';
+import {Input} from './Input';
+
 export const AsideComponent = () => {
     return (
         <Aside>
@@ -13,12 +15,20 @@ export const AsideComponent = () => {
                     </ButtonText>
                 </Button>
             )}
+            <form>
+                <Input type="text"
+                       inputIcon="search"
+                       placeholder="사용자 검색"/>
+            </form>
         </Aside>
     );
 };
 
 const Aside = styled.aside`
-  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 0 15px;
 `;
 
 const Button = styled.button`
