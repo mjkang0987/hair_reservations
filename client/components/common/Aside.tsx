@@ -2,12 +2,13 @@ import styled from 'styled-components';
 
 import {ASIDE as asides} from '../../utils/constants/constants';
 
+import {ButtonText} from './ButtonText';
 export const AsideComponent = () => {
     return (
         <Aside>
             {Object.keys(asides).map((a) =>
                 <Button key={asides[a].id} type="button">
-                    <ButtonText buttonType={asides[a].title === '일정추가'}>
+                    <ButtonText buttonIcon={asides[a].icon || ''}>
                         {asides[a].title}
                     </ButtonText>
                 </Button>
@@ -22,16 +23,11 @@ const Aside = styled.aside`
 
 const Button = styled.button`
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: center;
-
-  + button {
-    margin-top: 10px;
+  width: 100%;
+  
+  + input {
+    margin-top: 20px;
   }
-`;
-
-const ButtonText = styled.span<{ buttonType: boolean }>`
-  display: flex;
-  padding-left: ${props => props.buttonType ? `20px` : 0}
 `;
