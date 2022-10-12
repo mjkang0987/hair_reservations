@@ -25,6 +25,6 @@ export default function LayoutComponent({children}: LayoutProps) {
 
 const Main = styled.main`
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 250px auto;
   height: calc(100vh - 160px);
 `;
