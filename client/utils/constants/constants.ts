@@ -1,6 +1,7 @@
 interface AsideElementType {
     id: number
-    title: string
+    title: string,
+    icon?: string
 }
 
 interface AsideType {
@@ -11,6 +12,7 @@ const ASIDE: AsideType = {
     ADD    : {
         id   : 0,
         title: '일정추가',
+        icon: 'plus'
     },
     DAILY  : {
         id   : 1,
