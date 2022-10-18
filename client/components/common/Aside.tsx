@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {ASIDE as asides} from '../../utils/constants/constants';
 
 import {ButtonText} from './ButtonText';
-import {Input} from './Input';
+import {InputWrap} from './Input';
 
 export const AsideComponent = () => {
     return (
@@ -18,11 +18,9 @@ export const AsideComponent = () => {
                     </ButtonText>
                 </Button>
             )}
-            <form>
-                <Input type="text"
-                       inputIcon="search"
-                       placeholder="사용자 검색"/>
-            </form>
+            <InputWrap inputIcon="search">
+                <input type="text" placeholder="사용자 검색"/>
+            </InputWrap>
             <Link href="/addressBook" passHref>주소록</Link>
         </Aside>
     );
