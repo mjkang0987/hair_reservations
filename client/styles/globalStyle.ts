@@ -38,21 +38,16 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   button,
-  input {
-    height: 40px;
-    border: 1px solid #ccc;
-    background-color: var(--defaultWhite);
-    border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
-  }
-
-  button,
   a {
     cursor: pointer;
 
     &:active {
       opacity: .6;
     }
+  }
+  
+  input {
+    width: 100%;
   }
   
   .a11y {
