@@ -40,8 +40,9 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   width: 100%;
-  
-  + input {
-    margin-top: 20px;
-  }
+  height: 40px;
+  border: 1px solid #ccc;
+  background-color: var(--defaultWhite);
+  border-radius: 5px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 `;
