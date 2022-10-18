@@ -32,6 +32,7 @@ const StyledButtonText = styled.span <Props>`
       transform: translateY(-50%) rotate(90deg);
     }
   `};
+  
   ${props => props.a11y&& `
       overflow: hidden;
       position: absolute;
