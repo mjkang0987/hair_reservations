@@ -4,11 +4,12 @@ import React from 'react';
 interface Props {
     children: string
     buttonIcon?: string
+    a11y: boolean
 }
 
 const StyledButtonText = styled.span <Props>`
   position: relative;
-  padding-left: ${props => props.buttonIcon !== '' ? `20px` : 0};
+  padding-left: ${props => (props.buttonIcon !== '' && !props.a11y) ? `20px` : 0};
   ${props => props.buttonIcon === 'plus' && `
     &::after,
     &::before {
@@ -31,8 +32,20 @@ const StyledButtonText = styled.span <Props>`
       transform: translateY(-50%) rotate(90deg);
     }
   `};
+  ${props => props.a11y&& `
+      overflow: hidden;
+      position: absolute;
+      border: 0;
+      margin: -1px;
+      width: 1px;
+      height: 1px;
+      clip: rect(1px, 1px, 1px, 1px);
+      clip-path: inset(50%);
+    }
+  `};
 `;
 
-export const ButtonText: React.FC <Props> = ({children, buttonIcon}) => {
-    return <StyledButtonText buttonIcon={buttonIcon}>{children}</StyledButtonText>;
+export const ButtonText: React.FC <Props> = ({children, buttonIcon, a11y}) => {
+    return <StyledButtonText buttonIcon={buttonIcon}
+                             a11y={a11y}>{children}</StyledButtonText>;
 };
