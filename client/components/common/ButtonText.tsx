@@ -33,6 +33,6 @@ const StyledButtonText = styled.span <Props>`
   `};
 `;
 
-export const ButtonText = ({children, buttonIcon}: { children: string, buttonIcon: string }) => {
+export const ButtonText: React.FC <Props> = ({children, buttonIcon}) => {
     return <StyledButtonText buttonIcon={buttonIcon}>{children}</StyledButtonText>;
 };
