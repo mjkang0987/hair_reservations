@@ -1,6 +1,12 @@
 import styled from 'styled-components';
+import React from 'react';
 
-const StyledButtonText = styled.span<{ buttonIcon: string }>`
+interface Props {
+    children: string
+    buttonIcon?: string
+}
+
+const StyledButtonText = styled.span <Props>`
   position: relative;
   padding-left: ${props => props.buttonIcon !== '' ? `20px` : 0};
   ${props => props.buttonIcon === 'plus' && `
