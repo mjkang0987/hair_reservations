@@ -1,38 +1,18 @@
-import styled from 'styled-components';
 import React from 'react';
 
+import styled from 'styled-components';
+
+import {Icon} from './Icons';
+
 interface Props {
-    children: string
+    children: React.ReactNode | string
     buttonIcon?: string
     a11y: boolean
 }
 
 const StyledButtonText = styled.span <Props>`
+  display: flex;
   position: relative;
-  padding-left: ${props => (props.buttonIcon !== '' && !props.a11y) ? `20px` : 0};
-  ${props => props.buttonIcon === 'plus' && `
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 0;
-      width: 14px;
-      height: 2px;
-      background-color: var(--defaultBlack);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    
-    &::before {
-      transform: translateY(-50%);
-    }
-    
-    &:after {
-      transform: translateY(-50%) rotate(90deg);
-    }
-  `};
-  
   ${props => props.a11y&& `
       overflow: hidden;
       position: absolute;
@@ -47,6 +27,9 @@ const StyledButtonText = styled.span <Props>`
 `;
 
 export const ButtonText: React.FC <Props> = ({children, buttonIcon, a11y}) => {
-    return <StyledButtonText buttonIcon={buttonIcon}
-                             a11y={a11y}>{children}</StyledButtonText>;
+    return <StyledButtonText a11y={a11y}
+                             buttonIcon={buttonIcon}>
+        {(buttonIcon && buttonIcon === 'plus') && <Icon iconType="plus"/>}
+        {children}
+    </StyledButtonText>;
 };
