@@ -49,11 +49,11 @@ export const GlobalStyle = createGlobalStyle`
       opacity: .6;
     }
   }
-  
+
   input {
     width: 100%;
   }
-  
+
   .a11y {
     overflow: hidden;
     position: absolute;
