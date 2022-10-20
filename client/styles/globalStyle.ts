@@ -64,4 +64,13 @@ export const GlobalStyle = createGlobalStyle`
     clip: rect(1px, 1px, 1px, 1px);
     clip-path: inset(50%);
   }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `;
