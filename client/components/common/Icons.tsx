@@ -58,6 +58,23 @@ const StyledIcon = styled.span <Props>`
       transform: translate(-50%, -50%) rotate(90deg);
     }
   `};
+  
+  ${props => props.iconType === 'hamburger' && `
+    height: 40px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      width: 18px;
+      height: 2px;
+      margin-left: -9px;
+      border-radius: 2px;
+      background-color: var(--defaultBlack);
+      box-shadow: 0 10px 0 0 var(--defaultBlack);
+    }
+  `}
 `;
 
 export const Icon: React.FC <Props> = ({iconType}) => {
