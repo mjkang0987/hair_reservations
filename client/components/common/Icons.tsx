@@ -10,6 +10,19 @@ const StyledIcon = styled.span <Props>`
   display: inline-flex;
   position: relative;
   width: 40px;
+  ${props => props.iconType === 'loading' && `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #00afff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s cubic-bezier(.09, .49, .85, .42) infinite;
+  `}
+  
   ${props => props.iconType === 'search' && `
     &::before,
     &::after {
