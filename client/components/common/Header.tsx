@@ -1,14 +1,26 @@
-import {Icon} from './Icons';
-import {ButtonText} from './ButtonText';
+import {useRecoilState} from 'recoil';
+
 import styled from 'styled-components';
 
+import {asideState} from '../../recoil/atoms';
+
+import {Icon} from './Icons';
+import {ButtonText} from './ButtonText';
+
 export const HeaderComponent = () => {
+    const [aside, setAside] = useRecoilState(asideState);
+
     return (
         <Header>
-            <Button type="button">
+            <Button type="button"
+                    onClick={() => setAside({
+                        isVisible: !aside.isVisible,
+                        isTransitionEnd: false
+                    })}>
                 <Icon iconType="hamburger"/>
-                <ButtonText a11y={true}>메뉴 닫기</ButtonText>
+                <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </Button>
+            <h1>타이틀</h1>
         </Header>
     );
 };

@@ -73,4 +73,13 @@ export const GlobalStyle = createGlobalStyle`
       transform: rotate(360deg);
     }
   }
+
+  @keyframes asideHide {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-250px);
+    }
+  }
 `;

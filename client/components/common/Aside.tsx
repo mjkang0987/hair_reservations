@@ -1,15 +1,34 @@
 import Link from 'next/link';
 
+import {useRecoilState} from 'recoil';
+
 import styled from 'styled-components';
+
+import {asideState} from '../../recoil/atoms';
 
 import {ASIDE as asides} from '../../utils/constants';
 
 import {ButtonText} from './ButtonText';
 import {InputWrap} from './Input';
 
+interface Props {
+    isVisible: boolean;
+    isTransitionEnd: boolean;
+}
+
 export const AsideComponent = () => {
+    const [aside, setAside] = useRecoilState(asideState);
+
     return (
-        <Aside>
+        <Aside isVisible={aside.isVisible}
+               isTransitionEnd={aside.isTransitionEnd}
+               className={!aside.isTransitionEnd ? 'animate' : ''}
+               onAnimationEnd={() => {
+                   setAside({
+                       ...aside,
+                       isTransitionEnd: true
+                   });
+               }}>
             {Object.keys(asides).map((a) =>
                 <Button key={asides[a].id} type="button">
                     <ButtonText a11y={false}>
@@ -25,11 +44,23 @@ export const AsideComponent = () => {
     );
 };
 
-const Aside = styled.aside`
+const Aside = styled.aside <Props>`
+  flex-shrink: 0;
   display: flex;
+  ${props => (!props.isVisible && props.isTransitionEnd) && 'display: none'};
+  width: 250px;
+  box-sizing: border-box;
   flex-direction: column;
   gap: 10px;
-  padding: 0 15px;
+  padding: 60px 15px 0;
+  
+  &.animate {
+      animation-name: asideHide;
+      animation-duration: .4s;
+      animation-timing-function: ease-in-out;
+      animation-direction: ${props => props.isVisible ? 'reverse' : 'normal'};
+      animation-fill-mode: forward;
+  }
 `;
 
 const Button = styled.button`
