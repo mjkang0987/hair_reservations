@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import styled from 'styled-components';
 
-import {ASIDE as asides} from '../../utils/constants/constants';
+import {ASIDE as asides} from '../../utils/constants';
 
 import {ButtonText} from './ButtonText';
 import {InputWrap} from './Input';
