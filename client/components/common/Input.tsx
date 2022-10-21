@@ -48,8 +48,7 @@ export const InputWrap:React.FC <Props> = ({children, inputIcon}) => {
         {children}
         {(inputIcon && inputIcon === 'search') && <button type="button">
             <Icon iconType="search"/>
-            <ButtonText buttonIcon="search"
-                        a11y={true}>검색</ButtonText>
+            <ButtonText a11y={true}>검색</ButtonText>
         </button> }
     </StyledInput>;
 };
