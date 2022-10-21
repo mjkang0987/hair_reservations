@@ -17,7 +17,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   height: 50px;
-  padding: 0 5px;
+  padding: 0 15px;
 `;
 
 const Button = styled.button`
