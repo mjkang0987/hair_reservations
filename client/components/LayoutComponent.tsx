@@ -19,9 +19,7 @@ export default function LayoutComponent({children}: LayoutProps) {
     const isomorphicEffect = useIsomorphicEffect();
 
     isomorphicEffect(() => {
-        console.log(loading)
         setLoading(true);
-        console.log(loading)
     }, []);
 
     return (
