@@ -12,8 +12,7 @@ export const AsideComponent = () => {
         <Aside>
             {Object.keys(asides).map((a) =>
                 <Button key={asides[a].id} type="button">
-                    <ButtonText buttonIcon={asides[a].icon || ''}
-                                a11y={false}>
+                    <ButtonText a11y={false}>
                         {asides[a].title}
                     </ButtonText>
                 </Button>
