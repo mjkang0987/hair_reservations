@@ -47,7 +47,7 @@ const Section = styled.section <Props>`
 const Button = styled.button <{isVisible: boolean}>`
   display: inline-flex;
   position: absolute;
-  top: 60px;
+  top: 66px;
   left: 15px;
   align-items: center;
   justify-content: center;

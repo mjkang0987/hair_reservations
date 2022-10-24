@@ -1,26 +1,45 @@
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState} from '../../recoil/atoms';
+import {asideState, currentDate} from '../../recoil/atoms';
 
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
+import {ButtonCircle, ButtonSquare} from './Buttons';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
+    const current = useRecoilValue(currentDate);
 
     return (
         <Header>
-            <Button type="button"
-                    onClick={() => setAside({
-                        isVisible: !aside.isVisible,
-                        isTransitionEnd: false
-                    })}>
+            <Button type="button" onClick={() => setAside({
+                isVisible: !aside.isVisible,
+                isTransitionEnd: false
+            })}>
                 <Icon iconType="hamburger"/>
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </Button>
-            <h1>타이틀</h1>
+            <ButtonWrap>
+                <ButtonSquare>
+                    <ButtonText a11y={false}>오늘</ButtonText>
+                </ButtonSquare>
+                <ButtonCircle>
+                    <Icon iconType="leftArrow"/>
+                    <ButtonText a11y={true}>이전달</ButtonText>
+                </ButtonCircle>
+                <ButtonCircle>
+                    <Icon iconType="rightArrow"/>
+                    <ButtonText a11y={true}>이전달</ButtonText>
+                </ButtonCircle>
+            </ButtonWrap>
+            <Heading>
+                <DateWrap>
+                    <Date>{current.year}</Date><Unit>/</Unit>
+                    <Date>{Number(current.month) + 1}</Date>
+                </DateWrap>
+            </Heading>
         </Header>
     );
 };
