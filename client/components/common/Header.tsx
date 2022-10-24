@@ -47,8 +47,44 @@ export const HeaderComponent = () => {
 const Header = styled.header`
   display: flex;
   align-items: center;
-  height: 50px;
-  padding: 0 15px;
+  padding: 8px 15px 7px;
+  gap: 20px;
+  border-bottom: solid 1px var(--defaultLightGray);
+`;
+
+const Heading = styled.h1`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const DateWrap = styled.span`
+  display: inline-flex;
+  align-items: center;
+`;
+
+const Date = styled.span`
+  display: inline-flex;
+  font-size: 26px;
+`;
+
+const Unit = styled.span`
+  display: inline-flex;
+  margin: 0 10px;
+  font-size: 22px;
+`;
+
+const ButtonWrap = styled.span`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+  button {
+    &:first-child {
+      margin-right: 40px;
+    }
+  }
 `;
 
 const Button = styled.button`
@@ -57,8 +93,12 @@ const Button = styled.button`
   border-radius: 100%;
   background-color: #fff;
   border: none;
-  
+
   &:hover {
     background-color: rgba(0, 0, 0, .1);
   }
+`;
+
+const ButtonToday = styled.button`
+  
 `;
