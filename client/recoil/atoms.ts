@@ -6,9 +6,9 @@ interface AsideType {
 }
 
 export const asideState = atom<AsideType>({
-    key    : 'asideState',
+    key: 'asideState',
     default: {
-        isVisible      : true,
+        isVisible: true,
         isTransitionEnd: true
     }
 });
