@@ -5,24 +5,24 @@ interface AsideElementType {
 }
 
 interface AsideType {
-    [key: string]: AsideElementType
+    [key: string]: AsideElementType;
 }
 
 const ASIDE: AsideType = {
-    DAILY  : {
-        id   : 1,
+    DAILY: {
+        id: 1,
         title: '일별',
     },
-    THREE  : {
-        id   : 2,
+    THREE: {
+        id: 2,
         title: '3일',
     },
-    WEEKLY : {
-        id   : 3,
+    WEEKLY: {
+        id: 3,
         title: '주별',
     },
     MONTHLY: {
-        id   : 4,
+        id: 4,
         title: '월별',
     },
 };
