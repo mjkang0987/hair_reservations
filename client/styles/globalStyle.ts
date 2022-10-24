@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     --defaultFont: 18px;
     --defaultBlack: #222;
     --defaultGray: #9f9f9f;
+    --defaultLightGray: #e4e4e4;
     --defaultWhite: #fff;
   }
 
