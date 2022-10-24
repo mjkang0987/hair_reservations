@@ -10,6 +10,7 @@ import {asideState} from '../recoil/atoms';
 
 import {Icon} from '../components/common/Icons';
 import {ButtonText} from '../components/common/ButtonText';
+import {Calendar} from '../components/calendar/Calendar';
 
 interface Props {
     isVisible: boolean;
@@ -30,6 +31,7 @@ const Home: NextPage = () => {
             </Button>
             <Section isVisible={aside.isVisible}
                      isTransitionEnd={aside.isTransitionEnd}>
+                <Calendar/>
             </Section>
         </>
     );
