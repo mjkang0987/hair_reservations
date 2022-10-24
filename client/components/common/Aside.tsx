@@ -48,7 +48,7 @@ const Aside = styled.aside <Props>`
   flex-shrink: 0;
   display: flex;
   ${props => (!props.isVisible && props.isTransitionEnd) && 'display: none'};
-  width: 250px;
+  width: 200px;
   box-sizing: border-box;
   flex-direction: column;
   gap: 10px;

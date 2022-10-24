@@ -51,7 +51,7 @@ const Button = styled.button <{isVisible: boolean}>`
   left: 15px;
   align-items: center;
   justify-content: center;
-  width: ${props => props.isVisible ? '220px' : 'auto'};
+  width: ${props => props.isVisible ? '170px' : 'auto'};
   height: 40px;
   border: 1px solid #ccc;
   background-color: var(--defaultWhite);
