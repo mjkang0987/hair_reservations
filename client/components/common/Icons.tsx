@@ -88,6 +88,22 @@ const StyledIcon = styled.span <Props>`
       box-shadow: 0 10px 0 0 var(--defaultBlack);
     }
   `}
+  
+  ${props => props.iconType.includes('Arrow') && `
+    height: 40px;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -${props.iconType === 'rightArrow' ? 8 : 2}px;
+      width: 10px;
+      height: 10px;
+      border: solid var(--defaultBlack);
+      border-width: 1px 1px 0 0;
+      transform: translateY(-50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
+    }
+  `}
 `;
 
 export const Icon: React.FC <Props> = ({iconType}) => {
