@@ -30,9 +30,16 @@ export const GlobalStyle = createGlobalStyle`
   header,
   footer,
   section,
-  article {
+  article,
+  ul,
+  ol,
+  li {
     margin: 0;
     padding: 0;
+  }
+  
+  li {
+    list-style: none;
   }
 
   button,
