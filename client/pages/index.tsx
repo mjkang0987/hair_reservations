@@ -42,6 +42,7 @@ export default Home;
 const Section = styled.section <Props>`
   flex: 1;
   display: flex;
+  height: 100%;
   ${props => props.isVisible && `
   `}
 `;

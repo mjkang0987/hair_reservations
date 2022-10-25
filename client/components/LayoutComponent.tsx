@@ -60,6 +60,7 @@ export default function LayoutComponent({children}: LayoutProps) {
 }
 
 const Main = styled.main`
+  flex: 1;
   display: flex;
-  height: calc(100vh - 160px);
+  height: 100%;
 `;

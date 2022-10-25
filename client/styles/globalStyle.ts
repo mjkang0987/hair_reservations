@@ -13,10 +13,17 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    height: 100%;
   }
 
   body {
     font-family: "SF Pro AR", "SF Pro Gulf", "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif
+  }
+  
+  #__next {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 
   h1,
