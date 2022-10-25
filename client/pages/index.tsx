@@ -42,6 +42,7 @@ export default Home;
 const Section = styled.section <Props>`
   flex: 1;
   display: flex;
+  flex-direction: column;
   height: 100%;
   border-left: solid var(--defaultLightGray) ${props => props.isVisible ? `1px` : 0};
   ${props => props.isVisible && `
