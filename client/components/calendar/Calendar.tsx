@@ -1,4 +1,4 @@
-import {Days} from './Days';
+import {DaysComponent} from './Days';
 
 interface Props {
     prevDates?: [];
@@ -8,7 +8,7 @@ interface Props {
 export const Calendar = ({prevDates, nextDates}: Props)  => {
     return (
         <>
-            <Days/>
+            <DaysComponent/>
         </>
     );
 };

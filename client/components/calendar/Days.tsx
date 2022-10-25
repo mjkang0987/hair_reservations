@@ -1,6 +1,6 @@
 import {DAYS} from '../../utils/constants';
 
-export const Days = ()  => {
+export const DaysComponent = ()  => {
     return (
         <div>
             <ul>
