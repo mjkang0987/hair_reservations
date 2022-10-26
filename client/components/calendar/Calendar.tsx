@@ -1,14 +1,11 @@
 import {DaysComponent} from './Days';
+import {DatesComponent} from './Dates';
 
-interface Props {
-    prevDates?: [];
-    nextDates?: [];
-}
-
-export const Calendar = ({prevDates, nextDates}: Props)  => {
+export const Calendar = ()  => {
     return (
         <>
             <DaysComponent/>
+            <DatesComponent/>
         </>
     );
 };
