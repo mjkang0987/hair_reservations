@@ -25,24 +25,36 @@ export default function LayoutComponent({children}: LayoutProps) {
 
     const isomorphicEffect = useIsomorphicEffect();
 
+    const initDate: Date = new Date();
+
     isomorphicEffect(() => {
-        const getToday = new Date();
 
         setToday({
-            year: getToday.getFullYear(),
-            month: getToday.getMonth(),
-            date: getToday.getDate(),
-            day: getToday.getDay(),
+            full: initDate
         });
 
         setLoading(true);
     }, []);
 
     isomorphicEffect(() => {
+        const {full} = today;
+
+        if (!full) {
+            return;
+        }
+
+        const currentLastDate = new Date(full.getFullYear(), full.getMonth() + 1, 0);
+        const currentFirstDate = new Date(full.getFullYear(), full.getMonth(), 1);
+        const prevLastDate = new Date(full.getFullYear(), full.getMonth(), 0);
+
         setCurrentDate({
-            ...today
+            ...today,
+            firstDay: currentFirstDate.getDay(),
+            lastDay: currentLastDate.getDay(),
+            lastDate: currentLastDate.getDate(),
+            prevLastDate: prevLastDate.getDate(),
         });
-    }, [today])
+    }, [today]);
 
     return (
         <>
