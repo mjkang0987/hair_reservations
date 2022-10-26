@@ -1,29 +1,30 @@
 import {atom} from 'recoil';
 
+type FullType = any;
+
 interface TodayDateType {
-    year: null | number;
-    month: null | number;
-    date: null | number;
-    day: null | number;
+    full: FullType;
+    firstDay: null | number;
+    lastDay: null | number;
+    lastDate: null | number;
+    prevLastDate: null | number;
 }
 
-export const todayDate = atom<TodayDateType>({
+export const todayDate = atom<FullType>({
     key: 'todayDate',
     default: {
-        year: null,
-        month: null,
-        date: null,
-        day: null
+        full: null
     }
 });
 
 export const currentDate = atom<TodayDateType>({
     key: 'currentDate',
     default: {
-        year: null,
-        month: null,
-        date: null,
-        day: null
+        full: null,
+        firstDay: null,
+        lastDay: null,
+        lastDate: null,
+        prevLastDate: null,
     }
 });
 
