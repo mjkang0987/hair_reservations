@@ -11,6 +11,7 @@ import {ButtonCircle, ButtonSquare} from './Buttons';
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
     const current = useRecoilValue(currentDate);
+    const {full} = current;
 
     return (
         <Header>
@@ -36,8 +37,8 @@ export const HeaderComponent = () => {
             </ButtonWrap>
             <Heading>
                 <DateWrap>
-                    <Date>{current.year}</Date><Unit>/</Unit>
-                    <Date>{Number(current.month) + 1}</Date>
+                    <Date>{full?.getFullYear()}</Date><Unit>/</Unit>
+                    <Date>{full?.getMonth()}</Date>
                 </DateWrap>
             </Heading>
         </Header>
