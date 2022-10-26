@@ -28,6 +28,11 @@ const Day = styled.li`
   flex: 1;
   text-align: center;
   padding: 10px 0 5px;
-  font-size: var(--defaultFont);
+  font-size: var(--defaultSmallFont);
   color: var(--defaultBlack);
+  border-right: 1px solid var(--defaultLightGray);
+  
+  &:nth-child(7) {
+    border-right: none;
+  }
 `;
