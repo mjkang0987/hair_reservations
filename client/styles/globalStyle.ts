@@ -3,6 +3,7 @@ import {createGlobalStyle} from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
   :root {
     --defaultFont: 18px;
+    --defaultSmallFont: 16px;
     --defaultBlack: #222;
     --defaultGray: #9f9f9f;
     --defaultLightGray: #e4e4e4;
