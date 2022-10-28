@@ -38,7 +38,7 @@ export const HeaderComponent = () => {
             <Heading>
                 <DateWrap>
                     <Date>{full?.getFullYear()}</Date><Unit>/</Unit>
-                    <Date>{full?.getMonth()}</Date>
+                    <Date>{full?.getMonth() + 1}</Date>
                 </DateWrap>
             </Heading>
         </Header>
