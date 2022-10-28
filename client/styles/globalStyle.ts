@@ -8,6 +8,7 @@ export const GlobalStyle = createGlobalStyle`
     --defaultGray: #9f9f9f;
     --defaultLightGray: #e4e4e4;
     --defaultWhite: #fff;
+    --defaultBlue: #00a6e3;
   }
 
   html,
@@ -20,7 +21,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: "SF Pro AR", "SF Pro Gulf", "SF Pro Display", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif
   }
-  
+
   #__next {
     display: flex;
     flex-direction: column;
@@ -45,7 +46,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
-  
+
   li {
     list-style: none;
   }
