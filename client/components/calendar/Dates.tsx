@@ -8,22 +8,29 @@ interface Props {
     nextDates?: [];
 }
 
+interface Props {
+    isToday?: boolean;
+}
+
 export const DatesComponent = ({prevDates, nextDates}: Props) => {
     const current = useRecoilValue(currentDate);
 
-    const {firstDay, lastDay, lastDate, prevLastDate} = current;
-    console.log(lastDay)
+    const {full, firstDay, lastDay, lastDate, prevLastDate} = current;
 
     return (
         <CalendarWrap>
             <DateWrap>
                 {Number(firstDay) < 7 && new Array(firstDay).fill(null).map((_, index) => <Date>
-                    {Number(prevLastDate) - index}
+                    <Num>{Number(prevLastDate) - index}</Num>
                 </Date>).reverse()}
+
                 {new Array(lastDate).fill(null).map((_, index) =>
-                <Date key={index}>{index + 1}</Date>)}
+                <Date key={index}>
+                    <Num isToday={index + 1 === full?.getDate()}>{index + 1}</Num>
+                </Date>)}
+
                 {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date>
-                    {index + 1}
+                    <Num>{index + 1}</Num>
                 </Date>)}
             </DateWrap>
         </CalendarWrap>
@@ -44,8 +51,6 @@ const DateWrap = styled.ul`
 const Date = styled.li`
   padding: 5px;
   text-align: center;
-  font-size: var(--defaultSmallFont);
-  color: var(--defaultBlack);
   border-right: 1px solid var(--defaultLightGray);
   border-top: 1px solid var(--defaultLightGray);
   
@@ -57,3 +62,25 @@ const Date = styled.li`
     border-top: none;
   }
 `
+
+const Num = styled.button <Props>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background: transparent;
+  border: none;
+  font-size: var(--defaultSmallFont);
+  color: var(--defaultBlack);
+  ${props => props.isToday && `
+    background-color: var(--defaultBlue);
+    color: #fff;
+  `}
+  
+  &:hover {
+    background-color: var(--defaultLightGray);
+  }
+`;
