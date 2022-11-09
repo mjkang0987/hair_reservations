@@ -4,10 +4,10 @@ type FullType = any;
 
 interface TodayDateType {
     full: FullType;
-    firstDay: null | number;
-    lastDay: null | number;
-    lastDate: null | number;
-    prevLastDate: null | number;
+    firstDay?: null | number;
+    lastDay?: null | number;
+    lastDate?: null | number;
+    prevLastDate?: null | number;
 }
 
 export const todayDate = atom<FullType>({
