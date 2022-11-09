@@ -2,6 +2,7 @@ import {useRecoilValue} from 'recoil';
 
 import {currentDate} from '../../recoil/atoms';
 import styled from 'styled-components';
+import React from 'react';
 
 interface Props {
     prevDates?: [];
@@ -20,7 +21,7 @@ export const DatesComponent = ({prevDates, nextDates}: Props) => {
     return (
         <CalendarWrap>
             <DateWrap>
-                {Number(firstDay) < 7 && new Array(firstDay).fill(null).map((_, index) => <Date>
+                {Number(firstDay) < 7 && new Array(firstDay).fill(null).map((_, index) => <Date key={index}>
                     <Num>{Number(prevLastDate) - index}</Num>
                 </Date>).reverse()}
 
@@ -29,7 +30,7 @@ export const DatesComponent = ({prevDates, nextDates}: Props) => {
                     <Num isToday={index + 1 === full?.getDate()}>{index + 1}</Num>
                 </Date>)}
 
-                {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date>
+                {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date key={index}>
                     <Num>{index + 1}</Num>
                 </Date>)}
             </DateWrap>
