@@ -36,10 +36,10 @@ export const HeaderComponent = () => {
                 </ButtonCircle>
             </ButtonWrap>
             <Heading>
-                <DateWrap>
-                    <Date>{full?.getFullYear()}</Date><Unit>/</Unit>
-                    <Date>{full?.getMonth() + 1}</Date>
-                </DateWrap>
+                {full && <DateWrap>
+                    <Date>{full.getFullYear()}</Date><Unit>/</Unit>
+                    <Date>{full.getMonth() + 1}</Date>
+                </DateWrap>}
             </Heading>
         </Header>
     );
@@ -98,8 +98,4 @@ const Button = styled.button`
   &:hover {
     background-color: rgba(0, 0, 0, .1);
   }
-`;
-
-const ButtonToday = styled.button`
-  
 `;
