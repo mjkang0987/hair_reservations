@@ -1,8 +1,10 @@
+import React from 'react';
+
 import type {NextPage} from 'next';
 
 import Head from 'next/head';
 
-import {useRecoilState} from 'recoil';
+import {useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
@@ -18,8 +20,7 @@ interface Props {
 }
 
 const Home: NextPage = () => {
-    const [aside, setAside] = useRecoilState(asideState);
-
+    const aside = useRecoilValue(asideState);
     return (<>
             <Head>
                 <title>RESERVATION</title>
