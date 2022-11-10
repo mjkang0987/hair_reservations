@@ -6,6 +6,7 @@ export const GlobalStyle = createGlobalStyle`
     --defaultSmallFont: 16px;
     --defaultBlack: #222;
     --defaultGray: #9f9f9f;
+    --defaultDarkGray: #525252;
     --defaultLightGray: #e4e4e4;
     --defaultWhite: #fff;
     --defaultBlue: #00a6e3;
