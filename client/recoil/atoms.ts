@@ -36,7 +36,7 @@ interface AsideType {
 export const asideState = atom<AsideType>({
     key: 'asideState',
     default: {
-        isVisible: true,
+        isVisible: false,
         isTransitionEnd: true
     }
 });
