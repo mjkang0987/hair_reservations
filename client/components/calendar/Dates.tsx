@@ -22,7 +22,7 @@ export const DatesComponent = ({prevDates, nextDates}: Props) => {
         <CalendarWrap>
             <DateWrap>
                 {Number(firstDay) < 7 && new Array(firstDay).fill(null).map((_, index) => <Date key={index}>
-                    <Num>{Number(prevLastDate) - index}</Num>
+                    <Num className="disabled">{Number(prevLastDate) - index}</Num>
                 </Date>).reverse()}
 
                 {new Array(lastDate).fill(null).map((_, index) =>
@@ -31,7 +31,7 @@ export const DatesComponent = ({prevDates, nextDates}: Props) => {
                 </Date>)}
 
                 {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date key={index}>
-                    <Num>{index + 1}</Num>
+                    <Num className="disabled">{index + 1}</Num>
                 </Date>)}
             </DateWrap>
         </CalendarWrap>
@@ -82,6 +82,11 @@ const Num = styled.button <Props>`
   `}
   
   &:hover {
-    background-color: var(--defaultLightGray);
+    background-color: var(--defaultDarkGray);
+    color: #fff;
+  }
+  
+  &.disabled {
+    color: var(--defaultLightGray);
   }
 `;
