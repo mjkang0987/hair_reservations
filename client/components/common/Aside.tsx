@@ -47,12 +47,20 @@ export const AsideComponent = () => {
 const Aside = styled.aside <Props>`
   flex-shrink: 0;
   display: flex;
-  ${props => (!props.isVisible && props.isTransitionEnd) && 'display: none'};
-  width: 200px;
-  box-sizing: border-box;
   flex-direction: column;
   gap: 10px;
+  ${props => (!props.isVisible && props.isTransitionEnd) && 'display: none'};
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  max-width: 80%;
   padding: 60px 15px 0;
+  border-right: solid 1px var(--defaultLightGray);
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 10px 0 10px 0 rgba(0 0 0 / .1);
   
   &.animate {
       animation-name: asideHide;

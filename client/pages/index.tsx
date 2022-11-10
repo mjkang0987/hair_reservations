@@ -52,11 +52,12 @@ const Section = styled.section <Props>`
 const Button = styled.button <{isVisible: boolean}>`
   display: inline-flex;
   position: absolute;
-  top: 70px;
+  top: 10px;
   left: 15px;
   align-items: center;
   justify-content: center;
-  width: ${props => props.isVisible ? '170px' : 'auto'};
+  width: ${props => props.isVisible ? '219px' : 'auto'};
+  max-width: calc(80% - 30px);
   height: 40px;
   border: 1px solid #ccc;
   background-color: var(--defaultWhite);

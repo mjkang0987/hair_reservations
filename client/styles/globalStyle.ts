@@ -96,7 +96,7 @@ export const GlobalStyle = createGlobalStyle`
       transform: translateX(0);
     }
     100% {
-      transform: translateX(-200px);
+      transform: translateX(-100%);
     }
   }
 `;
