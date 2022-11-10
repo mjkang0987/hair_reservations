@@ -28,7 +28,6 @@ export default function LayoutComponent({children}: LayoutProps) {
     const initDate: Date = new Date();
 
     isomorphicEffect(() => {
-
         setToday({
             full: initDate
         });
