@@ -45,8 +45,6 @@ const Section = styled.section <Props>`
   flex-direction: column;
   height: 100%;
   border-left: solid var(--defaultLightGray) ${props => props.isVisible ? `1px` : 0};
-  ${props => props.isVisible && `
-  `}
 `;
 
 const Button = styled.button <{isVisible: boolean}>`
