@@ -9,7 +9,7 @@ interface AsideType {
 }
 
 const ASIDE: AsideType = {
-    DAILY: {
+    DAY: {
         id: 1,
         title: '일별',
     },
@@ -17,14 +17,18 @@ const ASIDE: AsideType = {
         id: 2,
         title: '3일',
     },
-    WEEKLY: {
+    WEEK: {
         id: 3,
         title: '주별',
     },
-    MONTHLY: {
+    MONTH: {
         id: 4,
         title: '월별',
     },
+    YEAR: {
+        id: 5,
+        title: '연별'
+    }
 };
 
 interface DaysElementType {
