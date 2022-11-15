@@ -1,10 +1,13 @@
-import Link from 'next/link';
+import React from 'react';
 
-import {useRecoilState} from 'recoil';
+import Link from 'next/link';
+import {useRouter} from 'next/router';
+
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState} from '../../recoil/atoms';
+import {asideState, currentDate, viewState, ViewType} from '../../recoil/atoms';
 
 import {ASIDE as asides} from '../../utils/constants';
 
@@ -17,7 +20,19 @@ interface Props {
 }
 
 export const AsideComponent = () => {
+    const router = useRouter();
+
     const [aside, setAside] = useRecoilState(asideState);
+    const [view, setView] = useRecoilState(viewState);
+
+    const changeURI = ({type}: {type: string}) => {
+        if (!type) {
+            return;
+        }
+
+        router.push(type);
+        setView({type: type})
+    }
 
     return (
         <Aside isVisible={aside.isVisible}
@@ -30,11 +45,9 @@ export const AsideComponent = () => {
                    });
                }}>
             {Object.keys(asides).map((a) =>
-                <Button key={asides[a].id} type="button">
-                    <ButtonText a11y={false}>
-                        {asides[a].title}
-                    </ButtonText>
-                </Button>
+                <Link href={`/`} as={`/${a.toLowerCase()}`} key={asides[a].id}>
+                    <LinkStyle>{asides[a].title}</LinkStyle>
+                </Link>
             )}
             <InputWrap inputIcon="search">
                 <input type="text" placeholder="사용자 검색"/>
@@ -71,7 +84,7 @@ const Aside = styled.aside <Props>`
   }
 `;
 
-const Button = styled.button`
+const LinkStyle = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
