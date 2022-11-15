@@ -40,3 +40,14 @@ export const asideState = atom<AsideType>({
         isTransitionEnd: true
     }
 });
+
+export interface ViewType {
+    type: string;
+}
+
+export const viewState = atom<ViewType>({
+    key: 'viewType',
+    default: {
+        type: 'monthly'
+    }
+});
