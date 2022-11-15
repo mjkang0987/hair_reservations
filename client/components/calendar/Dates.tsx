@@ -5,15 +5,10 @@ import styled from 'styled-components';
 import React from 'react';
 
 interface Props {
-    prevDates?: [];
-    nextDates?: [];
-}
-
-interface Props {
     isToday?: boolean;
 }
 
-export const DatesComponent = ({prevDates, nextDates}: Props) => {
+export const DatesComponent = () => {
     const current = useRecoilValue(currentDate);
 
     const {full, firstDay, lastDay, lastDate, prevLastDate} = current;
