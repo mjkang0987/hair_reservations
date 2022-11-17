@@ -1,17 +1,19 @@
 import {useRecoilValue} from 'recoil';
+import {currentDate, todayDate} from '../../recoil/atoms';
 
-import {currentDate} from '../../recoil/atoms';
 import styled from 'styled-components';
-import React from 'react';
 
 interface Props {
     isToday?: boolean;
 }
 
 export const DatesComponent = () => {
+    const today = useRecoilValue(todayDate);
     const current = useRecoilValue(currentDate);
 
     const {full, firstDay, lastDay, lastDate, prevLastDate} = current;
+
+    const isToday = full?.toString() === today.full?.toString();
 
     return (
         <CalendarWrap>
@@ -22,7 +24,7 @@ export const DatesComponent = () => {
 
                 {new Array(lastDate).fill(null).map((_, index) =>
                 <Date key={index}>
-                    <Num isToday={index + 1 === full?.getDate()}>{index + 1}</Num>
+                <Num isToday={isToday && index + 1 === full?.getDate()}>{index + 1}</Num>
                 </Date>)}
 
                 {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date key={index}>
