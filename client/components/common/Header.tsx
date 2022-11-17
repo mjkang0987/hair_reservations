@@ -2,11 +2,14 @@ import {useRecoilState, useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState, currentDate} from '../../recoil/atoms';
+import {asideState, viewState} from '../../recoil/atoms';
+
+import {A11Y_DIRECTION} from '../../utils/constants';
 
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
 import {ButtonCircle, ButtonSquare} from './Buttons';
+import {useCangeDateBridge} from '../../hooks/useChangeDate';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
@@ -30,13 +33,13 @@ export const HeaderComponent = () => {
                 <ButtonSquare>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
-                <ButtonCircle>
+                <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'prev'})}>
                     <Icon iconType="leftArrow"/>
-                    <ButtonText a11y={true}>이전달</ButtonText>
+                    <ButtonText a11y={true}>이전{A11Y_DIRECTION[view.type]}</ButtonText>
                 </ButtonCircle>
-                <ButtonCircle>
+                <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'next'})}>
                     <Icon iconType="rightArrow"/>
-                    <ButtonText a11y={true}>이전달</ButtonText>
+                    <ButtonText a11y={true}>다음{A11Y_DIRECTION[view.type]}</ButtonText>
                 </ButtonCircle>
             </ButtonWrap>
             <Heading>
@@ -86,7 +89,7 @@ const ButtonWrap = styled.span`
   display: flex;
   align-items: center;
   gap: 5px;
-  
+
   button {
     &:first-child {
       margin-right: 40px;
