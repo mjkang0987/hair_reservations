@@ -31,6 +31,18 @@ export const ASIDE: AsideType = {
     }
 };
 
+interface DirectionType {
+    [key: string]: string;
+}
+
+export const A11Y_DIRECTION: DirectionType = {
+    day: '날짜',
+    three: '3일',
+    week: '주',
+    month: '달',
+    year: '년'
+}
+
 interface DaysElementType {
     id: number;
     ko: string;
