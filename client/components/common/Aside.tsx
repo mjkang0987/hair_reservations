@@ -24,15 +24,6 @@ export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
     const [view, setView] = useRecoilState(viewState);
 
-    const changeURI = ({type}: {type: string}) => {
-        if (!type) {
-            return;
-        }
-
-        router.push(type);
-        setView({type: type})
-    }
-
     return (
         <Aside isVisible={aside.isVisible}
                isTransitionEnd={aside.isTransitionEnd}
@@ -44,7 +35,10 @@ export const AsideComponent = () => {
                    });
                }}>
             {Object.keys(asides).map((a) =>
-                <Link href={`/`} as={`/${a.toLowerCase()}`} key={asides[a].id}>
+                <Link href={`/`}
+                      as={`/${a.toLowerCase()}`}
+                      key={asides[a].id}
+                      onClick={() => setView({type: a.toLowerCase()})}>
                     <LinkStyle>{asides[a].title}</LinkStyle>
                 </Link>
             )}
