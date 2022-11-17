@@ -67,6 +67,10 @@ export const GlobalStyle = createGlobalStyle`
       opacity: .6;
     }
   }
+  
+  a {
+    text-decoration: none;
+  }
 
   input {
     width: 100%;
