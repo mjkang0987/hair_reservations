@@ -12,6 +12,7 @@ import {HeaderComponent} from './common/Header';
 import {AsideComponent} from './common/Aside';
 import {FooterComponent} from './common/Footer';
 import {Icon} from './common/Icons';
+import {useCangeDateBridge} from '../hooks/useChangeDate';
 
 type LayoutProps = {
     children: ReactNode
@@ -19,11 +20,10 @@ type LayoutProps = {
 
 export default function LayoutComponent({children}: LayoutProps) {
     const [loading, setLoading] = useState(false);
-
     const [today, setToday] = useRecoilState(todayDate);
-    const setCurrentDate = useSetRecoilState(currentDate);
 
     const isomorphicEffect = useIsomorphicEffect();
+    const changeDate = useCangeDateBridge();
 
     const initDate: Date = new Date();
 
@@ -37,22 +37,11 @@ export default function LayoutComponent({children}: LayoutProps) {
 
     isomorphicEffect(() => {
         const {full} = today;
-
         if (!full) {
             return;
         }
 
-        const currentLastDate = new Date(full.getFullYear(), full.getMonth() + 1, 0);
-        const currentFirstDate = new Date(full.getFullYear(), full.getMonth(), 1);
-        const prevLastDate = new Date(full.getFullYear(), full.getMonth(), 0);
-
-        setCurrentDate({
-            ...today,
-            firstDay: currentFirstDate.getDay(),
-            lastDay: currentLastDate.getDay(),
-            lastDate: currentLastDate.getDate(),
-            prevLastDate: prevLastDate.getDate(),
-        });
+        changeDate.setDate({targetDate: new Date(full)});
     }, [today]);
 
     return (
