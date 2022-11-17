@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {useRecoilState} from 'recoil';
 
 import styled from 'styled-components';
 
@@ -11,7 +11,6 @@ import {asideState, currentDate, viewState, ViewType} from '../../recoil/atoms';
 
 import {ASIDE as asides} from '../../utils/constants';
 
-import {ButtonText} from './ButtonText';
 import {InputWrap} from './Input';
 
 interface Props {
