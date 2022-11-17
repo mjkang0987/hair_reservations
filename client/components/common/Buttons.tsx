@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 
 interface Props {
-    children: React.ReactNode | string
+    children: React.ReactNode | string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | any;
 }
 
 const StyledSquareButton = styled.button <Props>`
@@ -17,8 +18,8 @@ const StyledSquareButton = styled.button <Props>`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 `;
 
-export const ButtonSquare: React.FC <Props> = ({children}) => {
-    return <StyledSquareButton>{children}</StyledSquareButton>;
+export const ButtonSquare: React.FC<Props> = ({children, ...props}) => {
+    return <StyledSquareButton {...props}>{children}</StyledSquareButton>;
 };
 
 const StyledCircleButton = styled.button <Props>`
@@ -34,6 +35,6 @@ const StyledCircleButton = styled.button <Props>`
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 `;
 
-export const ButtonCircle: React.FC <Props> = ({children}) => {
-    return <StyledCircleButton type="button">{children}</StyledCircleButton>;
+export const ButtonCircle: React.FC<Props> = ({children, ...props}) => {
+    return <StyledCircleButton type="button" {...props}>{children}</StyledCircleButton>;
 };
