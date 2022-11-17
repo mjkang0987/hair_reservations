@@ -10,7 +10,11 @@ import {ButtonCircle, ButtonSquare} from './Buttons';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const current = useRecoilValue(currentDate);
+
+    const view = useRecoilValue(viewState);
+
+    const changeDate = useCangeDateBridge();
+    const {current} = changeDate;
     const {full} = current;
 
     return (
