@@ -8,7 +8,7 @@ interface AsideType {
     [key: string]: AsideElementType;
 }
 
-const ASIDE: AsideType = {
+export const ASIDE: AsideType = {
     DAY: {
         id: 1,
         title: '일별',
@@ -41,7 +41,7 @@ interface DaysType {
     [key: string]: DaysElementType;
 }
 
-const DAYS: DaysType = {
+export const DAYS: DaysType = {
     SUN: {
         id: 1,
         ko: '일',
@@ -79,7 +79,3 @@ const DAYS: DaysType = {
     }
 };
 
-export {
-    ASIDE,
-    DAYS
-};
