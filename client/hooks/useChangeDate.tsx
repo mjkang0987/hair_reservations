@@ -42,6 +42,10 @@ export const useChangeDateBridge = () => {
             if (type === 'full') {
                 return [targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()]
             }
+
+            if (type === 'month') {
+                return [targetDate.getFullYear(), targetDate.getMonth()]
+            }
         },
         changeDate() {
         },
