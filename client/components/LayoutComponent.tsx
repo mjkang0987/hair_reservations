@@ -41,7 +41,7 @@ export default function LayoutComponent({children}: LayoutProps) {
     }, []);
 
     isomorphicEffect(() => {
-        const {full} = today;
+        if (!today) {
             return;
         }
 
