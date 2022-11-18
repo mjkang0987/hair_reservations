@@ -40,12 +40,12 @@ export const asideState = atom<AsideType>({
 });
 
 export interface ViewType {
-    type: string;
+    type: string | null;
 }
 
 export const viewState = atom<ViewType>({
     key: 'viewType',
     default: {
-        type: 'month'
+        type: null
     }
 });

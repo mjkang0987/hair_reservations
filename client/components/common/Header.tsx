@@ -35,11 +35,11 @@ export const HeaderComponent = () => {
                 </ButtonSquare>
                 <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'prev'})}>
                     <Icon iconType="leftArrow"/>
-                    <ButtonText a11y={true}>이전{A11Y_DIRECTION[view.type]}</ButtonText>
+                    {view.type && <ButtonText a11y={true}>이전{A11Y_DIRECTION[view.type]}</ButtonText>}
                 </ButtonCircle>
                 <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'next'})}>
                     <Icon iconType="rightArrow"/>
-                    <ButtonText a11y={true}>다음{A11Y_DIRECTION[view.type]}</ButtonText>
+                    {view.type && <ButtonText a11y={true}>다음{A11Y_DIRECTION[view.type]}</ButtonText>}
                 </ButtonCircle>
             </ButtonWrap>
             <Heading>
