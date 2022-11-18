@@ -34,6 +34,11 @@ export const useChangeDateBridge = () => {
                 prevLastDate: prevLastDate.getDate(),
             });
         },
+        getDate({targetDate, type = 'full'}: { targetDate: Date, type: string }) {
+            if (type === 'full') {
+                return [targetDate.getFullYear(), targetDate.getMonth(), targetDate.getDate()]
+            }
+        },
         changeDate() {
         },
 
@@ -66,11 +71,12 @@ export const useChangeDateBridge = () => {
     // changeMethod[`change${type.replace(/^[a-z]/, char => char.toUpperCase())}`]();
     // }
 
-    const {setDate} = changeMethod;
+    const {setDate, getDate} = changeMethod;
 
     return {
         current,
         changeBridge,
         setDate
+        getDate
     };
 };

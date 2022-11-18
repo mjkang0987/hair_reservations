@@ -1,7 +1,9 @@
+import styled from 'styled-components';
+
 import {useRecoilValue} from 'recoil';
 import {currentDate, todayDate} from '../../recoil/atoms';
 
-import styled from 'styled-components';
+import {useChangeDateBridge} from '../../hooks/useChangeDate';
 
 interface Props {
     isToday?: boolean;
@@ -13,7 +15,13 @@ export const DatesComponent = () => {
 
     const {full, firstDay, lastDay, lastDate, prevLastDate} = current;
 
-    const isToday = full?.toString() === today.full?.toString();
+    const changeDate = useChangeDateBridge();
+
+    if (!full) {
+        return;
+    }
+
+    const isToday = changeDate.getDate({targetDate: full}).join(' ') === changeDate.getDate({targetDate: today}).join(' ');
 
     return (
         <CalendarWrap>
@@ -22,9 +30,8 @@ export const DatesComponent = () => {
                     <Num className="disabled">{Number(prevLastDate) - index}</Num>
                 </Date>).reverse()}
 
-                {new Array(lastDate).fill(null).map((_, index) =>
-                <Date key={index}>
-                <Num isToday={isToday && index + 1 === full?.getDate()}>{index + 1}</Num>
+                {new Array(lastDate).fill(null).map((_, index) => <Date key={index}>
+                    <Num isToday={isToday && index + 1 === today.getDate()}>{index + 1}</Num>
                 </Date>)}
 
                 {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date key={index}>
