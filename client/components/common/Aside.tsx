@@ -1,13 +1,12 @@
 import React from 'react';
 
 import Link from 'next/link';
-import {useRouter} from 'next/router';
 
 import {useRecoilState} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState, currentDate, viewState, ViewType} from '../../recoil/atoms';
+import {asideState, viewState} from '../../recoil/atoms';
 
 import {ASIDE as asides} from '../../utils/constants';
 
@@ -19,8 +18,6 @@ interface Props {
 }
 
 export const AsideComponent = () => {
-    const router = useRouter();
-
     const [aside, setAside] = useRecoilState(asideState);
     const [view, setView] = useRecoilState(viewState);
 
