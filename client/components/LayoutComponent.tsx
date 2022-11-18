@@ -29,7 +29,7 @@ export default function LayoutComponent({children}: LayoutProps) {
     const isomorphicEffect = useIsomorphicEffect();
     const changeDate = useChangeDateBridge();
 
-    const isInitPath = router.asPath === '/';
+    const isInitPath = router.asPath === '/' || null;
     const initDate: Date = new Date();
 
     isomorphicEffect(() => {
