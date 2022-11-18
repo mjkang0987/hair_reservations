@@ -57,10 +57,11 @@ export const useChangeDateBridge = () => {
             });
         },
 
-        changeYear() {
+        changeYear({direction}: { direction: string }) {
+            const isPrev = direction === 'prev';
             changeMethod.setDate({
-                targetDate: new Date(full.setYear(full.getFullYear() - 1))
-            })
+                targetDate: new Date(full.setYear(full.getFullYear() - (isPrev ? 1 : -1)))
+            });
         }
     };
 
