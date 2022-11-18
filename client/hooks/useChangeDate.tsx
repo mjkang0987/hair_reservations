@@ -57,9 +57,15 @@ export const useChangeDateBridge = () => {
     };
 
     const changeBridge = ({direction}: ChangeType) => {
+        const isToday = direction === 'today';
+
+        if (isToday) {
+            return changeMethod.setDate({targetDate: new Date()});
+        }
+
         const isMethod = type === 'year' || type === 'month';
 
-        if (isMethod) {
+        if (!isToday && isMethod) {
             return changeMethod[`change${type.replace(/^[a-z]/, char => char.toUpperCase())}`]({direction});
         }
     };

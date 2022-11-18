@@ -30,7 +30,7 @@ export const HeaderComponent = () => {
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </Button>
             <ButtonWrap>
-                <ButtonSquare>
+                <ButtonSquare onClick={() => changeDate.changeBridge({direction: 'today'})}>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
                 <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'prev'})}>
