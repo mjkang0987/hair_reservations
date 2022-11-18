@@ -3,6 +3,7 @@ import {ReactNode, useState} from 'react';
 import styled from 'styled-components';
 
 import {useRecoilState, useSetRecoilState} from 'recoil';
+import {todayDate, viewState} from '../recoil/atoms';
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
 import {useChangeDateBridge} from '../hooks/useChangeDate';
@@ -28,11 +29,8 @@ export default function LayoutComponent({children}: LayoutProps) {
     const initDate: Date = new Date();
 
     isomorphicEffect(() => {
-        setToday({
-            full: initDate
-        });
-
         setLoading(true);
+        setToday(initDate);
     }, []);
 
     isomorphicEffect(() => {

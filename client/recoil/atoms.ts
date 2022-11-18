@@ -12,9 +12,7 @@ interface TodayDateType {
 
 export const todayDate = atom<FullType>({
     key: 'todayDate',
-    default: {
-        full: null
-    }
+    default: null
 });
 
 export const currentDate = atom<TodayDateType>({
