@@ -50,11 +50,11 @@ export const useChangeDateBridge = () => {
         changeDate() {
         },
 
-        changeMonth({direction}: {direction: string}) {
+        changeMonth({direction}: { direction: string }) {
             const isPrev = direction === 'prev';
             changeMethod.setDate({
                 targetDate: new Date(full.setMonth(full.getMonth() - (isPrev ? 1 : -1)))
-            })
+            });
         },
 
         changeYear() {
