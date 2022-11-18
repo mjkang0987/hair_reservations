@@ -91,7 +91,7 @@ export const useChangeDateBridge = () => {
     return {
         current,
         changeBridge,
-        setDate
+        setDate,
         getDate
     };
 };
