@@ -46,7 +46,7 @@ export default function LayoutComponent({children}: LayoutProps) {
         }
 
         changeDate.setDate({targetDate: initDate});
-    }, [today]);
+    }, [today, setToday]);
 
     return (
         <>
