@@ -33,9 +33,9 @@ export default function LayoutComponent({children}: LayoutProps) {
     const initDate: Date = new Date();
 
     isomorphicEffect(() => {
-        setLoading(true);
-
         setToday(initDate);
+
+        setLoading(true);
 
         setView({type: isInitPath ? 'month' : router.asPath.replace(/\//, '')});
     }, []);
