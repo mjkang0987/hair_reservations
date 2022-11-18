@@ -2,7 +2,7 @@ import {useRecoilState, useRecoilValue} from 'recoil';
 import {currentDate, viewState} from '../recoil/atoms';
 
 interface ChangeType {
-    direction?: string;
+    direction: string;
 }
 
 interface MethodType {
