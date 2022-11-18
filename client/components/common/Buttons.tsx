@@ -31,7 +31,7 @@ const StyledCircleButton = styled.button <Props>`
   height: 40px;
   border: 1px solid #ccc;
   background-color: var(--defaultWhite);
-  border-radius: 5px;
+  border-radius: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 `;
 
