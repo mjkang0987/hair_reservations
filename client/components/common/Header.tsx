@@ -9,14 +9,14 @@ import {A11Y_DIRECTION} from '../../utils/constants';
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
 import {ButtonCircle, ButtonSquare} from './Buttons';
-import {useCangeDateBridge} from '../../hooks/useChangeDate';
+import {useChangeDateBridge} from '../../hooks/useChangeDate';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
 
     const view = useRecoilValue(viewState);
 
-    const changeDate = useCangeDateBridge();
+    const changeDate = useChangeDateBridge();
     const {current} = changeDate;
     const {full} = current;
 

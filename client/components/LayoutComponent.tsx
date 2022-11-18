@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import {useRecoilState, useSetRecoilState} from 'recoil';
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
-
+import {useChangeDateBridge} from '../hooks/useChangeDate';
 import {currentDate, todayDate} from '../recoil/atoms';
 
 import {HeaderComponent} from './common/Header';
@@ -23,7 +23,7 @@ export default function LayoutComponent({children}: LayoutProps) {
     const [today, setToday] = useRecoilState(todayDate);
 
     const isomorphicEffect = useIsomorphicEffect();
-    const changeDate = useCangeDateBridge();
+    const changeDate = useChangeDateBridge();
 
     const initDate: Date = new Date();
 

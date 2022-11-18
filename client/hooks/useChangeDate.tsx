@@ -9,7 +9,7 @@ interface MethodType {
     [key: string]: Function;
 }
 
-export const useCangeDateBridge = () => {
+export const useChangeDateBridge = () => {
     const [current, setCurrent] = useRecoilState(currentDate);
     let {full} = current;
 
