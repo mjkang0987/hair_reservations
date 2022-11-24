@@ -65,4 +65,8 @@ const Main = styled.main`
   display: flex;
   height: 100%;
   position: relative;
+  
+  > button {
+    opacity: .7;
+  }
 `;
