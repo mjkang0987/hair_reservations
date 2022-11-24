@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --defaultFont: 18px;
     --defaultSmallFont: 16px;
+    --defaultTinyFont: 14px;
     --defaultBlack: #222;
     --defaultGray: #9f9f9f;
     --defaultDarkGray: #525252;
