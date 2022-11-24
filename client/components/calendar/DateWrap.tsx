@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import {useRecoilValue} from 'recoil';
 import {todayState} from '../../recoil/atoms';
+import {Num} from './Num';
 
 interface DateType {
     isToday: boolean;
@@ -58,36 +59,5 @@ const Date = styled.li`
 
   &:nth-child(-n+7) {
     border-top: none;
-  }
-`;
-
-interface NumProps {
-    isToday?: boolean;
-}
-
-const Num = styled.button <NumProps>`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  background: transparent;
-  border: none;
-  font-size: var(--defaultSmallFont);
-  color: var(--defaultBlack);
-
-  ${props => props.isToday && `
-    background-color: var(--defaultBlue);
-    color: #fff;
-  `}
-  &:hover {
-    background-color: var(--defaultDarkGray);
-    color: #fff;
-  }
-
-  &.disabled {
-    color: var(--defaultLightGray);
   }
 `;
