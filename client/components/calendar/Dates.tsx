@@ -1,24 +1,54 @@
 import styled from 'styled-components';
 
-import {DateWrpComponent} from './DateWrap';
 import {useRecoilValue} from 'recoil';
-import {currentDate, todayDate} from '../../recoil/atoms';
-import {useChangeDateBridge} from '../../hooks/useChangeDate';
+import {targetStateState, todayState, viewState} from '../../recoil/atoms';
+
+import {DateWrpComponent} from './DateWrap';
+import {WeekWrapComponent} from './WeekWrap';
 
 export const DatesComponent = () => {
-    const today = useRecoilValue(todayDate);
-    const current = useRecoilValue(currentDate);
+    const today = useRecoilValue(todayState);
+    const target = useRecoilValue(targetStateState);
+    const {
+        fullYear,
+        month,
+        date,
+        day,
+        monthFirstDay,
+        monthLastDay,
+        monthLastDate,
+        monthLastNumber,
+        monthPrevLastNumber,
+        monthPrevLastDate,
+        weekLength,
+        weekFirstDate,
+        weekFirstNumber,
+        weekFirstDay,
+        weekLastDay,
+        week
+    } = target;
 
-    const {full} = current;
+    const view = useRecoilValue(viewState);
+    const {type} = view;
 
-    const changeDate = useChangeDateBridge();
+    const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
+    // const isCurrentMonth = changeDate.getDate({targetDate: full, type: 'month'})?.join(' ') === changeDate.getDate({targetDate: today, type: 'month'})?.join(' ');
+    console.log(fullYear, month, date);
 
-    const isToday = changeDate.getDate({targetDate: full})?.join(' ') === changeDate.getDate({targetDate: today})?.join(' ');
-    const isCurrentMonth = changeDate.getDate({targetDate: full, type: 'month'})?.join(' ') === changeDate.getDate({targetDate: today, type: 'month'})?.join(' ');
-
+    console.log(weekLastDay);
     return (<CalendarWrap>
-            {today && <DateWrpComponent isToday={isToday}
-                                        isCurrentMonth={isCurrentMonth}/>}
+            {type === 'month' &&
+                <DateWrpComponent isToday={isToday}
+                                  isCurrentMonth={false}
+                                  monthFirstDay={monthFirstDay}
+                                  monthLastDay={monthLastDay}
+                                  monthLastNumber={monthLastNumber}
+                                  monthPrevLastNumber={monthPrevLastNumber}/>}
+            {type === 'week' &&
+                <WeekWrapComponent weekFirstDay={weekFirstDay}
+                                   monthPrevLastNumber={monthPrevLastNumber}
+                                   weekLastDay={weekLastDay}
+                                   week={week}/>}
         </CalendarWrap>
     );
 };
