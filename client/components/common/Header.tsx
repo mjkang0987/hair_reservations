@@ -1,24 +1,66 @@
-import {useRecoilState, useRecoilValue} from 'recoil';
+import {
+    useRecoilState,
+    useRecoilValue,
+    useSetRecoilState
+} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState, viewState} from '../../recoil/atoms';
+import {
+    asideState,
+    targetState,
+    targetStateState,
+    todayState,
+    viewState
+} from '../../recoil/atoms';
 
-import {A11Y_DIRECTION} from '../../utils/constants';
+import {A11Y_DIRECTION, ASIDE} from '../../utils/constants';
 
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
 import {ButtonCircle, ButtonSquare} from './Buttons';
-import {useChangeDateBridge} from '../../hooks/useChangeDate';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
 
-    const view = useRecoilValue(viewState);
+    const today = useRecoilValue(todayState);
 
-    const changeDate = useChangeDateBridge();
-    const {current} = changeDate;
-    const {full} = current;
+    const view = useRecoilValue(viewState);
+    const {type} = view;
+
+    const curr = useRecoilValue(targetState);
+    const {full, fullYear, month, date, day} = curr;
+
+    const setCurr = useSetRecoilState(targetStateState);
+
+    const controller = ({direction}: {direction: string}) => {
+        if (!direction) {
+            return;
+        }
+
+        const isPrev = direction === 'prev';
+        const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
+
+        if (type === 'year') {
+            return setCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
+        }
+
+        if (type === 'month') {
+            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
+            return setCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
+        }
+
+        if (isDate) {
+            if (!type) {
+                return;
+            }
+
+            const move = Number(ASIDE[type.toUpperCase()].move);
+
+            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
+            return setCurr(new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0))));
+        }
+    }
 
     return (
         <Header>
@@ -30,16 +72,16 @@ export const HeaderComponent = () => {
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </Button>
             <ButtonWrap>
-                <ButtonSquare onClick={() => changeDate.changeBridge({direction: 'today'})}>
+                <ButtonSquare onClick={() => setCurr(today)}>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
-                <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'prev'})}>
+                <ButtonCircle onClick={() => controller({direction: 'prev'})}>
                     <Icon iconType="leftArrow"/>
-                    {view.type && <ButtonText a11y={true}>이전{A11Y_DIRECTION[view.type]}</ButtonText>}
+                    {type && <ButtonText a11y={true}>이전{A11Y_DIRECTION[type]}</ButtonText>}
                 </ButtonCircle>
-                <ButtonCircle onClick={() => changeDate.changeBridge({direction: 'next'})}>
+                <ButtonCircle onClick={() => controller({direction: 'next'})}>
                     <Icon iconType="rightArrow"/>
-                    {view.type && <ButtonText a11y={true}>다음{A11Y_DIRECTION[view.type]}</ButtonText>}
+                    {type && <ButtonText a11y={true}>다음{A11Y_DIRECTION[type]}</ButtonText>}
                 </ButtonCircle>
             </ButtonWrap>
             <Heading>
