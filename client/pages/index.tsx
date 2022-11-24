@@ -59,7 +59,14 @@ const Button = styled.button <{isVisible: boolean}>`
   max-width: calc(80% - 30px);
   height: 40px;
   border: 1px solid #ccc;
-  background-color: var(--defaultWhite);
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+  background-color: ${props => props.isVisible ? 'var(--defaultWhite)' : 'rgb(255 255 255 / .6)'};
+  border-radius: ${props => props.isVisible ? '5px' : '20px'};
+  box-shadow: ${props => props.isVisible ? '0 0 10px 0 rgba(0, 0, 0, .1)' : '0 0 10px 0 rgba(0, 0, 0, .2)'};
+  transition: box-shadow .1s ease-in-out;
+  
+  &:hover {
+    ${props => !props.isVisible && `
+      box-shadow:  0 0 15px 0 rgba(0, 0, 0, .4);
+    `}
+  }
 `;
