@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import {useRecoilValue} from 'recoil';
 import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 
-import {DateWrpComponent} from './DateWrap';
+import {MonthWrapComponent} from './MonthWrap';
 import {WeekWrapComponent} from './WeekWrap';
 
 export const DatesComponent = () => {
@@ -34,7 +34,7 @@ export const DatesComponent = () => {
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
     return (<CalendarWrap>
             {type === 'month' &&
-                <DateWrpComponent isToday={isToday}
+                <MonthWrapComponent isToday={isToday}
                                   isCurrentMonth={false}
                                   monthFirstDay={monthFirstDay}
                                   monthLastDay={monthLastDay}

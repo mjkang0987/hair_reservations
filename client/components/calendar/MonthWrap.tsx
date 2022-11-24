@@ -13,7 +13,7 @@ interface DateType {
     monthPrevLastNumber: number;
 }
 
-export const DateWrpComponent = ({
+export const MonthWrapComponent = ({
     isToday,
     monthFirstDay,
     monthLastDay,
@@ -22,7 +22,7 @@ export const DateWrpComponent = ({
 }: DateType) => {
     const today = useRecoilValue(todayState);
     return (
-        <DateWrap>
+        <MonthWrap>
             {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
                 <Date key={`prev_${index}`}>
                     <Num>{Number(monthPrevLastNumber) - index}</Num>
@@ -36,11 +36,11 @@ export const DateWrpComponent = ({
                 <Date key={`next_${index}`}>
                     <Num>{index + 1}</Num>
                 </Date>)}
-        </DateWrap>
+        </MonthWrap>
     );
 };
 
-const DateWrap = styled.ul`
+const MonthWrap = styled.ul`
   flex: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
