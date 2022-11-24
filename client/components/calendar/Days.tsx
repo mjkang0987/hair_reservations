@@ -19,7 +19,8 @@ const DaysWrap = styled.div`
 `;
 
 const Days = styled.ul`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
   justify-content: center;
   width: 100%;
 `;
