@@ -22,17 +22,27 @@ export const WeekWrapComponent = ({
 };
 
 const Weeks = styled.ul`
+  flex: 1;
+  position: relative;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   align-items: stretch;
-  height: 100%;
+  
+  &:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -150px;
+    width: 100vw;
+    height: 1px;
+    background-color: var(--defaultLightGray);
+  }
 `;
 
 const Week = styled.li`
   text-align: center;
   padding: 5px;
   border-right: 1px solid var(--defaultLightGray);
-  border-top: 1px solid var(--defaultLightGray);
 
   &:nth-child(7) {
     border-right: none;

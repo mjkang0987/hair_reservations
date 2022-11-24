@@ -41,6 +41,7 @@ export const DateWrpComponent = ({
 };
 
 const DateWrap = styled.ul`
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   align-items: stretch;
