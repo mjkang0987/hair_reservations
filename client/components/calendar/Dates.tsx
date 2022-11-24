@@ -32,7 +32,7 @@ export const DatesComponent = () => {
     const {type} = view;
 
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
-    return (<CalendarWrap>
+    return (<CalendarWrap type={type}>
             {type !== 'month' && type !== 'year' && <TimelineComponent/>}
             {type === 'month' &&
                 <MonthWrapComponent isToday={isToday}
@@ -45,10 +45,10 @@ export const DatesComponent = () => {
     );
 };
 
-const CalendarWrap = styled.div`
+const CalendarWrap = styled.div<{ type: string | null }>`
   flex: 1;
   display: grid;
-  grid-template-columns: 150px auto;
+  grid-template-columns: ${props => props.type !== 'month' ? '150px auto' : '1fr'};
   width: 100%;
   height: 100%;
   overflow-x: hidden;
