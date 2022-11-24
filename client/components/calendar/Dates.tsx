@@ -32,10 +32,6 @@ export const DatesComponent = () => {
     const {type} = view;
 
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
-    // const isCurrentMonth = changeDate.getDate({targetDate: full, type: 'month'})?.join(' ') === changeDate.getDate({targetDate: today, type: 'month'})?.join(' ');
-    console.log(fullYear, month, date);
-
-    console.log(weekLastDay);
     return (<CalendarWrap>
             {type === 'month' &&
                 <DateWrpComponent isToday={isToday}
