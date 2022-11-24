@@ -4,7 +4,7 @@ import {useRecoilValue} from 'recoil';
 import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 
 import {MonthWrapComponent} from './MonthWrap';
-import {WeekWrapComponent} from './WeekWrap';
+import {TimelineComponent} from './Timeline';
 
 export const DatesComponent = () => {
     const today = useRecoilValue(todayState);
@@ -33,6 +33,7 @@ export const DatesComponent = () => {
 
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
     return (<CalendarWrap>
+            {type !== 'month' && type !== 'year' && <TimelineComponent/>}
             {type === 'month' &&
                 <MonthWrapComponent isToday={isToday}
                                   isCurrentMonth={false}
