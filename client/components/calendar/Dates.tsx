@@ -45,10 +45,7 @@ export const DatesComponent = () => {
                                   monthLastNumber={monthLastNumber}
                                   monthPrevLastNumber={monthPrevLastNumber}/>}
             {type === 'week' &&
-                <WeekWrapComponent weekFirstDay={weekFirstDay}
-                                   monthPrevLastNumber={monthPrevLastNumber}
-                                   weekLastDay={weekLastDay}
-                                   week={week}/>}
+                <WeekWrapComponent weekLastDay={weekLastDay} week={week}/>}
         </CalendarWrap>
     );
 };

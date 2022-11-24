@@ -2,15 +2,11 @@ import styled from 'styled-components';
 import {Num} from './Num';
 
 interface WeekType {
-    weekFirstDay: number;
-    monthPrevLastNumber: number;
     weekLastDay:number;
     week: Function;
 }
 
 export const WeekWrapComponent = ({
-    weekFirstDay,
-    monthPrevLastNumber,
     weekLastDay,
     week
 }: WeekType) => {
