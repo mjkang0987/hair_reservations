@@ -2,6 +2,7 @@ interface AsideElementType {
     id: number
     title: string,
     icon?: string
+    move?: number
 }
 
 interface AsideType {
@@ -12,14 +13,17 @@ export const ASIDE: AsideType = {
     DAY: {
         id: 1,
         title: '일별',
+        move: 1
     },
     THREE: {
         id: 2,
         title: '3일',
+        move: 3
     },
     WEEK: {
         id: 3,
         title: '주별',
+        move: 7
     },
     MONTH: {
         id: 4,
