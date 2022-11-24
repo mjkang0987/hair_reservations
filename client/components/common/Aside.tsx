@@ -2,7 +2,7 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useSetRecoilState} from 'recoil';
 
 import styled from 'styled-components';
 
@@ -19,7 +19,7 @@ interface Props {
 
 export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const [view, setView] = useRecoilState(viewState);
+    const setView = useSetRecoilState(viewState);
 
     return (
         <Aside isVisible={aside.isVisible}
@@ -35,7 +35,13 @@ export const AsideComponent = () => {
                 <Link href={`/`}
                       as={`/${a.toLowerCase()}`}
                       key={asides[a].id}
-                      onClick={() => setView({type: a.toLowerCase()})}>
+                      onClick={() => {
+                          setAside({
+                              ...aside,
+                              isVisible: !aside.isVisible
+                          });
+                          setView({type: a.toLowerCase()});
+                      }}>
                     <LinkStyle>{asides[a].title}</LinkStyle>
                 </Link>
             )}
