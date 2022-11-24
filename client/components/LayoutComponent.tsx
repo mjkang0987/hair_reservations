@@ -62,6 +62,7 @@ export default function LayoutComponent({children}: LayoutProps) {
 
 const Main = styled.main`
   flex: 1;
+  overflow: hidden;
   display: flex;
   height: 100%;
   position: relative;
