@@ -41,15 +41,15 @@ const Date = styled.li`
   text-align: center;
   border-right: 1px solid var(--defaultLightGray);
   border-top: 1px solid var(--defaultLightGray);
-  
+
   &:nth-child(7n) {
     border-right: none;
   }
-  
+
   &:nth-child(-n+7) {
     border-top: none;
   }
-`
+`;
 
 interface NumProps {
     isToday?: boolean;
@@ -67,16 +67,16 @@ const Num = styled.button <NumProps>`
   border: none;
   font-size: var(--defaultSmallFont);
   color: var(--defaultBlack);
+
   ${props => props.isToday && `
     background-color: var(--defaultBlue);
     color: #fff;
   `}
-  
   &:hover {
     background-color: var(--defaultDarkGray);
     color: #fff;
   }
-  
+
   &.disabled {
     color: var(--defaultLightGray);
   }
