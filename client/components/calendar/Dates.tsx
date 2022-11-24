@@ -40,12 +40,16 @@ export const DatesComponent = () => {
                                   monthLastDay={monthLastDay}
                                   monthLastNumber={monthLastNumber}
                                   monthPrevLastNumber={monthPrevLastNumber}/>}
-            {type === 'week' &&
-                <WeekWrapComponent weekLastDay={weekLastDay} week={week}/>}
         </CalendarWrap>
     );
 };
 
 const CalendarWrap = styled.div`
   flex: 1;
+  display: grid;
+  grid-template-columns: 150px auto;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
