@@ -7,7 +7,7 @@ import {useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState} from '../recoil/atoms';
+import {asideState, targetStateState} from '../recoil/atoms';
 
 import {Icon} from '../components/common/Icons';
 import {ButtonText} from '../components/common/ButtonText';
@@ -20,6 +20,7 @@ interface Props {
 
 const Home: NextPage = () => {
     const aside = useRecoilValue(asideState);
+    const target = useRecoilValue(targetStateState);
     return (<>
             <Head>
                 <title>RESERVATION</title>
@@ -31,7 +32,7 @@ const Home: NextPage = () => {
             </Button>
             <Section isVisible={aside.isVisible}
                      isTransitionEnd={aside.isTransitionEnd}>
-                <Calendar/>
+                {target && <Calendar/>}
             </Section>
         </>
     );
