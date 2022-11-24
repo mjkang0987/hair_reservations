@@ -5,10 +5,9 @@ import {useRouter} from 'next/router';
 import styled from 'styled-components';
 
 import {useRecoilState, useSetRecoilState} from 'recoil';
-import {todayDate, viewState} from '../recoil/atoms';
+import {targetStateState, todayState, viewState} from '../recoil/atoms';
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
-import {useChangeDateBridge} from '../hooks/useChangeDate';
 
 import {HeaderComponent} from './common/Header';
 import {AsideComponent} from './common/Aside';
@@ -23,20 +22,18 @@ export default function LayoutComponent({children}: LayoutProps) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);
-    const [today, setToday] = useRecoilState(todayDate);
+    const [today, setToday] = useRecoilState(todayState);
     const setView = useSetRecoilState(viewState);
+    const setCurr = useSetRecoilState(targetStateState);
 
     const isomorphicEffect = useIsomorphicEffect();
-    const changeDate = useChangeDateBridge();
 
     const isInitPath = router.asPath === '/' || null;
     const initDate: Date = new Date();
 
     isomorphicEffect(() => {
-        setToday(initDate);
-
         setLoading(true);
-
+        setToday(initDate);
         setView({type: isInitPath ? 'month' : router.asPath.replace(/\//, '')});
     }, []);
 
@@ -45,13 +42,13 @@ export default function LayoutComponent({children}: LayoutProps) {
             return;
         }
 
-        changeDate.setDate({targetDate: initDate});
+        setCurr(today);
     }, [today, setToday]);
 
     return (
         <>
             {!loading && <Icon iconType="loading"/>}
-            {loading && <>
+            {(loading && today) && <>
                 <HeaderComponent/>
                 <Main>
                     <AsideComponent/>
