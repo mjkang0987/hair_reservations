@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 interface Props {
     children: React.ReactNode | string;
-    className?: string;
     isToday?: boolean;
 }
 
@@ -32,9 +31,5 @@ const StyledNum = styled.button <Props>`
   &:hover {
     background-color: var(--defaultDarkGray);
     color: #fff;
-  }
-
-  &.disabled {
-    color: var(--defaultLightGray);
   }
 `;

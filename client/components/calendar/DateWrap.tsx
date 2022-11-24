@@ -25,7 +25,7 @@ export const DateWrpComponent = ({
         <DateWrap>
             {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
                 <Date key={`prev_${index}`}>
-                    <Num className="disabled">{Number(monthPrevLastNumber) - index}</Num>
+                    <Num>{Number(monthPrevLastNumber) - index}</Num>
                 </Date>).reverse()}
 
             {new Array(monthLastNumber).fill(null).map((_, index) => <Date key={`curr_${index}`}>
@@ -34,7 +34,7 @@ export const DateWrpComponent = ({
 
             {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(null).map((_, index) =>
                 <Date key={`next_${index}`}>
-                    <Num className="disabled">{index + 1}</Num>
+                    <Num>{index + 1}</Num>
                 </Date>)}
         </DateWrap>
     );
