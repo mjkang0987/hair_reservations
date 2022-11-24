@@ -86,9 +86,9 @@ export const HeaderComponent = () => {
             </ButtonWrap>
             <Heading>
                 {full && <DateWrap>
-                    <Date>{full.getFullYear()}</Date>
-                    {view.type !== 'year' && <Date>{full.getMonth() + 1}</Date>}
-                    {(view.type === 'day' || view.type === 'three') && <Date>{full.getDate()}</Date>}
+                    <DateElement>{Number(fullYear)}</DateElement>
+                    {type !== 'year' && <DateElement>{Number(month) + 1}</DateElement>}
+                    {(type === 'day' || type === 'three') && <DateElement>{Number(date)}</DateElement>}
                 </DateWrap>}
             </Heading>
         </Header>
@@ -117,7 +117,7 @@ const DateWrap = styled.span`
   align-items: center;
 `;
 
-const Date = styled.span`
+const DateElement = styled.span`
   display: inline-flex;
   font-size: 26px;
   
