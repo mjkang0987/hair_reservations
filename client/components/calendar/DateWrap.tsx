@@ -1,31 +1,41 @@
 import styled from 'styled-components';
 
 import {useRecoilValue} from 'recoil';
-import {currentDate, todayDate} from '../../recoil/atoms';
+import {todayState} from '../../recoil/atoms';
 
 interface DateType {
     isToday: boolean;
     isCurrentMonth: boolean;
+    monthFirstDay: number;
+    monthLastDay: number;
+    monthLastNumber: number;
+    monthPrevLastNumber: number;
 }
-export const DateWrpComponent = ({isToday}: DateType) => {
-    const today = useRecoilValue(todayDate);
-    const current = useRecoilValue(currentDate);
 
-    const {firstDay, lastDay, lastDate, prevLastDate} = current;
-
-    return (<DateWrap>
-                {Number(firstDay) < 7 && new Array(firstDay).fill(null).map((_, index) => <Date key={`prev_${index}`}>
-                    <Num className="disabled">{Number(prevLastDate) - index}</Num>
+export const DateWrpComponent = ({
+    isToday,
+    monthFirstDay,
+    monthLastDay,
+    monthLastNumber,
+    monthPrevLastNumber
+}: DateType) => {
+    const today = useRecoilValue(todayState);
+    return (
+        <DateWrap>
+            {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
+                <Date key={`prev_${index}`}>
+                    <Num className="disabled">{Number(monthPrevLastNumber) - index}</Num>
                 </Date>).reverse()}
 
-                {new Array(lastDate).fill(null).map((_, index) => <Date key={`curr_${index}`}>
+            {new Array(monthLastNumber).fill(null).map((_, index) => <Date key={`curr_${index}`}>
                     <Num isToday={isToday && index + 1 === today.getDate()}>{index + 1}</Num>
                 </Date>)}
 
-                {Number(lastDay) < 6 && new Array(6 - Number(lastDay)).fill(null).map((_, index) => <Date key={`next_${index}`}>
+            {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(null).map((_, index) =>
+                <Date key={`next_${index}`}>
                     <Num className="disabled">{index + 1}</Num>
                 </Date>)}
-            </DateWrap>
+        </DateWrap>
     );
 };
 
