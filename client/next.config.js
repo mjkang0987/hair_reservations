@@ -4,8 +4,9 @@ const nextConfig = {
     swcMinify      : true
 };
 
+module.exports = nextConfig;
+
 module.exports = {
-    nextConfig,
     async rewrites() {
         const asides = ['day', 'three', 'week', 'month', 'year'];
         let types = [];
@@ -24,3 +25,4 @@ module.exports = {
         ];
     }
 };
+
