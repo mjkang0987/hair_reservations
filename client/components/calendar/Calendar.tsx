@@ -10,7 +10,7 @@ export const CalendarComponent = ()  => {
 
     return (
         <>
-            {(type === 'month' || type === 'week' || type === 'three') && <DaysComponent type={type}/>}
+            {(type === 'month' || type === 'week' || type === 'three') && <DaysComponent/>}
             <DatesComponent/>
         </>
     );
