@@ -8,25 +8,39 @@ import {DAYS} from '../../utils/constants';
 import {WeekWrapComponent} from './WeekWrap';
 
 interface DaysType {
-    type: string;
+    type: string | null;
 }
 
-export const DaysComponent = ({type}: DaysType)  => {
+export const DaysComponent = ()  => {
     const target = useRecoilValue(targetStateState);
     const {
-        weekLastDay,
-        week
+        day,
     } = target;
+
+    const view = useRecoilValue(viewState);
+    const {type} = view;
+
+    const daysArr = () => {
+        const result = Object.keys(DAYS).slice(type === 'three' ? Number(day) : 0, type === 'three' ? Number(day) + 3 : 7);
+
+        if (result.length < 3) {
+            return new Array(3 - result.length).fill(null).reduce((acc, curr, i) => {
+                return [...acc, Object.keys(DAYS)[i]];
+            }, [...result]);
+        }
+
+        return result;
+    }
+
     return (
         <DaysWrap type={type}>
             <Days>
-                {Object.keys(DAYS).map((day =>
+                {daysArr().map((day: string) =>
                     <Day key={DAYS[day].id} type={type}>
                         {DAYS[day].ko}
-                    </Day>))}
+                    </Day>)}
             </Days>
-            {type === 'week' &&
-                <WeekWrapComponent weekLastDay={weekLastDay} week={week}/>}
+            {(type === 'week' || type === 'three') && <WeekWrapComponent type={type} />}
         </DaysWrap>
     );
 };
