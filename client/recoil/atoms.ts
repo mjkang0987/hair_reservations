@@ -75,6 +75,14 @@ export const targetStateState = selector({
             }, []);
         }
 
+        const three = () => {
+            const arrThree = [date, Number(date) + 1, Number(date) + 2];
+
+            return arrThree.filter((a, i) => {
+                return Number(a) <= monthLastNumber;
+            });
+        }
+
         return {
             full,
             fullYear,
@@ -94,7 +102,8 @@ export const targetStateState = selector({
             weekFirstDay,
             weekLastDate,
             weekLastDay,
-            week
+            week,
+            three
         }
     },
     set: ({set}, newValue: any) => {
