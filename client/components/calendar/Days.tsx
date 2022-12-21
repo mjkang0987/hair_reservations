@@ -37,11 +37,14 @@ const DaysWrap = styled.div <DaysType>`
     padding-left: 149px;
     box-sizing: border-box;
   `}
+
+  ul {
+    grid-template-columns: repeat(${props => props.type === 'week' ? 7 : 3}, 1fr);
+  }
 `;
 
 const Days = styled.ul`
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
   justify-content: center;
   width: 100%;
 `;

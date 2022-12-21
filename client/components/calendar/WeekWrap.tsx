@@ -37,7 +37,6 @@ const Weeks = styled.ul`
   flex: 1;
   position: relative;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
   align-items: stretch;
   
   &:after {
