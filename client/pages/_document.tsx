@@ -48,6 +48,7 @@ class ReservationDocument extends Document {
                     <meta name="twitter:card" content="summary"/>
                     <meta name="og:url" content="service url"/>
                     <meta name="twitter:image" content="image url"/>
+                    <link rel="shortcut icon" href="/favicon.ico" />
                 </Head>
                 <body>
                     <Main/>
