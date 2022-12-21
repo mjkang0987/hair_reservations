@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import {useRecoilValue} from 'recoil';
-import {targetStateState} from '../../recoil/atoms';
+import {targetStateState, viewState} from '../../recoil/atoms';
 
 import {DAYS} from '../../utils/constants';
 
