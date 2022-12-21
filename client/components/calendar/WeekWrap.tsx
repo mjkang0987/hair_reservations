@@ -1,20 +1,32 @@
 import styled from 'styled-components';
+
+import {useRecoilValue} from "recoil";
+import {targetStateState} from "../../recoil/atoms";
+
 import {Num} from './Num';
 
 interface WeekType {
-    weekLastDay:number;
-    week: Function;
+    type: string;
 }
 
 export const WeekWrapComponent = ({
-    weekLastDay,
-    week
+    type
 }: WeekType) => {
+    const target = useRecoilValue(targetStateState);
+    const {
+        date,
+        weekLastDay,
+        monthLastNumber,
+    } = target;
+
     return (<Weeks>
-            {week().map((w: string, index: number) => <Week key={`week_${index}`}>
+            {target[type]().map((w: string, index: number) => <Week key={`week_${index}`}>
                 <Num>{w}</Num>
             </Week>)}
-            {(weekLastDay < 6) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`prev_${index}`}>
+            {(type === 'week' && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
+                <Num>{index + 1}</Num>
+            </Week>)}
+            {(type === 'three' && (monthLastNumber < date + 2)) && new Array((monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
                 <Num>{index + 1}</Num>
             </Week>)}
     </Weeks>
