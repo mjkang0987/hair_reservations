@@ -1,7 +1,6 @@
 import {
     useRecoilState,
     useRecoilValue,
-    useSetRecoilState
 } from 'recoil';
 
 import styled from 'styled-components';
