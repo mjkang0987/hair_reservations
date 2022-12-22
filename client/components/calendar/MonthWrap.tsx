@@ -48,7 +48,7 @@ const MonthWrap = styled.ul`
   height: 100%;
 `;
 
-const Date = styled.li`
+const DateEl = styled.li`
   padding: 5px;
   text-align: center;
   border-right: 1px solid var(--defaultLightGray);
