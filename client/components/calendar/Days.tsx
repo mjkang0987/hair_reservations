@@ -48,7 +48,7 @@ export const DaysComponent = ()  => {
 const DaysWrap = styled.div <DaysType>`
   width: 100%;
   ${props => props.type !== 'month' && `
-    padding-left: 149px;
+    padding-left: 150px;
     box-sizing: border-box;
   `}
 
