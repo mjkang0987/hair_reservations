@@ -1,7 +1,9 @@
+import {useRouter} from "next/router";
+
 import styled from 'styled-components';
 
-import {useRecoilValue} from "recoil";
-import {targetStateState} from "../../recoil/atoms";
+import {useRecoilState, useSetRecoilState} from "recoil";
+import {targetStateState, viewState} from "../../recoil/atoms";
 
 import {Num} from './Num';
 
@@ -12,22 +14,35 @@ interface WeekType {
 export const WeekWrapComponent = ({
     type
 }: WeekType) => {
-    const target = useRecoilValue(targetStateState);
+    const router = useRouter();
+
+    const [curr, setCurr] = useRecoilState(targetStateState);
+    const setView = useSetRecoilState(viewState);
+
     const {
+        fullYear,
+        month,
         date,
         weekLastDay,
         monthLastNumber,
-    } = target;
+    } = curr;
+
+    const setDate = ({currentDate}: {currentDate: string | number}) => {
+        setCurr(new Date(fullYear, month, Number(currentDate)));
+        setView({type: 'day'});
+
+        router.push('/day');
+    };
 
     return (<Weeks>
-            {target[type]().map((w: string, index: number) => <Week key={`week_${index}`}>
-                <Num>{w}</Num>
+            {curr[type]().map((w: string, index: number) => <Week key={`week_${index}`}>
+                <Num onClick={() => setDate({currentDate: w})}>{w}</Num>
             </Week>)}
             {(type === 'week' && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
-                <Num>{index + 1}</Num>
+                <Num onClick={() => setDate({currentDate: index + 1})}>{index + 1}</Num>
             </Week>)}
-            {(type === 'three' && (monthLastNumber < date + 2)) && new Array((monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
-                <Num>{index + 1}</Num>
+            {(type === 'three' && (monthLastNumber <= date + 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
+                <Num onClick={() => setDate({currentDate: index + 1})}>{index + 1}</Num>
             </Week>)}
     </Weeks>
     );
