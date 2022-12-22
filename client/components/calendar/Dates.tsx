@@ -35,12 +35,7 @@ export const DatesComponent = () => {
     return (<CalendarWrap type={type}>
             {type !== 'month' && type !== 'year' && <TimelineComponent/>}
             {type === 'month' &&
-                <MonthWrapComponent isToday={isToday}
-                                  isCurrentMonth={false}
-                                  monthFirstDay={monthFirstDay}
-                                  monthLastDay={monthLastDay}
-                                  monthLastNumber={monthLastNumber}
-                                  monthPrevLastNumber={monthPrevLastNumber}/>}
+                <MonthWrapComponent isToday={isToday}/>}
         </CalendarWrap>
     );
 };

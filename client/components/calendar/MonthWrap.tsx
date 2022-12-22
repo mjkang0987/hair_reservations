@@ -6,21 +6,23 @@ import {Num} from './Num';
 
 interface DateType {
     isToday: boolean;
-    isCurrentMonth: boolean;
-    monthFirstDay: number;
-    monthLastDay: number;
-    monthLastNumber: number;
-    monthPrevLastNumber: number;
 }
 
 export const MonthWrapComponent = ({
     isToday,
-    monthFirstDay,
-    monthLastDay,
-    monthLastNumber,
-    monthPrevLastNumber
 }: DateType) => {
     const today = useRecoilValue(todayState);
+    const [curr, setCurr] = useRecoilState(targetStateState);
+
+    const {
+        fullYear,
+        month,
+        monthFirstDay,
+        monthPrevLastNumber,
+        monthLastNumber,
+        monthLastDay
+    } = curr;
+
     return (
         <MonthWrap>
             {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
