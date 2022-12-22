@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const TimelineComponent = () => {
+export const TimelineTitleComponent = () => {
     const setTimes = () => {
-        return new Array(23).fill(null).reduce((acc, curr, index) => {
-            const isMorning = index < 11 ? '오전' : '오후';
-            const isHalf = index > 11 ? index - 12 : index;
+        return new Array(24).fill(null).reduce((acc, curr, index) => {
+            const isMorning = index < 12 ? '오전' : '오후';
+            const isHalf = index > 12 ? index - 12 : index;
             const isSingle = String(isHalf + 1).length < 2 ? 0 : '';
-            const result = `${isMorning} ${isSingle}${isHalf + 1}:00`;
+            const result = `${isMorning} ${isSingle}${isHalf}:00`;
             return [...acc, result];
         }, []);
     };
