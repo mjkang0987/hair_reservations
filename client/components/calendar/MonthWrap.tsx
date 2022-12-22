@@ -1,7 +1,10 @@
+import {useRouter} from "next/router";
+
 import styled from 'styled-components';
 
-import {useRecoilValue} from 'recoil';
-import {todayState} from '../../recoil/atoms';
+import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {targetStateState, todayState, viewState} from '../../recoil/atoms';
+
 import {Num} from './Num';
 
 interface DateType {
@@ -11,6 +14,8 @@ interface DateType {
 export const MonthWrapComponent = ({
     isToday,
 }: DateType) => {
+    const router = useRouter();
+
     const today = useRecoilValue(todayState);
     const [curr, setCurr] = useRecoilState(targetStateState);
 
@@ -23,21 +28,30 @@ export const MonthWrapComponent = ({
         monthLastDay
     } = curr;
 
+    const setView = useSetRecoilState(viewState);
+
+    const setDate = ({currentDate}: {currentDate: any}) => {
+        setCurr(new Date(fullYear, month, Number(currentDate)));
+        setView({type: 'day'});
+
+        router.push('/day');
+    };
+
     return (
         <MonthWrap>
             {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
-                <Date key={`prev_${index}`}>
-                    <Num>{Number(monthPrevLastNumber) - index}</Num>
-                </Date>).reverse()}
+                <DateEl key={`prev_${index}`}>
+                    <Num onClick={() => setDate({currentDate: Number(monthPrevLastNumber) - index})}>{Number(monthPrevLastNumber) - index}</Num>
+                </DateEl>).reverse()}
 
-            {new Array(monthLastNumber).fill(null).map((_, index) => <Date key={`curr_${index}`}>
-                    <Num isToday={isToday && index + 1 === today.getDate()}>{index + 1}</Num>
-                </Date>)}
+            {new Array(monthLastNumber).fill(null).map((_, index) => <DateEl key={`curr_${index}`}>
+                    <Num onClick={() => setDate({currentDate: index + 1})} isToday={isToday && index + 1 === today.getDate()}>{index + 1}</Num>
+                </DateEl>)}
 
             {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(null).map((_, index) =>
-                <Date key={`next_${index}`}>
-                    <Num>{index + 1}</Num>
-                </Date>)}
+                <DateEl key={`next_${index}`}>
+                    <Num onClick={() => setDate({currentDate: index + 1})}>{index + 1}</Num>
+                </DateEl>)}
         </MonthWrap>
     );
 };
