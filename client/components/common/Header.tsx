@@ -61,6 +61,18 @@ export const HeaderComponent = () => {
         }
     }
 
+    const setMonth = () => {
+        if (type === 'day' || type === 'month') {
+            return Number(month) + 1;
+        }
+
+        if (Number(date) + (type === 'week' ? 6 : 2) > updateCurr.monthLastNumber) {
+            return `${Number(month) + 1} - ${month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2}`;
+        }
+
+        return `${Number(month) + 1}`;
+    }
+
     return (
         <Header>
             <Button type="button" onClick={() => setAside({
