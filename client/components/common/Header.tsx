@@ -98,8 +98,10 @@ export const HeaderComponent = () => {
             <Heading>
                 {full && <DateWrap>
                     <DateElement>{Number(fullYear)}</DateElement>
-                    {type !== 'year' && <DateElement>{Number(month) + 1}</DateElement>}
-                    {(type === 'day' || type === 'three') && <DateElement>{Number(date)}</DateElement>}
+                    {type !== 'year' && <DateElement>
+                        {setMonth()}
+                    </DateElement>}
+                    {type === 'day' && <DateElement>{Number(date)}</DateElement>}
                 </DateWrap>}
             </Heading>
         </Header>
