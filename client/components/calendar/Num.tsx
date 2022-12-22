@@ -30,7 +30,6 @@ const StyledNum = styled.button <Props>`
     color: #fff;
   `}
   &:hover {
-    background-color: var(--defaultDarkGray);
-    color: #fff;
+    background-color: var(--defaultLightGray);
   }
 `;
