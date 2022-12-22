@@ -53,7 +53,7 @@ const DaysWrap = styled.div <DaysType>`
   `}
 
   ul {
-    grid-template-columns: repeat(${props => props.type === 'week' ? 7 : 3}, 1fr);
+    grid-template-columns: repeat(${props => props.type === 'three' ? 3 : 7}, 1fr);
   }
 `;
 
