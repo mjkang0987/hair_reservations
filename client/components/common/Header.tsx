@@ -30,7 +30,7 @@ export const HeaderComponent = () => {
     const curr = useRecoilValue(targetState);
     const {full, fullYear, month, date, day} = curr;
 
-    const setCurr = useSetRecoilState(targetStateState);
+    const [updateCurr, setUpdateCurr] = useRecoilState(targetStateState);
 
     const controller = ({direction}: {direction: string}) => {
         if (!direction) {
@@ -41,12 +41,12 @@ export const HeaderComponent = () => {
         const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
 
         if (type === 'year') {
-            return setCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
+            return setUpdateCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
         }
 
         if (type === 'month') {
             const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
-            return setCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
+            return setUpdateCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
         }
 
         if (isDate) {
@@ -57,7 +57,7 @@ export const HeaderComponent = () => {
             const move = Number(ASIDE[type.toUpperCase()].move);
 
             const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
-            return setCurr(new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0))));
+            return setUpdateCurr(new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0))));
         }
     }
 
@@ -71,7 +71,7 @@ export const HeaderComponent = () => {
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </Button>
             <ButtonWrap>
-                <ButtonSquare onClick={() => setCurr(today)}>
+                <ButtonSquare onClick={() => setUpdateCurr(today)}>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
                 <ButtonCircle onClick={() => controller({direction: 'prev'})}>
