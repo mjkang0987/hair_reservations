@@ -13,19 +13,6 @@ export const DatesComponent = () => {
         fullYear,
         month,
         date,
-        day,
-        monthFirstDay,
-        monthLastDay,
-        monthLastDate,
-        monthLastNumber,
-        monthPrevLastNumber,
-        monthPrevLastDate,
-        weekLength,
-        weekFirstDate,
-        weekFirstNumber,
-        weekFirstDay,
-        weekLastDay,
-        week
     } = target;
 
     const view = useRecoilValue(viewState);
