@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {MouseEventHandler} from 'react';
 
 import styled from 'styled-components';
 
 interface Props {
+    onClick?: MouseEventHandler;
     children: React.ReactNode | string;
     isToday?: boolean;
 }
