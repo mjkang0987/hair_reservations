@@ -6,7 +6,7 @@ import {useRecoilState, useSetRecoilState} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState, viewState} from '../../recoil/atoms';
+import {asideState, targetStateState, viewState} from '../../recoil/atoms';
 
 import {ASIDE as asides} from '../../utils/constants';
 
@@ -21,8 +21,28 @@ export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
     const setView = useSetRecoilState(viewState);
 
-    return (
-        <Aside isVisible={aside.isVisible}
+    const [curr, setCurr] = useRecoilState(targetStateState);
+
+    const setChangeView = ({view}: { view: string }) => {
+        const {
+            fullYear,
+            month,
+            date,
+            day
+        } = curr;
+
+        setAside({
+            ...aside,
+            isVisible: !aside.isVisible
+        });
+        setView({type: view.toLowerCase()});
+
+        if (view === 'WEEK') {
+            setCurr(new Date(fullYear, month, date - day));
+        }
+    };
+
+    return (<Aside isVisible={aside.isVisible}
                isTransitionEnd={aside.isTransitionEnd}
                className={!aside.isTransitionEnd ? 'animate' : ''}
                onAnimationEnd={() => {
@@ -31,17 +51,11 @@ export const AsideComponent = () => {
                        isTransitionEnd: true
                    });
                }}>
-            {Object.keys(asides).map((a) =>
+            {curr && Object.keys(asides).map((a) =>
                 <Link href={`/`}
                       as={`/${a.toLowerCase()}`}
                       key={asides[a].id}
-                      onClick={() => {
-                          setAside({
-                              ...aside,
-                              isVisible: !aside.isVisible
-                          });
-                          setView({type: a.toLowerCase()});
-                      }}>
+                      onClick={() => setChangeView({view: a})}>
                     <LinkStyle>{asides[a].title}</LinkStyle>
                 </Link>
             )}
