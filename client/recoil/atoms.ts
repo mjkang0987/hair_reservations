@@ -102,6 +102,7 @@ export const targetStateState = selector({
             weekFirstDay,
             weekLastDate,
             weekLastDay,
+            weekLastNumber,
             week,
             three
         }
