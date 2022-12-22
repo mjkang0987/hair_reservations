@@ -101,4 +101,10 @@ const Week = styled.li`
   &:nth-child(7) {
     border-right: none;
   }
+  
+  button {
+    font-size: var(--defaultBigFont);
+    width: 40px;
+    height: 40px;
+  }
 `;
