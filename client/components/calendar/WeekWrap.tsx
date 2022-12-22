@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {targetStateState, viewState} from "../../recoil/atoms";
 
+import {SetDateType} from "../../utils/constants";
+
+import {useChangeDayType} from "../../hooks/useChangeDate";
+
 import {Num} from './Num';
 
 interface WeekType {
@@ -23,26 +27,50 @@ export const WeekWrapComponent = ({
         fullYear,
         month,
         date,
+        day,
         weekLastDay,
         monthLastNumber,
+        monthPrevLastNumber,
     } = curr;
 
-    const setDate = ({currentDate}: {currentDate: string | number}) => {
-        setCurr(new Date(fullYear, month, Number(currentDate)));
-        setView({type: 'day'});
+    const setDate = ({
+        currMonth,
+        currDate
+    }: SetDateType) => {
+        useChangeDayType({
+            currMonth: currMonth || month,
+            currYear: fullYear,
+            currDate,
+            setCurr,
+            setView,
+            router
+        });
 
-        router.push('/day');
     };
 
     return (<Weeks>
             {curr[type]().map((w: string, index: number) => <Week key={`week_${index}`}>
-                <Num onClick={() => setDate({currentDate: w})}>{w}</Num>
+                <Num onClick={() => {
+                    setDate({
+                        currDate: w
+                    });
+                }}>{w}</Num>
             </Week>)}
             {(type === 'week' && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
-                <Num onClick={() => setDate({currentDate: index + 1})}>{index + 1}</Num>
+                <Num onClick={() => {
+                    setDate({
+                        currDate: index + 1,
+                        currMonth: month + 1
+                    });
+                }}>{index + 1}</Num>
             </Week>)}
-            {(type === 'three' && (monthLastNumber <= date + 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
-                <Num onClick={() => setDate({currentDate: index + 1})}>{index + 1}</Num>
+            {(type === 'three' && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
+                <Num onClick={() => {
+                    setDate({
+                        currDate: index + 1,
+                        currMonth: month + 1
+                    });
+                }}>{index + 1}</Num>
             </Week>)}
     </Weeks>
     );

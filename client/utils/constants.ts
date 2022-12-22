@@ -95,3 +95,10 @@ export const DAYS: DaysType = {
     }
 };
 
+type CurrentType = string | number;
+
+export interface SetDateType {
+    currMonth?: CurrentType;
+    currDate: CurrentType;
+}
+
