@@ -32,15 +32,13 @@ const Timeline = styled.div`
 const Times = styled.ul`
   display: flex;
   flex-direction: column;
-  padding: 40px 0 40px;
-  gap: 20px;
+  margin: 40px 0;
 `;
 
 const Time = styled.li`
   display: flex;
   justify-content: center;
   position: relative;
-  padding: 0 20px;
   
   &:after {
     content: "";
@@ -53,15 +51,11 @@ const Time = styled.li`
   }
 `;
 
-const Num = styled.button`
-  display: inline-flex;
-  align-items: center;
+const Num = styled.span`
+  display: flex;
   justify-content: center;
-  box-sizing: border-box;
-  padding: 5px;
-  border-radius: 100%;
-  background: transparent;
-  border: none;
+  width: 100%;
+  padding: 20px;
   font-size: var(--defaultTinyFont);
   color: var(--defaultGray);
 `;
