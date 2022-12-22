@@ -2,6 +2,7 @@ import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    --defaultBigFont: 24px;
     --defaultFont: 18px;
     --defaultSmallFont: 16px;
     --defaultTinyFont: 14px;
