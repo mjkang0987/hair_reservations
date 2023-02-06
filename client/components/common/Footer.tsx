@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const FooterComponent = () => {
     return (
-        <Footer>Made By</Footer>
+        <Footer>Made By MJ Kang</Footer>
     );
 };
 
