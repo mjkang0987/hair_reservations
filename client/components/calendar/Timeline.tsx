@@ -3,9 +3,15 @@ import styled from 'styled-components';
 export const TimelineTitleComponent = () => {
     const setTimes = () => {
         return new Array(24).fill(null).reduce((acc, curr, index) => {
-            const isMorning = index < 12 ? '오전' : '오후';
-            const isHalf = index > 12 ? index - 12 : index;
-            const isSingle = String(isHalf + 1).length < 2 ? 0 : '';
+            const isMorning = index < 12
+                              ? '오전'
+                              : '오후';
+            const isHalf = index > 12
+                           ? index - 12
+                           : index;
+            const isSingle = String(isHalf + 1).length < 2
+                             ? 0
+                             : '';
             const result = `${isMorning} ${isSingle}${isHalf}:00`;
             return [...acc, result];
         }, []);
@@ -27,7 +33,7 @@ const Timeline = styled.div`
   width: 150px;
   border-right: 1px solid var(--defaultLightGray);
   box-sizing: border-box;
-`
+`;
 
 const Times = styled.ul`
   display: flex;
@@ -39,7 +45,7 @@ const Time = styled.li`
   display: flex;
   justify-content: center;
   position: relative;
-  
+
   &:after {
     content: "";
     position: absolute;
