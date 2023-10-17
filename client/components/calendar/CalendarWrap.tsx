@@ -28,7 +28,7 @@ export const CalendarComponent = () => {
             </StyledDaysWrap>}
 
             <DatesComponent>
-                {type === ViewType.Month && <MonthWrapComponent isToday={isToday}/>}
+                {type === ViewType.Month && <MonthWrapComponent/>}
             </DatesComponent>
 
             {(type === ViewType.Year) && <YearComponents/>}

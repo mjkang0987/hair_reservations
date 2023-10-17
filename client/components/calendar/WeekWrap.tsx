@@ -23,6 +23,8 @@ export const WeekWrapComponent = ({
 }: WeekType) => {
     const router = useRouter();
 
+    const today = useRecoilValue(todayState);
+
     const [curr, setCurr] = useRecoilState(targetStateState);
     const setView = useSetRecoilState(viewState);
 
@@ -50,13 +52,17 @@ export const WeekWrapComponent = ({
         });
     };
 
+    const isTodayValue = (number: number = 0): boolean => {
+        return [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, number].join(' ');
+    };
+
     return (<StyledWeeks>
             {curr[type]().map((w: string, index: number) => <StyledWeek key={`week_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: w
                     });
-                }}>{w}</Num>
+                }} isToday={isTodayValue(Number(w))}>{w}</Num>
             </StyledWeek>)}
             {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
@@ -64,7 +70,7 @@ export const WeekWrapComponent = ({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
-                }}>{index + 1}</Num>
+                }} isToday={isTodayValue(Number(index) + 1)}>{index + 1}</Num>
             </StyledWeek>)}
             {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
@@ -72,7 +78,7 @@ export const WeekWrapComponent = ({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
-                }}>{index + 1}</Num>
+                }} isToday={isTodayValue(Number(index) + 1)}>{index + 1}</Num>
             </StyledWeek>)}
     </StyledWeeks>
     );
