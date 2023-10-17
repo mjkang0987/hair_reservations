@@ -2,8 +2,16 @@ import {useRouter} from "next/router";
 
 import styled from 'styled-components';
 
-import {useRecoilState, useSetRecoilState} from "recoil";
-import {targetStateState, viewState} from "../../recoil/atoms";
+import {
+    useRecoilState,
+    useRecoilValue,
+    useSetRecoilState
+} from 'recoil';
+import {
+    targetStateState,
+    todayState,
+    viewState
+} from '../../recoil/atoms';
 
 import {
     SetDateType,
@@ -15,7 +23,7 @@ import {useChangeDayType} from "../../hooks/useChangeDate";
 import {Num} from './Num';
 
 interface WeekType {
-    type: string;
+    type: string
 }
 
 export const WeekWrapComponent = ({

@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 import {useRecoilValue} from 'recoil';
-import {viewState} from '../../recoil/atoms';
+import {
+    targetStateState,
+    todayState,
+    viewState
+} from '../../recoil/atoms';
 
 import {ViewType} from '../../utils/constants';
 
