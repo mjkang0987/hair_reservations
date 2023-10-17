@@ -10,7 +10,7 @@ enum viewType {
     Day = 'day'
 }
 
-export const CalendarComponent = ()  => {
+export const CalendarComponent = () => {
     const view = useRecoilValue(viewState);
     const {type} = view;
 
@@ -18,7 +18,7 @@ export const CalendarComponent = ()  => {
         <>
             {(type !== viewType.Year && type !== viewType.Day) && <>
                 <DaysComponent/>
-            <DatesComponent/>
+                <DatesComponent/>
             </>}
             {(type ===  viewType.Year) && <YearComponents/>}
         </>
