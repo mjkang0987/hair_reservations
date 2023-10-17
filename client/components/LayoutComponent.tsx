@@ -19,16 +19,14 @@ import {
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
 
+import {NodeType} from '../utils/constants';
+
 import {HeaderComponent} from './common/Header';
 import {AsideComponent} from './common/Aside';
 import {FooterComponent} from './common/Footer';
 import {Icon} from './common/Icons';
 
-type LayoutProps = {
-    children: ReactNode
-};
-
-export default function LayoutComponent({children}: LayoutProps) {
+export default function LayoutComponent({children}: NodeType) {
     const router = useRouter();
 
     const [loading, setLoading] = useState(false);

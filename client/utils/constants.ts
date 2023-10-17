@@ -1,3 +1,9 @@
+export type NodeType = {
+    children: ReactNode
+};
+
+import {ReactNode} from 'react';
+
 export interface DateType {
     isToday: boolean;
 }
