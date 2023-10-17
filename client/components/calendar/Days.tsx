@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
+import {
+    ViewType,
+    DAYS
+} from '../../utils/constants';
+
 import {useRecoilValue} from 'recoil';
 import {targetStateState, viewState} from '../../recoil/atoms';
 
-import {DAYS} from '../../utils/constants';
 
 import {WeekWrapComponent} from './WeekWrap';
 
@@ -21,7 +25,7 @@ export const DaysComponent = ()  => {
     const {type} = view;
 
     const daysArr = () => {
-        const result = Object.keys(DAYS).slice(type === 'three' ? Number(day) : 0, type === 'three' ? Number(day) + 3 : 7);
+        const result = Object.keys(DAYS).slice(type === ViewType.Three ? Number(day) : 0, type === ViewType.Three ? Number(day) + 3 : 7);
 
         if (result.length < 3) {
             return new Array(3 - result.length).fill(null).reduce((acc, curr, i) => {
@@ -34,13 +38,13 @@ export const DaysComponent = ()  => {
 
     return (
         <DaysWrap type={type}>
-            <Days>
+            {type !== ViewType.Day && <Days>
                 {daysArr().map((day: string) =>
                     <Day key={DAYS[day].id} type={type}>
                         {DAYS[day].ko}
                     </Day>)}
-            </Days>
-            {(type === 'week' || type === 'three') && <WeekWrapComponent type={type} />}
+            </Days>}
+            {(type === ViewType.Week || type === ViewType.Three) && <WeekWrapComponent type={type} />}
         </DaysWrap>
     );
 };
@@ -53,7 +57,7 @@ const DaysWrap = styled.div <DaysType>`
   `}
 
   ul {
-    grid-template-columns: repeat(${props => props.type === 'three' ? 3 : 7}, 1fr);
+    grid-template-columns: repeat(${props => props.type === ViewType.Three ? 3 : 7}, 1fr);
   }
 `;
 

@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import {useRecoilValue} from 'recoil';
 import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 
-import {ASIDE} from "../../utils/constants";
+import {
+    ASIDE,
+    ViewType
+} from '../../utils/constants';
 
 import {MonthWrapComponent} from './MonthWrap';
 import {TimelineTitleComponent} from './Timeline';
@@ -29,7 +32,7 @@ export const DatesComponent = () => {
                     <Timeline key={`timeline_${i}`}></Timeline>)}
                 </TimelineWrap>
             </>}
-            {type === 'month' &&
+            {type === ViewType.Month &&
                 <MonthWrapComponent isToday={isToday}/>}
         </CalendarWrap>
     );
@@ -45,7 +48,7 @@ const CalendarWrap = styled.div<{ type: string | null }>`
   overflow-y: auto;
   
   ul {
-    grid-template-columns: repeat(${props => props.type === 'three' ? 3 : 7}, 1fr);
+    grid-template-columns: repeat(${props => props.type === ViewType.Three ? 3 : 7}, 1fr);
   }
 `;
 

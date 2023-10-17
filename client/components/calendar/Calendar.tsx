@@ -1,14 +1,11 @@
 import {useRecoilValue} from 'recoil';
 import {viewState} from '../../recoil/atoms';
 
+import {ViewType} from '../../utils/constants';
+
 import {DaysComponent} from './Days';
 import {DatesComponent} from './Dates';
 import {YearComponents} from './Year';
-
-enum viewType {
-    Year = 'year',
-    Day = 'day'
-}
 
 export const CalendarComponent = () => {
     const view = useRecoilValue(viewState);
@@ -20,7 +17,7 @@ export const CalendarComponent = () => {
                 <DaysComponent/>
                 <DatesComponent/>
             </>}
-            {(type ===  viewType.Year) && <YearComponents/>}
+            {(type ===  ViewType.Year) && <YearComponents/>}
         </>
     );
 };

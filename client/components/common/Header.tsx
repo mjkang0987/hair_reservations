@@ -13,7 +13,11 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {A11Y_DIRECTION, ASIDE} from '../../utils/constants';
+import {
+    A11Y_DIRECTION,
+    ASIDE,
+    ViewType
+} from '../../utils/constants';
 
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
@@ -40,11 +44,11 @@ export const HeaderComponent = () => {
         const isPrev = direction === 'prev';
         const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
 
-        if (type === 'year') {
+        if (type === ViewType.Year) {
             return setUpdateCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
         }
 
-        if (type === 'month') {
+        if (type === ViewType.Month) {
             const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
             return setUpdateCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
         }
@@ -62,7 +66,7 @@ export const HeaderComponent = () => {
     }
 
     const setMonth = () => {
-        if (type === 'day' || type === 'month') {
+        if (type === ViewType.Day || type === ViewType.Month) {
             return Number(month) + 1;
         }
 
@@ -101,7 +105,7 @@ export const HeaderComponent = () => {
                     {type !== 'year' && <DateElement>
                         {setMonth()}
                     </DateElement>}
-                    {type === 'day' && <DateElement>{Number(date)}</DateElement>}
+                    {type === ViewType.Day && <DateElement>{Number(date)}</DateElement>}
                 </DateWrap>}
             </Heading>
         </Header>

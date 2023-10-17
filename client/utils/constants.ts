@@ -95,7 +95,17 @@ export const DAYS: DaysType = {
     }
 };
 
-type CurrentType = string | number;
+export const enum ViewType {
+    Year = 'year',
+    Month = 'month',
+    Week = 'week',
+    Three = 'three',
+    Day = 'day'
+}
+
+type CurrentType =
+    string
+    | number;
 
 export interface SetDateType {
     currMonth?: CurrentType;
