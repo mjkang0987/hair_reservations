@@ -26,7 +26,7 @@ export const DatesComponent = ({children}: NodeType) => {
 
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
     return (<StyledCalendar type={type}>
-            {(type !== 'month' && type !== 'year') && <>
+            {(type !== ViewType.Month && type !== ViewType.Year) && <>
                 <TimelineTitleComponent/>
                 <StyledTimelineWrap>
                     {type && new Array(ASIDE[type.toUpperCase()].move).fill(null).map((a, i) =>
@@ -41,7 +41,7 @@ export const DatesComponent = ({children}: NodeType) => {
 const StyledCalendar = styled.div<{ type: string | null }>`
   flex: 1;
   display: grid;
-  grid-template-columns: ${props => props.type !== 'month' ? '150px auto' : '1fr'};
+  grid-template-columns: ${props => props.type !== ViewType.Month ? '150px auto' : '1fr'};
   width: 100%;
   height: 100%;
   overflow-x: hidden;

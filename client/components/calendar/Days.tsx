@@ -66,7 +66,7 @@ const StyledDay = styled.li <DaysType>`
   color: var(--defaultBlack);
   border-right: 1px solid var(--defaultLightGray);
   box-sizing: border-box;
-  ${props => props.type !== 'month' && `
+  ${props => props.type !== ViewType.Month && `
     border: none;
   `};
 

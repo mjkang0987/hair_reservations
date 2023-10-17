@@ -102,7 +102,7 @@ export const HeaderComponent = () => {
             <StyledHeading>
                 {full && <StyledDateWrap>
                     <StyledDateElement>{Number(fullYear)}</StyledDateElement>
-                    {type !== 'year' && <StyledDateElement>
+                    {type !== ViewType.Year && <StyledDateElement>
                         {setMonth()}
                     </StyledDateElement>}
                     {type === ViewType.Day && <StyledDateElement>{Number(date)}</StyledDateElement>}

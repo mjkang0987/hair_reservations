@@ -43,7 +43,7 @@ export const CalendarComponent = () => {
 const StyledDaysWrap = styled.div <DaysType>`
   width: 100%;
 
-  ${props => props.type !== 'month' && `
+  ${props => props.type !== ViewType.Month && `
     padding-left: 150px;
     box-sizing: border-box;
   `}
