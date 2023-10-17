@@ -5,7 +5,10 @@ import styled from 'styled-components';
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {targetStateState, viewState} from "../../recoil/atoms";
 
-import {SetDateType} from "../../utils/constants";
+import {
+    SetDateType,
+    ViewType
+} from '../../utils/constants';
 
 import {useChangeDayType} from "../../hooks/useChangeDate";
 
