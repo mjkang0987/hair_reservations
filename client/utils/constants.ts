@@ -10,27 +10,27 @@ interface AsideType {
 }
 
 export const ASIDE: AsideType = {
-    DAY: {
-        id: 1,
+    DAY  : {
+        id   : 1,
         title: '일별',
-        move: 1
+        move : 1
     },
     THREE: {
-        id: 2,
+        id   : 2,
         title: '3일',
-        move: 3
+        move : 3
     },
-    WEEK: {
-        id: 3,
+    WEEK : {
+        id   : 3,
         title: '주별',
-        move: 7
+        move : 7
     },
     MONTH: {
-        id: 4,
+        id   : 4,
         title: '월별',
     },
-    YEAR: {
-        id: 5,
+    YEAR : {
+        id   : 5,
         title: '연별'
     }
 };
@@ -40,12 +40,12 @@ interface DirectionType {
 }
 
 export const A11Y_DIRECTION: DirectionType = {
-    day: '날짜',
+    day  : '날짜',
     three: '3일',
-    week: '주',
+    week : '주',
     month: '달',
-    year: '년'
-}
+    year : '년'
+};
 
 interface DaysElementType {
     id: number;
@@ -58,22 +58,22 @@ interface DaysType {
 }
 
 export const DAYS: DaysType = {
-    SUN: {
+    SUN : {
         id: 1,
         ko: '일',
         en: 'SUNDAY'
     },
-    MON: {
+    MON : {
         id: 2,
         ko: '월',
         en: 'MONDAY'
     },
-    TUE: {
+    TUE : {
         id: 3,
         ko: '화',
         en: 'TUESDAY'
     },
-    WED: {
+    WED : {
         id: 4,
         ko: '수',
         en: 'WEDNESDAY'
@@ -83,12 +83,12 @@ export const DAYS: DaysType = {
         ko: '목',
         en: 'THURSDAY'
     },
-    FRI: {
+    FRI : {
         id: 6,
         ko: '금',
         en: 'FRIDAY'
     },
-    SAT: {
+    SAT : {
         id: 7,
         ko: '토',
         en: 'SATURDAY'
