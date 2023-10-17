@@ -4,7 +4,7 @@ import {ServerStyleSheet} from 'styled-components';
 
 class ReservationDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        console.log(ctx);
+        // console.log(ctx);
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
