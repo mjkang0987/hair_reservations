@@ -57,6 +57,7 @@ export const WeekWrapComponent = ({
                 }}>{w}</Num>
             </Week>)}
             {(type === 'week' && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
+            {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1,
@@ -65,6 +66,7 @@ export const WeekWrapComponent = ({
                 }}>{index + 1}</Num>
             </Week>)}
             {(type === 'three' && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
+            {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1,
