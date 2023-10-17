@@ -11,7 +11,7 @@ import {asideState, targetStateState} from '../recoil/atoms';
 
 import {Icon} from '../components/common/Icons';
 import {ButtonText} from '../components/common/ButtonText';
-import {CalendarComponent} from '../components/calendar/Calendar';
+import {CalendarComponent} from '../components/calendar/CalendarWrap';
 
 interface Props {
     isVisible: boolean;
