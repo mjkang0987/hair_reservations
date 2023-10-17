@@ -6,8 +6,11 @@ import {
 } from '../../utils/constants';
 
 import {useRecoilValue} from 'recoil';
-import {targetStateState, viewState} from '../../recoil/atoms';
 
+import {
+    targetStateState,
+    viewState
+} from '../../recoil/atoms';
 
 import {WeekWrapComponent} from './WeekWrap';
 

@@ -45,7 +45,6 @@ export const WeekWrapComponent = ({
             setView,
             router
         });
-
     };
 
     return (<Weeks>
