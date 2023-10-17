@@ -1,11 +1,21 @@
-import {ReactNode, useState} from 'react';
+import {
+    useState
+} from 'react';
 
 import {useRouter} from 'next/router';
 
 import styled from 'styled-components';
 
-import {useRecoilState, useSetRecoilState} from 'recoil';
-import {targetStateState, todayState, viewState} from '../recoil/atoms';
+import {
+    useRecoilState,
+    useSetRecoilState
+} from 'recoil';
+
+import {
+    targetStateState,
+    todayState,
+    viewState
+} from '../recoil/atoms';
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
 
@@ -34,7 +44,11 @@ export default function LayoutComponent({children}: LayoutProps) {
     isomorphicEffect(() => {
         setLoading(true);
         setToday(initDate);
-        setView({type: isInitPath ? 'month' : router.asPath.replace(/\//, '')});
+        setView({
+            type: isInitPath
+                  ? 'month'
+                  : router.asPath.replace(/\//, '')
+        });
     }, []);
 
     isomorphicEffect(() => {
