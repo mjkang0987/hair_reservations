@@ -50,17 +50,17 @@ export default function LayoutComponent({children}: LayoutProps) {
             {!loading && <Icon iconType="loading"/>}
             {(loading && today) && <>
                 <HeaderComponent/>
-                <MainUI>
+                <StyledMain>
                     <AsideComponent/>
                     {children}
-                </MainUI>
+                </StyledMain>
                 <FooterComponent/>
             </>}
         </>
     );
 }
 
-const MainUI = styled.main`
+const StyledMain = styled.main`
   flex: 1;
   overflow: hidden;
   display: flex;
