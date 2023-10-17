@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 import {
     ViewType,
-    DAYS
+    DAYS,
+    NodeType
 } from '../../utils/constants';
 
 import {useRecoilValue} from 'recoil';
@@ -12,13 +13,11 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {WeekWrapComponent} from './WeekWrap';
-
 interface DaysType {
     type: string | null;
 }
 
-export const DaysComponent = ()  => {
+export const DaysComponent = ({children}: NodeType) => {
     const target = useRecoilValue(targetStateState);
     const {
         day,
@@ -37,32 +36,21 @@ export const DaysComponent = ()  => {
         }
 
         return result;
-    }
+    };
 
     return (
-        <StyledDaysWrap type={type}>
+        <>
             {type !== ViewType.Day && <StyledDays>
                 {daysArr().map((day: string) =>
-                    <Day key={DAYS[day].id} type={type}>
+                    <StyledDay key={DAYS[day].id}
+                               type={type}>
                         {DAYS[day].ko}
-                    </Day>)}
+                    </StyledDay>)}
             </StyledDays>}
-            {(type === ViewType.Week || type === ViewType.Three) && <WeekWrapComponent type={type} />}
-        </StyledDaysWrap>
+            {children}
+        </>
     );
 };
-
-const StyledDaysWrap = styled.div <DaysType>`
-  width: 100%;
-  ${props => props.type !== 'month' && `
-    padding-left: 150px;
-    box-sizing: border-box;
-  `}
-
-  ul {
-    grid-template-columns: repeat(${props => props.type === ViewType.Three ? 3 : 7}, 1fr);
-  }
-`;
 
 const StyledDays = styled.ul`
   display: grid;
@@ -70,7 +58,7 @@ const StyledDays = styled.ul`
   width: 100%;
 `;
 
-const Day = styled.li <DaysType>`
+const StyledDay = styled.li <DaysType>`
   flex: 1;
   text-align: center;
   padding: 10px 0 5px;
@@ -81,7 +69,7 @@ const Day = styled.li <DaysType>`
   ${props => props.type !== 'month' && `
     border: none;
   `};
-  
+
   &:nth-child(7) {
     border-right: none;
   }
