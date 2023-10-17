@@ -17,18 +17,18 @@ interface DateType {
 }
 
 export const todayState = atom<FullType>({
-    key: 'todayState',
+    key    : 'todayState',
     default: null
 });
 
 export const targetState = atom<DateType>({
-    key: 'targetState',
+    key    : 'targetState',
     default: {
-        full: null,
+        full    : null,
         fullYear: null,
-        month: null,
-        date: null,
-        day: null
+        month   : null,
+        date    : null,
+        day     : null
     }
 });
 
@@ -58,7 +58,9 @@ export const targetStateState = selector({
         const weekFirstDate = new Date(
             Number(fullYear),
             Number(month),
-            Number(date) - Number(day) < 0 ? 1 : Number(date) - Number(day)
+            Number(date) - Number(day) < 0
+            ? 1
+            : Number(date) - Number(day)
         );
 
         const weekFirstNumber = weekFirstDate.getDate();
@@ -66,7 +68,9 @@ export const targetStateState = selector({
         const weekLastDate = new Date(
             Number(fullYear),
             Number(month),
-            Number(weekFirstNumber) + 6 > monthLastNumber ? monthLastNumber : Number(date) + (6 - Number(day))
+            Number(weekFirstNumber) + 6 > monthLastNumber
+            ? monthLastNumber
+            : Number(date) + (6 - Number(day))
         );
 
         const weekFirstDay = weekFirstDate.getDay();
@@ -77,9 +81,9 @@ export const targetStateState = selector({
         const week = () => {
             const arrWeek = new Array(weekLastNumber + 1 - weekFirstNumber).fill(weekFirstNumber);
             return arrWeek.reduce((acc, curr, index) => {
-                return [...acc, curr + index]
+                return [...acc, curr + index];
             }, []);
-        }
+        };
 
         const three = () => {
             const arrThree = [date, Number(date) + 1, Number(date) + 2];
@@ -87,7 +91,7 @@ export const targetStateState = selector({
             return arrThree.filter((a, i) => {
                 return Number(a) <= monthLastNumber;
             });
-        }
+        };
 
         return {
             full,
@@ -111,7 +115,7 @@ export const targetStateState = selector({
             weekLastNumber,
             week,
             three
-        }
+        };
     },
     set: ({set}, newValue: any) => {
         const target = new Date(newValue);
@@ -126,9 +130,9 @@ export const targetStateState = selector({
             month,
             date,
             day
-        })
+        });
     }
-})
+});
 
 interface AsideType {
     isVisible: boolean;
@@ -136,9 +140,9 @@ interface AsideType {
 }
 
 export const asideState = atom<AsideType>({
-    key: 'asideState',
+    key    : 'asideState',
     default: {
-        isVisible: false,
+        isVisible      : false,
         isTransitionEnd: true
     }
 });
@@ -148,7 +152,7 @@ export interface ViewType {
 }
 
 export const viewState = atom<ViewType>({
-    key: 'viewType',
+    key    : 'viewType',
     default: {
         type: null
     }
