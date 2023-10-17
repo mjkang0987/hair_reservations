@@ -13,7 +13,7 @@ export const CalendarComponent = () => {
 
     return (
         <>
-            {(type !== viewType.Year && type !== viewType.Day) && <>
+            {(type !== ViewType.Year) && <>
                 <DaysComponent/>
                 <DatesComponent/>
             </>}
