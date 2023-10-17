@@ -38,7 +38,7 @@ export const WeekWrapComponent = ({
         currDate
     }: SetDateType) => {
         useChangeDayType({
-            currMonth: currMonth || month,
+            currMonth: currMonth ?? month,
             currYear: fullYear,
             currDate,
             setCurr,
