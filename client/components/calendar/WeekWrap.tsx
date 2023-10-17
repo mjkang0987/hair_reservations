@@ -50,35 +50,35 @@ export const WeekWrapComponent = ({
         });
     };
 
-    return (<Weeks>
-            {curr[type]().map((w: string, index: number) => <Week key={`week_${index}`}>
+    return (<StyledWeeks>
+            {curr[type]().map((w: string, index: number) => <StyledWeek key={`week_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: w
                     });
                 }}>{w}</Num>
-            </Week>)}
-            {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <Week key={`next_${index}`}>
+            </StyledWeek>)}
+            {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
                 }}>{index + 1}</Num>
-            </Week>)}
-            {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <Week key={`next_${index}`}>
+            </StyledWeek>)}
+            {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
                 }}>{index + 1}</Num>
-            </Week>)}
-    </Weeks>
+            </StyledWeek>)}
+    </StyledWeeks>
     );
 };
 
-const Weeks = styled.ul`
+const StyledWeeks = styled.ul`
   flex: 1;
   position: relative;
   display: grid;
@@ -95,7 +95,7 @@ const Weeks = styled.ul`
   }
 `;
 
-const Week = styled.li`
+const StyledWeek = styled.li`
   text-align: center;
   padding: 5px;
   border-right: 1px solid var(--defaultLightGray);

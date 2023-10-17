@@ -42,7 +42,7 @@ export const AsideComponent = () => {
         }
     };
 
-    return (<Aside isVisible={aside.isVisible}
+    return (<StyledAside isVisible={aside.isVisible}
                isTransitionEnd={aside.isTransitionEnd}
                className={!aside.isTransitionEnd ? 'animate' : ''}
                onAnimationEnd={() => {
@@ -56,18 +56,18 @@ export const AsideComponent = () => {
                       as={`/${a.toLowerCase()}`}
                       key={asides[a].id}
                       onClick={() => setChangeView({view: a})}>
-                    <LinkStyle>{asides[a].title}</LinkStyle>
+                    <StyledLinkStyle>{asides[a].title}</StyledLinkStyle>
                 </Link>
             )}
             <InputWrap inputIcon="search">
                 <input type="text" placeholder="사용자 검색"/>
             </InputWrap>
             <Link href="/addressBook" passHref>주소록</Link>
-        </Aside>
+        </StyledAside>
     );
 };
 
-const Aside = styled.aside <Props>`
+const StyledAside = styled.aside <Props>`
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@ const Aside = styled.aside <Props>`
   }
 `;
 
-const LinkStyle = styled.span`
+const StyledLinkStyle = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;

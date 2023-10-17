@@ -48,39 +48,39 @@ export const MonthWrapComponent = ({
     };
 
     return (
-        <MonthWrap>
+        <StyledMonthWrap>
             {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
-                <DateEl key={`prev_${index}`}>
+                <StyledDate key={`prev_${index}`}>
                     <Num onClick={() => {
                         setDate({
                             currMonth: month - 1,
                             currDate: Number(monthPrevLastNumber) - index
                         });
                     }}>{Number(monthPrevLastNumber) - index}</Num>
-                </DateEl>).reverse()}
+                </StyledDate>).reverse()}
 
-            {new Array(monthLastNumber).fill(null).map((_, index) => <DateEl key={`curr_${index}`}>
+            {new Array(monthLastNumber).fill(null).map((_, index) => <StyledDate key={`curr_${index}`}>
                     <Num onClick={() => {
                         setDate({
                             currDate: index + 1
                         });
                     }} isToday={isToday && index + 1 === today.getDate()}>{index + 1}</Num>
-                </DateEl>)}
+                </StyledDate>)}
 
             {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(null).map((_, index) =>
-                <DateEl key={`next_${index}`}>
+                <StyledDate key={`next_${index}`}>
                     <Num onClick={() => {
                         setDate({
                             currMonth: month + 1,
                             currDate: index + 1
                         });
                     }}>{index + 1}</Num>
-                </DateEl>)}
-        </MonthWrap>
+                </StyledDate>)}
+        </StyledMonthWrap>
     );
 };
 
-const MonthWrap = styled.ul`
+const StyledMonthWrap = styled.ul`
   flex: 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -88,7 +88,7 @@ const MonthWrap = styled.ul`
   height: 100%;
 `;
 
-const DateEl = styled.li`
+const StyledDate = styled.li`
   padding: 5px;
   text-align: center;
   border-right: 1px solid var(--defaultLightGray);

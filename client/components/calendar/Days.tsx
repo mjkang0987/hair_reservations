@@ -40,19 +40,19 @@ export const DaysComponent = ()  => {
     }
 
     return (
-        <DaysWrap type={type}>
-            {type !== ViewType.Day && <Days>
+        <StyledDaysWrap type={type}>
+            {type !== ViewType.Day && <StyledDays>
                 {daysArr().map((day: string) =>
                     <Day key={DAYS[day].id} type={type}>
                         {DAYS[day].ko}
                     </Day>)}
-            </Days>}
+            </StyledDays>}
             {(type === ViewType.Week || type === ViewType.Three) && <WeekWrapComponent type={type} />}
-        </DaysWrap>
+        </StyledDaysWrap>
     );
 };
 
-const DaysWrap = styled.div <DaysType>`
+const StyledDaysWrap = styled.div <DaysType>`
   width: 100%;
   ${props => props.type !== 'month' && `
     padding-left: 150px;
@@ -64,7 +64,7 @@ const DaysWrap = styled.div <DaysType>`
   }
 `;
 
-const Days = styled.ul`
+const StyledDays = styled.ul`
   display: grid;
   justify-content: center;
   width: 100%;

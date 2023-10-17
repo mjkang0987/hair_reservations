@@ -25,22 +25,22 @@ const Home: NextPage = () => {
             <Head>
                 <title>RESERVATION</title>
             </Head>
-            <Button type="button"
+            <ButtonUI type="button"
                     isVisible={aside.isVisible}>
                 <Icon iconType="plus"/>
                 {aside.isVisible && <ButtonText a11y={false}>일정추가</ButtonText>}
-            </Button>
-            <Section isVisible={aside.isVisible}
+            </ButtonUI>
+            <SectionUI isVisible={aside.isVisible}
                      isTransitionEnd={aside.isTransitionEnd}>
                 {target && <CalendarComponent/>}
-            </Section>
+            </SectionUI>
         </>
     );
 };
 
 export default Home;
 
-const Section = styled.section <Props>`
+const SectionUI = styled.section <Props>`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ const Section = styled.section <Props>`
   border-left: solid var(--defaultLightGray) ${props => props.isVisible ? `1px` : 0};
 `;
 
-const Button = styled.button <{isVisible: boolean}>`
+const ButtonUI = styled.button <{isVisible: boolean}>`
   display: inline-flex;
   position: absolute;
   top: 10px;

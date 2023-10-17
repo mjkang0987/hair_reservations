@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const FooterComponent = () => {
     return (
-        <Footer>Made By Jiwoo</Footer>
+        <StyledFooter>Made By Jiwoo</StyledFooter>
     );
 };
 
-const Footer = styled.footer `
+const StyledFooter = styled.footer `
   display: flex;
   justify-content: center;
   padding: 10px 0;

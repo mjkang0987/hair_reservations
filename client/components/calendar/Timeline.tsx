@@ -18,30 +18,30 @@ export const TimelineTitleComponent = () => {
     };
 
     return (
-        <Timeline>
-            <Times>
-                {setTimes().map((t: string, index: number) => <Time key={`time_${index}`}>
-                    <Num>{t}</Num>
-                </Time>)}
-            </Times>
-        </Timeline>
+        <StyledTimeline>
+            <StyledTimes>
+                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${index}`}>
+                    <StyledNum>{t}</StyledNum>
+                </StyledTime>)}
+            </StyledTimes>
+        </StyledTimeline>
     );
 };
 
-const Timeline = styled.div`
+const StyledTimeline = styled.div`
   flex-shrink: 0;
   width: 150px;
   border-right: 1px solid var(--defaultLightGray);
   box-sizing: border-box;
 `;
 
-const Times = styled.ul`
+const StyledTimes = styled.ul`
   display: flex;
   flex-direction: column;
   margin: 40px 0;
 `;
 
-const Time = styled.li`
+const StyledTime = styled.li`
   display: flex;
   justify-content: center;
   position: relative;
@@ -57,7 +57,7 @@ const Time = styled.li`
   }
 `;
 
-const Num = styled.span`
+const StyledNum = styled.span`
   display: flex;
   justify-content: center;
   width: 100%;

@@ -78,15 +78,15 @@ export const HeaderComponent = () => {
     }
 
     return (
-        <Header>
-            <Button type="button" onClick={() => setAside({
+        <StyledHeader>
+            <StyledButton type="button" onClick={() => setAside({
                 isVisible: !aside.isVisible,
                 isTransitionEnd: false
             })}>
                 <Icon iconType="hamburger"/>
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
-            </Button>
-            <ButtonWrap>
+            </StyledButton>
+            <StyledButtonWrap>
                 <ButtonSquare onClick={() => setUpdateCurr(today)}>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
@@ -98,21 +98,21 @@ export const HeaderComponent = () => {
                     <Icon iconType="rightArrow"/>
                     {type && <ButtonText a11y={true}>다음{A11Y_DIRECTION[type]}</ButtonText>}
                 </ButtonCircle>
-            </ButtonWrap>
-            <Heading>
-                {full && <DateWrap>
-                    <DateElement>{Number(fullYear)}</DateElement>
-                    {type !== 'year' && <DateElement>
+            </StyledButtonWrap>
+            <StyledHeading>
+                {full && <StyledDateWrap>
+                    <StyledDateElement>{Number(fullYear)}</StyledDateElement>
+                    {type !== 'year' && <StyledDateElement>
                         {setMonth()}
-                    </DateElement>}
-                    {type === ViewType.Day && <DateElement>{Number(date)}</DateElement>}
-                </DateWrap>}
-            </Heading>
-        </Header>
+                    </StyledDateElement>}
+                    {type === ViewType.Day && <StyledDateElement>{Number(date)}</StyledDateElement>}
+                </StyledDateWrap>}
+            </StyledHeading>
+        </StyledHeader>
     );
 };
 
-const Header = styled.header`
+const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   gap: 20px;
@@ -122,19 +122,19 @@ const Header = styled.header`
   border-bottom: solid 1px var(--defaultLightGray);
 `;
 
-const Heading = styled.h1`
+const StyledHeading = styled.h1`
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
-const DateWrap = styled.span`
+const StyledDateWrap = styled.span`
   display: inline-flex;
   align-items: center;
 `;
 
-const DateElement = styled.span`
+const StyledDateElement = styled.span`
   display: inline-flex;
   font-size: 26px;
   
@@ -148,13 +148,7 @@ const DateElement = styled.span`
   }
 `;
 
-const Unit = styled.span`
-  display: inline-flex;
-  margin: 0 10px;
-  font-size: 22px;
-`;
-
-const ButtonWrap = styled.span`
+const StyledButtonWrap = styled.span`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -166,7 +160,7 @@ const ButtonWrap = styled.span`
   }
 `;
 
-const Button = styled.button`
+const StyledButton = styled.button`
   width: 40px;
   height: 40px;
   border-radius: 100%;

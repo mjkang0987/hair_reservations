@@ -24,21 +24,21 @@ export const DatesComponent = () => {
     const {type} = view;
 
     const isToday = [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, date].join(' ');
-    return (<CalendarWrap type={type}>
+    return (<StyledCalendar type={type}>
             {(type !== 'month' && type !== 'year') && <>
                 <TimelineTitleComponent/>
-                <TimelineWrap>
+                <StyledTimelineWrap>
                     {type && new Array(ASIDE[type.toUpperCase()].move).fill(null).map((a, i) =>
-                    <Timeline key={`timeline_${i}`}></Timeline>)}
-                </TimelineWrap>
+                    <StyledTimeline key={`timeline_${i}`}></StyledTimeline>)}
+                </StyledTimelineWrap>
             </>}
             {type === ViewType.Month &&
                 <MonthWrapComponent isToday={isToday}/>}
-        </CalendarWrap>
+        </StyledCalendar>
     );
 };
 
-const CalendarWrap = styled.div<{ type: string | null }>`
+const StyledCalendar = styled.div<{ type: string | null }>`
   flex: 1;
   display: grid;
   grid-template-columns: ${props => props.type !== 'month' ? '150px auto' : '1fr'};
@@ -52,11 +52,11 @@ const CalendarWrap = styled.div<{ type: string | null }>`
   }
 `;
 
-const TimelineWrap = styled.ul`
+const StyledTimelineWrap = styled.ul`
   display: grid;
 `;
 
-const Timeline = styled.li`
+const StyledTimeline = styled.li`
     border-right: 1px solid var(--defaultLightGray);
   box-sizing: border-box;
   
