@@ -1,3 +1,7 @@
+export interface DateType {
+    isToday: boolean;
+}
+
 interface AsideElementType {
     id: number
     title: string,

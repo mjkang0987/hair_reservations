@@ -7,13 +7,12 @@ import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 
 import {useChangeDayType} from "../../hooks/useChangeDate";
 
-import {SetDateType} from "../../utils/constants";
+import {
+    DateType,
+    SetDateType
+} from '../../utils/constants';
 
 import {Num} from './Num';
-
-interface DateType {
-    isToday: boolean;
-}
 
 export const MonthWrapComponent = ({
     isToday,
