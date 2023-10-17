@@ -5,13 +5,14 @@ import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 
 import {
     ASIDE,
+    NodeType,
     ViewType
 } from '../../utils/constants';
 
 import {MonthWrapComponent} from './MonthWrap';
 import {TimelineTitleComponent} from './Timeline';
 
-export const DatesComponent = () => {
+export const DatesComponent = ({children}: NodeType) => {
     const today = useRecoilValue(todayState);
     const target = useRecoilValue(targetStateState);
     const {
@@ -32,8 +33,7 @@ export const DatesComponent = () => {
                     <StyledTimeline key={`timeline_${i}`}></StyledTimeline>)}
                 </StyledTimelineWrap>
             </>}
-            {type === ViewType.Month &&
-                <MonthWrapComponent isToday={isToday}/>}
+            {children}
         </StyledCalendar>
     );
 };

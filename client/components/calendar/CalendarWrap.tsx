@@ -9,6 +9,7 @@ import {DaysComponent} from './Days';
 import {DatesComponent} from './Dates';
 import {YearComponents} from './Year';
 import {WeekWrapComponent} from './WeekWrap';
+import {MonthWrapComponent} from './MonthWrap';
 
 interface DaysType {
     type: string | null;
@@ -26,7 +27,10 @@ export const CalendarComponent = () => {
                 </DaysComponent>
             </StyledDaysWrap>}
 
-            <DatesComponent/>
+            <DatesComponent>
+                {type === ViewType.Month && <MonthWrapComponent isToday={isToday}/>}
+            </DatesComponent>
+
             {(type === ViewType.Year) && <YearComponents/>}
         </>
     );
