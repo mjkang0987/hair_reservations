@@ -1,4 +1,4 @@
-import {
+import React, {
     useState
 } from 'react';
 
@@ -12,12 +12,17 @@ import {
 } from 'recoil';
 
 import {
+    asideState,
     targetStateState,
     todayState,
     viewState
 } from '../recoil/atoms';
 
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
+
+import {
+    useToggleModal
+} from '../hooks/useCloseModal';
 
 import {NodeType} from '../utils/constants';
 
@@ -31,6 +36,7 @@ export default function LayoutComponent({children}: NodeType) {
 
     const [loading, setLoading] = useState(false);
     const [today, setToday] = useRecoilState(todayState);
+    const [aside, setAside] = useRecoilState(asideState);
     const setView = useSetRecoilState(viewState);
     const setCurr = useSetRecoilState(targetStateState);
 
@@ -57,8 +63,26 @@ export default function LayoutComponent({children}: NodeType) {
         setCurr(today);
     }, [today, setToday]);
 
+    const closeModal = (e: React.MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'ASIDE' || target.tagName === 'INPUT') {
+            return;
+        }
+
+        if (!aside.isVisible) {
+            return;
+        }
+
+        useToggleModal({
+            event: e,
+            setAside,
+            isVisible: !aside.isVisible,
+            isTransitionEnd: false
+        });
+    };
+
     return (
-        <>
+        <StyledWrapper onClick={closeModal}>
             {!loading && <Icon iconType="loading"/>}
             {(loading && today) && <>
                 <HeaderComponent/>
@@ -68,9 +92,15 @@ export default function LayoutComponent({children}: NodeType) {
                 </StyledMain>
                 <FooterComponent/>
             </>}
-        </>
+        </StyledWrapper>
     );
 }
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+`;
 
 const StyledMain = styled.main`
   flex: 1;

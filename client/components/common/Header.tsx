@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
     useRecoilState,
     useRecoilValue,
@@ -18,6 +20,8 @@ import {
     ASIDE,
     ViewType
 } from '../../utils/constants';
+
+import {useToggleModal} from '../../hooks/useCloseModal';
 
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
@@ -80,7 +84,9 @@ export const HeaderComponent = () => {
 
     return (
         <StyledHeader>
-            <StyledButton type="button" onClick={() => setAside({
+            <StyledButton type="button" onClick={(event: React.MouseEvent) => useToggleModal({
+                event,
+                setAside,
                 isVisible: !aside.isVisible,
                 isTransitionEnd: false
             })}>
