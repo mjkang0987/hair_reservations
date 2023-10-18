@@ -61,23 +61,27 @@ export const WeekWrapComponent = ({
         });
     };
 
+    const setNumArr = () => {
+        if (type === ViewType.Week && (weekLastDay < 6)) {
+            return new Array(6 - weekLastDay);
+        }
+
+        if (type === ViewType.Three && (monthLastNumber - date < 2)) {
+            return new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date));
+        }
+
+        return [];
+    }
+
     return (<StyledWeeks>
-            {curr[type]().map((w: string, index: number) => <StyledWeek key={`week_${index}`}>
+            {curr[type]().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: w
                     });
                 }} isToday={isTodayValue(today, fullYear, month, Number(w))}>{w}</Num>
             </StyledWeek>)}
-            {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
-                <Num onClick={() => {
-                    setDate({
-                        currDate: index + 1,
-                        currMonth: month + 1
-                    });
-                }} isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
-            </StyledWeek>)}
-            {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
+            {setNumArr().length > 0 && setNumArr().fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1,
