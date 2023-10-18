@@ -70,8 +70,9 @@ export const HeaderComponent = () => {
             return Number(month) + 1;
         }
 
-        if (Number(date) + (type === 'week' ? 6 : 2) > updateCurr.monthLastNumber) {
-            return `${Number(month) + 1} - ${month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2}`;
+        if (Number(date) + (type === 'week' ? 6 : 2) > updateCurr?.monthLastNumber) {
+            const calcYear = month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2;
+            return `${Number(month) + 1} - ${calcYear}`;
         }
 
         return `${Number(month) + 1}`;
