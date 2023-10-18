@@ -1,6 +1,12 @@
 import styled from 'styled-components';
+import {ASIDE} from '../../utils/constants';
+import {useRecoilValue} from 'recoil';
+import {viewState} from '../../recoil/atoms';
 
-export const TimelineTitleComponent = () => {
+export const TimelineComponent = () => {
+    const view = useRecoilValue(viewState);
+    const {type} = view;
+
     const setTimes = () => {
         return new Array(24).fill(null).reduce((acc, curr, index) => {
             const isMorning = index < 12
@@ -17,18 +23,23 @@ export const TimelineTitleComponent = () => {
         }, []);
     };
 
-    return (
-        <StyledTimeline>
+    return (<>
+        <StyledTimelineTitle>
             <StyledTimes>
                 {setTimes().map((t: string, index: number) => <StyledTime key={`time_${index}`}>
                     <StyledNum>{t}</StyledNum>
                 </StyledTime>)}
             </StyledTimes>
-        </StyledTimeline>
-    );
+        </StyledTimelineTitle>
+
+        <StyledTimelineWrap>
+            {type && new Array(ASIDE[type.toUpperCase()].move).fill(null).map((a, i) =>
+                <StyledTimeline key={`timeline_${i}`}></StyledTimeline>)}
+        </StyledTimelineWrap>
+    </>);
 };
 
-const StyledTimeline = styled.div`
+const StyledTimelineTitle = styled.div`
   flex-shrink: 0;
   width: 150px;
   border-right: 1px solid var(--defaultLightGray);
@@ -65,3 +76,17 @@ const StyledNum = styled.span`
   font-size: var(--defaultTinyFont);
   color: var(--defaultGray);
 `;
+
+const StyledTimelineWrap = styled.ul`
+  display: grid;
+`;
+
+const StyledTimeline = styled.li`
+  border-right: 1px solid var(--defaultLightGray);
+  box-sizing: border-box;
+
+  &:nth-last-child(1) {
+    border-right: none;
+  }
+`;
+
