@@ -14,6 +14,7 @@ import {
 } from '../../recoil/atoms';
 
 import {
+    isTodayValue,
     SetDateType,
     ViewType
 } from '../../utils/constants';
@@ -58,10 +59,6 @@ export const WeekWrapComponent = ({
             setView,
             router
         });
-    };
-
-    const isTodayValue = (number: number = 0): boolean => {
-        return [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, number].join(' ');
     };
 
     return (<StyledWeeks>

@@ -8,6 +8,7 @@ import {targetStateState, todayState, viewState} from '../../recoil/atoms';
 import {useChangeDayType} from "../../hooks/useChangeDate";
 
 import {
+    isTodayValue,
     SetDateType
 } from '../../utils/constants';
 
@@ -43,10 +44,6 @@ export const MonthWrapComponent = () => {
             setView,
             router
         });
-    };
-
-    const isTodayValue = (number: number = 0): boolean => {
-        return [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, number].join(' ');
     };
 
     return (

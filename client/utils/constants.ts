@@ -122,3 +122,6 @@ export interface SetDateType {
     currDate: CurrentType;
 }
 
+export const isTodayValue = (number: number = 0): boolean => {
+    return [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, number].join(' ');
+};
