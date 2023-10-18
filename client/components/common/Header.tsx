@@ -138,7 +138,7 @@ const StyledDateWrap = styled.span`
 const StyledDateElement = styled.span`
   display: inline-flex;
   font-size: 26px;
-  
+
   + span {
     &:before {
       content: "/";
