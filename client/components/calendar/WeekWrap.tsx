@@ -67,7 +67,7 @@ export const WeekWrapComponent = ({
                     setDate({
                         currDate: w
                     });
-                }} isToday={isTodayValue(Number(w))}>{w}</Num>
+                }} isToday={isTodayValue(today, fullYear, month, Number(w))}>{w}</Num>
             </StyledWeek>)}
             {(type === ViewType.Week && (weekLastDay < 6)) && new Array(6 - weekLastDay).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
@@ -75,7 +75,7 @@ export const WeekWrapComponent = ({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
-                }} isToday={isTodayValue(Number(index) + 1)}>{index + 1}</Num>
+                }} isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
             </StyledWeek>)}
             {(type === ViewType.Three && (monthLastNumber - date < 2)) && new Array((monthLastNumber - date === 0 ? 2 : monthLastNumber - date)).fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                 <Num onClick={() => {
@@ -83,7 +83,7 @@ export const WeekWrapComponent = ({
                         currDate: index + 1,
                         currMonth: month + 1
                     });
-                }} isToday={isTodayValue(Number(index) + 1)}>{index + 1}</Num>
+                }} isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
             </StyledWeek>)}
     </StyledWeeks>
     );
