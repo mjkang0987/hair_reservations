@@ -42,7 +42,7 @@ export const TimelineComponent = () => {
 const StyledTimelineTitle = styled.div`
   flex-shrink: 0;
   width: 150px;
-  border-right: 1px solid var(--defaultLightGray);
+  border-right: 1px solid var(--light-gray-color);
   box-sizing: border-box;
 `;
 
@@ -64,7 +64,7 @@ const StyledTime = styled.li`
     left: calc(100% - 12px);
     width: 100vw;
     height: 1px;
-    background-color: var(--defaultLightGray);
+    background-color: var(--light-gray-color);
   }
 `;
 
@@ -73,8 +73,8 @@ const StyledNum = styled.span`
   justify-content: center;
   width: 100%;
   padding: 20px;
-  font-size: var(--defaultTinyFont);
-  color: var(--defaultGray);
+  font-size: var(--tiny-font);
+  color: var(--gray-color);
 `;
 
 const StyledTimelineWrap = styled.ul`
@@ -82,7 +82,7 @@ const StyledTimelineWrap = styled.ul`
 `;
 
 const StyledTimeline = styled.li`
-  border-right: 1px solid var(--defaultLightGray);
+  border-right: 1px solid var(--light-gray-color);
   box-sizing: border-box;
 
   &:nth-last-child(1) {

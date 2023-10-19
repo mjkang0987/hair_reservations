@@ -45,7 +45,7 @@ const SectionUI = styled.section <Props>`
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-left: solid var(--defaultLightGray) ${props => props.isVisible ? `1px` : 0};
+  border-left: solid var(--light-gray-color) ${props => props.isVisible ? `1px` : 0};
 `;
 
 const ButtonUI = styled.button <{isVisible: boolean}>`
@@ -59,7 +59,7 @@ const ButtonUI = styled.button <{isVisible: boolean}>`
   max-width: calc(80% - 30px);
   height: 40px;
   border: 1px solid #ccc;
-  background-color: ${props => props.isVisible ? 'var(--defaultWhite)' : 'rgb(255 255 255 / .6)'};
+  background-color: ${props => props.isVisible ? 'var(--white-color)' : 'rgb(255 255 255 / .6)'};
   border-radius: ${props => props.isVisible ? '5px' : '20px'};
   box-shadow: ${props => props.isVisible ? '0 0 10px 0 rgba(0, 0, 0, .1)' : '0 0 10px 0 rgba(0, 0, 0, .2)'};
   z-index: 1;

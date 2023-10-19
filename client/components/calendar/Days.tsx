@@ -62,9 +62,9 @@ const StyledDay = styled.li <DaysType>`
   flex: 1;
   text-align: center;
   padding: 10px 0 5px;
-  font-size: var(--defaultSmallFont);
-  color: var(--defaultBlack);
-  border-right: 1px solid var(--defaultLightGray);
+  font-size: var(--small-font);
+  color: var(--black-color);
+  border-right: 1px solid var(--light-gray-color);
   box-sizing: border-box;
   ${props => props.type !== ViewType.Month && `
     border: none;

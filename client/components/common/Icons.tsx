@@ -35,7 +35,7 @@ const StyledIcon = styled.span <Props>`
       right: 14px;
       width: 14px;
       height: 14px;
-      border: solid 1px var(--defaultBlack);
+      border: solid 1px var(--black-color);
       border-radius: 100%;
     }
     
@@ -44,7 +44,7 @@ const StyledIcon = styled.span <Props>`
       right: 12px;
       width: 6px;
       height: 1px;
-      background-color: var(--defaultBlack);
+      background-color: var(--black-color);
       transform: rotate(45deg);
     }
   `}
@@ -58,7 +58,7 @@ const StyledIcon = styled.span <Props>`
       left: 50%;
       width: 16px;
       height: 2px;
-      background-color: var(--defaultBlack);
+      background-color: var(--black-color);
       border-radius: 2px;
       pointer-events: none;
     }
@@ -84,8 +84,8 @@ const StyledIcon = styled.span <Props>`
       height: 2px;
       margin-left: -9px;
       border-radius: 2px;
-      background-color: var(--defaultBlack);
-      box-shadow: 0 10px 0 0 var(--defaultBlack);
+      background-color: var(--black-color);
+      box-shadow: 0 10px 0 0 var(--black-color);
     }
   `}
   
@@ -99,7 +99,7 @@ const StyledIcon = styled.span <Props>`
       margin-left: -${props.iconType === 'rightArrow' ? 8 : 2}px;
       width: 10px;
       height: 10px;
-      border: solid var(--defaultBlack);
+      border: solid var(--black-color);
       border-width: 1px 1px 0 0;
       transform: translateY(-50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
     }

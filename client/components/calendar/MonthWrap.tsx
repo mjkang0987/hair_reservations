@@ -90,8 +90,8 @@ const StyledMonthWrap = styled.ul`
 const StyledDate = styled.li`
   padding: 5px;
   text-align: center;
-  border-right: 1px solid var(--defaultLightGray);
-  border-top: 1px solid var(--defaultLightGray);
+  border-right: 1px solid var(--light-gray-color);
+  border-top: 1px solid var(--light-gray-color);
 
   &:nth-child(7n) {
     border-right: none;

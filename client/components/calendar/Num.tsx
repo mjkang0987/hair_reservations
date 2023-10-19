@@ -22,14 +22,14 @@ const StyledNum = styled.button <Props>`
   border-radius: 100%;
   background: transparent;
   border: none;
-  font-size: var(--defaultSmallFont);
-  color: var(--defaultBlack);
+  font-size: var(--small-font);
+  color: var(--black-color);
 
   ${props => props.isToday && `
-    background-color: var(--defaultBlue);
+    background-color: var(--blue-color);
     color: #fff;
   `}
   &:hover {
-    background-color: var(--defaultLightGray);
+    background-color: var(--light-gray-color);
   }
 `;

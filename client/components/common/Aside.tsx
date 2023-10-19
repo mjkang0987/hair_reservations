@@ -80,7 +80,7 @@ const StyledAside = styled.aside <Props>`
   width: 250px;
   max-width: 80%;
   padding: 60px 15px 0;
-  border-right: solid 1px var(--defaultLightGray);
+  border-right: solid 1px var(--light-gray-color);
   box-sizing: border-box;
   background-color: #fff;
   box-shadow: 10px 0 10px 0 rgba(0 0 0 / .1);
@@ -102,7 +102,7 @@ const StyledLinkStyle = styled.span`
   width: 100%;
   height: 40px;
   border: 1px solid #ccc;
-  background-color: var(--defaultWhite);
+  background-color: var(--white-color);
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 `;

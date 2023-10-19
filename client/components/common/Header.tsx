@@ -126,7 +126,7 @@ const StyledHeader = styled.header`
   width: 100%;
   padding: 8px 15px 7px;
   box-sizing: border-box;
-  border-bottom: solid 1px var(--defaultLightGray);
+  border-bottom: solid 1px var(--light-gray-color);
 `;
 
 const StyledHeading = styled.h1`

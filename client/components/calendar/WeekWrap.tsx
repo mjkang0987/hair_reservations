@@ -106,21 +106,21 @@ const StyledWeeks = styled.ul`
     left: -150px;
     width: 100vw;
     height: 1px;
-    background-color: var(--defaultLightGray);
+    background-color: var(--light-gray-color);
   }
 `;
 
 const StyledWeek = styled.li`
   text-align: center;
   padding: 5px;
-  border-right: 1px solid var(--defaultLightGray);
+  border-right: 1px solid var(--light-gray-color);
 
   &:nth-child(7) {
     border-right: none;
   }
   
   button {
-    font-size: var(--defaultBigFont);
+    font-size: var(--big-font);
     width: 40px;
     height: 40px;
   }

@@ -17,18 +17,18 @@ const StyledInput = styled.div<Props>`
   height: 40px;
   box-sizing: border-box;
   border: 1px solid #ccc;
-  background-color: var(--defaultWhite);
+  background-color: var(--white-color);
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
 
   &::placeholder {
-    color: var(--defaultGray);
+    color: var(--gray-color);
   }
   
   ${props => props.inputIcon === 'search' && `
     input {
       border: none;
-      background-color: var(--defaultWhite);
+      background-color: var(--white-color);
       padding: 0 0 0 10px;
       box-sizing: border-box;
     }
@@ -38,7 +38,7 @@ const StyledInput = styled.div<Props>`
       position: relative;
       width: 40px;
       border: none;
-      background-color: var(--defaultWhite);
+      background-color: var(--white-color);
     }
   `};
 `;
