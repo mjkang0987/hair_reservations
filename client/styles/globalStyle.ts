@@ -6,12 +6,20 @@ export const GlobalStyle = createGlobalStyle`
     --font: 18px;
     --small-font: 16px;
     --tiny-font: 14px;
+
     --black-color: #222;
     --gray-color: #9f9f9f;
     --dark-gray-color: #525252;
     --light-gray-color: #e4e4e4;
     --white-color: #fff;
     --blue-color: #00a6e3;
+    --orange-color: #fd7200;
+    
+    --white-color-80: rgb(255 255 255 / .8);
+    --white-color-60: rgb(255 255 255 / .6);
+    --white-color-40: rgb(255 255 255 / .40);
+    
+    --bar-top: 56px;
   }
 
   html,
