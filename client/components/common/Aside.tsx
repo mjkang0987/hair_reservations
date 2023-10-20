@@ -44,7 +44,9 @@ export const AsideComponent = () => {
 
     return (<StyledAside isVisible={aside.isVisible}
                isTransitionEnd={aside.isTransitionEnd}
-               className={!aside.isTransitionEnd ? 'animate' : ''}
+                         className={!aside.isTransitionEnd
+                                    ? 'animate'
+                                    : ''}
                onAnimationEnd={() => {
                    setAside({
                        ...aside,
