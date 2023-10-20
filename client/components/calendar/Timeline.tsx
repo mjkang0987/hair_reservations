@@ -1,92 +1,67 @@
 import styled from 'styled-components';
-import {ASIDE} from '../../utils/constants';
 import {useRecoilValue} from 'recoil';
-import {viewState} from '../../recoil/atoms';
+import {
+    timeState,
+    viewState
+} from '../../recoil/atoms';
+import {ViewType} from '../../utils/constants';
 
-export const TimelineComponent = () => {
+export const TimelineComponent = ({
+    isToday
+}: {isToday: boolean}) => {
     const view = useRecoilValue(viewState);
     const {type} = view;
 
-    const setTimes = () => {
-        return new Array(24).fill(null).reduce((acc, curr, index) => {
-            const isMorning = index < 12
-                              ? '오전'
-                              : '오후';
-            const isHalf = index > 12
-                           ? index - 12
-                           : index;
-            const isSingle = String(isHalf + 1).length < 2
-                             ? 0
-                             : '';
-            const result = `${isMorning} ${isSingle}${isHalf}:00`;
-            return [...acc, result];
-        }, []);
-    };
+    const time = useRecoilValue(timeState);
 
-    return (<>
-        <StyledTimelineTitle>
-            <StyledTimes>
-                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${index}`}>
-                    <StyledNum>{t}</StyledNum>
-                </StyledTime>)}
-            </StyledTimes>
-        </StyledTimelineTitle>
+    const {
+        start,
+        end
+    } = time;
 
-        <StyledTimelineWrap>
-            {type && new Array(ASIDE[type.toUpperCase()].move).fill(null).map((a, i) =>
-                <StyledTimeline key={`timeline_${i}`}></StyledTimeline>)}
-        </StyledTimelineWrap>
-    </>);
+    const today = new Date();
+    const hour = today.getHours();
+    const minutes = today.getMinutes();
+
+    const timing = (hour - start) * 60 * 60;
+
+    return (<StyledTimelineWrap>
+        {isToday && <StyledBar type={type}
+                               timing={timing}
+                               top={((hour - start) * 120) + minutes}
+                               height={(end - start) * 2 * 60}/>}
+    </StyledTimelineWrap>);
 };
-
-const StyledTimelineTitle = styled.div`
-  flex-shrink: 0;
-  width: 150px;
-  border-right: 1px solid var(--light-gray-color);
-  box-sizing: border-box;
-`;
-
-const StyledTimes = styled.ul`
+const StyledTimelineWrap = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
-  margin: 40px 0;
+  position: relative;
+  width: 100%;
+  padding: 30px 5px 0;
+  box-sizing: border-box;
 `;
 
-const StyledTime = styled.li`
-  display: flex;
-  justify-content: center;
-  position: relative;
-
-  &:after {
+const StyledBar = styled.span<{type: string, timing: number, top: number, height: number}>`
+  --bar-top: ${props => (props.top ? props.top : 0) + (props.type === ViewType.Day ? 120 : 90)}px;
+  --timeline-height: ${props => props.height ? props.height : 10 * 2 * 60}px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--orange-color);
+  animation: down ${props => props.timing ? props.timing : 20 * 60 * 60}s linear;
+  
+  &:before {
     content: "";
     position: absolute;
-    top: 50%;
-    left: calc(100% - 12px);
-    width: 100vw;
-    height: 1px;
-    background-color: var(--light-gray-color);
-  }
-`;
-
-const StyledNum = styled.span`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
-  font-size: var(--tiny-font);
-  color: var(--gray-color);
-`;
-
-const StyledTimelineWrap = styled.ul`
-  display: grid;
-`;
-
-const StyledTimeline = styled.li`
-  border-right: 1px solid var(--light-gray-color);
-  box-sizing: border-box;
-
-  &:nth-last-child(1) {
-    border-right: none;
+    top: -4px;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: var(--orange-color);
+    border-radius: 100%;
   }
 `;
 
