@@ -23,13 +23,13 @@ export const TimelineComponent = ({
     const hour = today.getHours();
     const minutes = today.getMinutes();
 
-    const timing = (hour - start) * 60 * 60;
+    const timing = ((end - hour) * 60 * 60) - (minutes * 2);
 
     return (<StyledTimelineWrap>
         {isToday && <StyledBar type={type}
                                timing={timing}
-                               top={((hour - start) * 120) + minutes}
-                               height={(end - start) * 2 * 60}/>}
+                               top={((hour - start) * 2 * 60) + (minutes * 2)}
+                               full={(end - start - 1) * 2 * 60}/>}
     </StyledTimelineWrap>);
 };
 const StyledTimelineWrap = styled.div`
@@ -42,16 +42,16 @@ const StyledTimelineWrap = styled.div`
   box-sizing: border-box;
 `;
 
-const StyledBar = styled.span<{type: string, timing: number, top: number, height: number}>`
-  --bar-top: ${props => (props.top ? props.top : 0) + (props.type === ViewType.Day ? 120 : 90)}px;
-  --timeline-height: ${props => props.height ? props.height : 10 * 2 * 60}px;
+const StyledBar = styled.span<{type: string, timing: number, top: number, full: number}>`
+  --bar-top: ${props => Number(props.top ? props.top : 0)}px;
+  --timeline-height: ${props => props.full ? props.full : 10 * 2 * 60}px;
   position: absolute;
-  top: 0;
+  top: ${props => props.type === ViewType.Day ? 60 : 30}px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: var(--orange-color);
-  animation: down ${props => props.timing ? props.timing : 20 * 60 * 60}s linear;
+  animation: down ${props => props.timing ? props.timing : 10 * 2 * 60 * 60}s linear;
   
   &:before {
     content: "";
