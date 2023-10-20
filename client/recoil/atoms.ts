@@ -157,5 +157,18 @@ export const viewState = atom<ViewType>({
         type: ''
     }
 });
+
+interface TimeType {
+    start: number;
+    end: number;
+    is12Hour: boolean;
+}
+
+export const timeState = atom<TimeType>({
+    key    : 'timeState',
+    default: {
+        start   : 10,
+        end     : 20,
+        is12Hour: false
     }
 });
