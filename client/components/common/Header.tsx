@@ -53,7 +53,7 @@ export const HeaderComponent = () => {
         }
 
         if (type === ViewType.Month) {
-            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
+            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, 1`);
             return setUpdateCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
         }
 
