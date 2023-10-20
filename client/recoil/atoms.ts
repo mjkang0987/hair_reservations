@@ -154,6 +154,8 @@ export interface ViewType {
 export const viewState = atom<ViewType>({
     key    : 'viewType',
     default: {
-        type: null
+        type: ''
+    }
+});
     }
 });
