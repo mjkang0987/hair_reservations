@@ -55,14 +55,15 @@ const ButtonUI = styled.button <{isVisible: boolean}>`
   left: 15px;
   align-items: center;
   justify-content: center;
-  width: ${props => props.isVisible ? '219px' : 'auto'};
+  width: ${props => props.isVisible ? '189px' : 'auto'};
   max-width: calc(80% - 30px);
-  height: 40px;
+  height: 35px;
   border: 1px solid #ccc;
   background-color: ${props => props.isVisible ? 'var(--white-color)' : 'rgb(255 255 255 / .6)'};
   border-radius: ${props => props.isVisible ? '5px' : '20px'};
   box-shadow: ${props => props.isVisible ? '0 0 10px 0 rgba(0, 0, 0, .1)' : '0 0 10px 0 rgba(0, 0, 0, .2)'};
-  z-index: 1;
+  font-size: var(--small-font);
+  z-index: 3;
   transition: box-shadow .1s ease-in-out;
   
   &:hover {

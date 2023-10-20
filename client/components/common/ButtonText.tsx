@@ -10,6 +10,7 @@ interface Props {
 const StyledButtonText = styled.span <Props>`
   display: flex;
   position: relative;
+  font-size: var(--small-font);
   ${props => props.a11y&& `
       overflow: hidden;
       position: absolute;
