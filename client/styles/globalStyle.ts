@@ -77,7 +77,7 @@ export const GlobalStyle = createGlobalStyle`
       opacity: .6;
     }
   }
-  
+
   a {
     text-decoration: none;
   }
@@ -112,6 +112,16 @@ export const GlobalStyle = createGlobalStyle`
     }
     100% {
       transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes down {
+    0% {
+      transform: translateY(var(--bar-top));
+    }
+    
+    100% {
+      transform: translateY(var(--timeline-height));
     }
   }
 `;
