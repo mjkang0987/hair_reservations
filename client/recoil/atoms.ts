@@ -148,7 +148,7 @@ export const asideState = atom<AsideType>({
 });
 
 export interface ViewType {
-    type: string | null;
+    type: string;
 }
 
 export const viewState = atom<ViewType>({
