@@ -23,7 +23,7 @@ export const TimelineComponent = ({
     const hour = today.getHours();
     const minutes = today.getMinutes();
 
-    const timing = ((end - hour) * 60 * 60) - (minutes * 2);
+    const timing = ((end - hour - 1) * 60 * 60) + (minutes * 2);
 
     return (<StyledTimelineWrap>
         {isToday && <StyledBar type={type}
