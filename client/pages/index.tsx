@@ -1,13 +1,16 @@
 import React from 'react';
 
-import type {NextPage} from 'next';
+import type {NextPage, InferGetStaticPropsType, GetStaticProps} from 'next';
 import Head from 'next/head';
 
 import {useRecoilValue} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState, targetStateState} from '../recoil/atoms';
+import {
+    asideState,
+    targetStateState
+} from '../recoil/atoms';
 
 import {Icon} from '../components/common/Icons';
 import {ButtonText} from '../components/common/ButtonText';
@@ -18,20 +21,25 @@ interface Props {
     isTransitionEnd: boolean;
 }
 
-const Home: NextPage = () => {
+const Home: NextPage = ({
+    reservations
+}: any) => {
     const aside = useRecoilValue(asideState);
     const target = useRecoilValue(targetStateState);
+
+    console.log(reservations)
+
     return (<>
             <Head>
                 <title>RESERVATION</title>
             </Head>
             <StyledButton type="button"
-                    isVisible={aside.isVisible}>
+                          isVisible={aside.isVisible}>
                 <Icon iconType="plus"/>
                 {aside.isVisible && <ButtonText a11y={false}>일정추가</ButtonText>}
             </StyledButton>
             <StyledSection isVisible={aside.isVisible}
-                     isTransitionEnd={aside.isTransitionEnd}>
+                           isTransitionEnd={aside.isTransitionEnd}>
                 {target && <CalendarComponent/>}
             </StyledSection>
         </>
@@ -48,7 +56,7 @@ const StyledSection = styled.section <Props>`
   border-left: solid var(--light-gray-color) ${props => props.isVisible ? `1px` : 0};
 `;
 
-const StyledButton = styled.button <{isVisible: boolean}>`
+const StyledButton = styled.button <{ isVisible: boolean }>`
   display: inline-flex;
   position: absolute;
   top: 10px;
@@ -65,10 +73,23 @@ const StyledButton = styled.button <{isVisible: boolean}>`
   font-size: var(--small-font);
   z-index: 3;
   transition: box-shadow .1s ease-in-out;
-  
+
   &:hover {
     ${props => !props.isVisible && `
       box-shadow:  0 0 15px 0 rgba(0, 0, 0, .4);
     `}
   }
 `;
+
+export const getStaticProps = (async () => {
+    const res = await fetch('http://localhost:3000/api/hello');
+    const reservations = await res.json() || {};
+
+    console.log(reservations)
+
+    return {
+        props: {
+            reservations
+        }
+    };
+});
