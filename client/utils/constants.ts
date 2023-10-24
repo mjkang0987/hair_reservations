@@ -8,6 +8,16 @@ export interface DateType {
     isToday: boolean;
 }
 
+const MAGIC_NUMBER = {
+    TIMELINE_DAY_TOP: 60,
+    TIMELINE_TOP: 30
+}
+
+export const {
+    TIMELINE_DAY_TOP,
+    TIMELINE_TOP
+} = MAGIC_NUMBER;
+
 interface AsideElementType {
     id: number
     title: string,
