@@ -44,6 +44,24 @@ export default function LayoutComponent({children}: NodeType) {
 
     const isInitPath = router.asPath === '/' || null;
     const initDate: Date = new Date();
+    
+    const closeModal = (e: React.MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.tagName === 'ASIDE' || target.tagName === 'INPUT') {
+            return;
+        }
+
+        if (!aside.isVisible) {
+            return;
+        }
+
+        useToggleModal({
+            event          : e,
+            setAside,
+            isVisible      : !aside.isVisible,
+            isTransitionEnd: false
+        });
+    };
 
     isomorphicEffect(() => {
         setLoading(true);
@@ -62,24 +80,6 @@ export default function LayoutComponent({children}: NodeType) {
 
         setCurr(today);
     }, [today, setToday]);
-
-    const closeModal = (e: React.MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.tagName === 'ASIDE' || target.tagName === 'INPUT') {
-            return;
-        }
-
-        if (!aside.isVisible) {
-            return;
-        }
-
-        useToggleModal({
-            event: e,
-            setAside,
-            isVisible: !aside.isVisible,
-            isTransitionEnd: false
-        });
-    };
 
     return (
         <StyledWrapper onClick={closeModal}>
