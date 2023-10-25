@@ -19,7 +19,7 @@ import {
     ViewType
 } from '../../utils/constants';
 
-import {useChangeDayType} from '../../hooks/useChangeDate';
+import {useChangeDay} from '../../hooks/useChangeDate';
 
 import {Num} from './Num';
 import {TimelineComponent} from './Timeline';
@@ -52,7 +52,7 @@ export const WeekWrapComponent = ({
         currMonth,
         currDate
     }: SetDateType) => {
-        useChangeDayType({
+        useChangeDay({
             currMonth: currMonth ?? month,
             currYear : fullYear,
             currDate,

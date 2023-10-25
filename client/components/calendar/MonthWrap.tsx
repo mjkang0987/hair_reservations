@@ -13,7 +13,7 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {useChangeDayType} from '../../hooks/useChangeDate';
+import {useChangeDay} from '../../hooks/useChangeDate';
 
 import {
     isTodayValue,
@@ -44,7 +44,7 @@ export const MonthWrapComponent = () => {
         currMonth,
         currDate,
     }: SetDateType) => {
-        useChangeDayType({
+        useChangeDay({
             currMonth: currMonth ?? month,
             currYear : fullYear,
             currDate,

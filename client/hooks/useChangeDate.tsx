@@ -9,7 +9,8 @@ interface SetDateType {
     router: any;
 }
 
-export const useChangeDayType = ({
+export const useChangeDay = ({
+    type,
     currDate,
     currYear,
     currMonth,
