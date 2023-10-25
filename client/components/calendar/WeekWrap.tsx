@@ -77,7 +77,10 @@ export const WeekWrapComponent = ({
     };
 
     return (<>
-            {type === ViewType.Day && <TimelineComponent isToday={isTodayValue(today, fullYear, month, date)}/>}
+            {type === ViewType.Day && <TimelineComponent fullYear={fullYear}
+                                                         month={month}
+                                                         date={date}
+                                                         isToday={isTodayValue(today, fullYear, month, date)}/>}
 
             {type !== ViewType.Day && <StyledWeeks>
                 {type && curr[type]().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
@@ -90,7 +93,10 @@ export const WeekWrapComponent = ({
                              isToday={isTodayValue(today, fullYear, month, Number(w))}>{w}</Num>
                     </StyledNumWrap>
 
-                    <TimelineComponent isToday={isTodayValue(today, fullYear, month, Number(w))}/>
+                    <TimelineComponent fullYear={fullYear}
+                                       month={month}
+                                       date={Number(w)}
+                                       isToday={isTodayValue(today, fullYear, month, Number(w))}/>
                 </StyledWeek>)}
                 {setNumArr().length > 0 && setNumArr().fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
                     <StyledNumWrap>
@@ -103,7 +109,10 @@ export const WeekWrapComponent = ({
                              isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
                     </StyledNumWrap>
 
-                    <TimelineComponent isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}/>
+                    <TimelineComponent fullYear={fullYear}
+                                       month={month}
+                                       date={Number(index) + 1}
+                                       isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}/>
                 </StyledWeek>)}
             </StyledWeeks>}
         </>
