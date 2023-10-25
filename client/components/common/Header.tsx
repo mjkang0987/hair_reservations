@@ -106,7 +106,7 @@ export const HeaderComponent = () => {
             return Number(month) + 1;
         }
 
-        if (Number(date) + (type === 'week' ? 6 : 2) > updateCurr?.monthLastNumber) {
+        if (Number(date) + (type === ViewType.Week ? 6 : 2) > updateCurr?.monthLastNumber) {
             const calcYear = month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2;
             return `${Number(month) + 1} - ${calcYear}`;
         }
