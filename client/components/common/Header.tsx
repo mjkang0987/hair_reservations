@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {useRouter} from 'next/router';
+
 import {
     useRecoilState,
     useRecoilValue,
@@ -18,6 +20,7 @@ import {
 import {
     A11Y_DIRECTION,
     ASIDE,
+    setRouter,
     ViewType
 } from '../../utils/constants';
 
