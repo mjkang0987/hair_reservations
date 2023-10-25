@@ -62,7 +62,7 @@ export const AsideComponent = () => {
                          }}>
             {curr && Object.keys(asides).map((a) =>
                 <Link href={`/`}
-                      as={`/${a.toLowerCase()}`}
+                      as={`/${a.toLowerCase()}/${fullYear}${a.toLowerCase() !== ViewType.Year ? `/${month + 1}` : ''}${a.toLowerCase() === ViewType.Day ? `/${date}` : ''}`}
                       key={asides[a].id}
                       onClick={() => setChangeView({view: a})}>
                     <StyledLinkStyle>{asides[a].title}</StyledLinkStyle>

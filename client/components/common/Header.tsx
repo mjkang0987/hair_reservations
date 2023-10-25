@@ -28,6 +28,7 @@ import {ButtonText} from './ButtonText';
 import {ButtonCircle, ButtonSquare} from './Buttons';
 
 export const HeaderComponent = () => {
+    const router = useRouter();
     const [aside, setAside] = useRecoilState(asideState);
 
     const today = useRecoilValue(todayState);
@@ -49,12 +50,30 @@ export const HeaderComponent = () => {
         const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
 
         if (type === ViewType.Year) {
+            setRouter({
+                type,
+                year: Number(fullYear) - (isPrev ? 1 : -1),
+                month: Number(month) + 1,
+                date: Number(date),
+                router
+            });
+
             return setUpdateCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
         }
 
         if (type === ViewType.Month) {
             const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, 1`);
-            return setUpdateCurr(new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1))));
+            const currentDate = new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1)));
+
+            setRouter({
+                type,
+                year: currentDate.getFullYear(),
+                month: currentDate.getMonth() + 1,
+                date: currentDate.getDate(),
+                router
+            });
+
+            return setUpdateCurr(currentDate);
         }
 
         if (isDate) {
@@ -65,7 +84,17 @@ export const HeaderComponent = () => {
             const move = Number(ASIDE[type.toUpperCase()].move);
 
             const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
-            return setUpdateCurr(new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0))));
+            const currentDate = new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0)));
+
+            setRouter({
+                type,
+                year: currentDate.getFullYear(),
+                month: currentDate.getMonth() + 1,
+                date: currentDate.getDate(),
+                router
+            });
+
+            return setUpdateCurr(currentDate);
         }
     }
 
@@ -94,7 +123,16 @@ export const HeaderComponent = () => {
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </StyledButton>
             <StyledButtonWrap>
-                <ButtonSquare onClick={() => setUpdateCurr(today)}>
+                <ButtonSquare onClick={() => {
+                    setUpdateCurr(today);
+                    setRouter({
+                        type,
+                        year: today.getFullYear(),
+                        month: today.getMonth() + 1,
+                        date: today.getDate(),
+                        router
+                    })
+                }}>
                     <ButtonText a11y={false}>오늘</ButtonText>
                 </ButtonSquare>
                 <ButtonCircle onClick={() => controller({direction: 'prev'})}>

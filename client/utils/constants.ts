@@ -135,3 +135,23 @@ export interface SetDateType {
 export const isTodayValue = (today: any, fullYear: number, month: number, number: number = 0): boolean => {
     return [today.getFullYear(), today.getMonth(), today.getDate()].join(' ') === [fullYear, month, number].join(' ');
 };
+
+interface RouterType {
+    type: string,
+    year: number,
+    month: number,
+    date: number,
+    router: any
+}
+
+export const setRouter = ({
+    type,
+    year,
+    month,
+    date,
+    router
+}: RouterType) => {
+    const arrayDate = [year, month, date];
+    const index = type === ViewType.Year ? 1 : type === ViewType.Day ? arrayDate.length : 2;
+    router.push(`/${type}/${arrayDate.slice(0, index).join('/')}`);
+};

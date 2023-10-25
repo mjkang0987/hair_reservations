@@ -24,7 +24,11 @@ import {
     useToggleModal
 } from '../hooks/useCloseModal';
 
-import {NodeType} from '../utils/constants';
+import {
+    NodeType,
+    setRouter,
+    ViewType
+} from '../utils/constants';
 
 import {HeaderComponent} from './common/Header';
 import {AsideComponent} from './common/Aside';
@@ -37,12 +41,14 @@ export default function LayoutComponent({children}: NodeType) {
     const [loading, setLoading] = useState(false);
     const [today, setToday] = useRecoilState(todayState);
     const [aside, setAside] = useRecoilState(asideState);
-    const setView = useSetRecoilState(viewState);
-    const setCurr = useSetRecoilState(targetStateState);
+    const [view, setView] = useRecoilState(viewState);
+    const [curr, setCurr] = useRecoilState(targetStateState);
 
     const isomorphicEffect = useIsomorphicEffect();
 
-    const isInitPath = router.asPath === '/' || null;
+    const arrayPath = router.asPath.split('/');
+    const isInitPath = arrayPath.length === 2;
+
     const initDate: Date = new Date();
     
     const closeModal = (e: React.MouseEvent) => {
@@ -66,20 +72,24 @@ export default function LayoutComponent({children}: NodeType) {
     isomorphicEffect(() => {
         setLoading(true);
         setToday(initDate);
+
+        setCurr(isInitPath ? initDate : new Date(Number(arrayPath[2]), Number(arrayPath[3]) - 1, (Number(arrayPath[4]) || 1)));
         setView({
             type: isInitPath
-                  ? 'month'
-                  : router.asPath.replace(/\//, '')
+                  ? ViewType.Week
+                  : arrayPath[1]
+        });
+
+        setRouter({
+            type: isInitPath
+                  ? ViewType.Week
+                  : arrayPath[1],
+            year: isInitPath ? initDate.getFullYear() : Number(arrayPath[2]),
+            month: isInitPath ? initDate.getMonth() + 1 : Number(arrayPath[3]),
+            date: isInitPath ? initDate.getDate() : (Number(arrayPath[4]) || 1),
+            router
         });
     }, []);
-
-    isomorphicEffect(() => {
-        if (!today) {
-            return;
-        }
-
-        setCurr(today);
-    }, [today, setToday]);
 
     return (
         <StyledWrapper onClick={closeModal}>
