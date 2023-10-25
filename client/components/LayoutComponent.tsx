@@ -49,7 +49,7 @@ export default function LayoutComponent({children}: NodeType) {
     const isInitPath = arrayPath.length === 2;
 
     const initDate: Date = new Date();
-    
+
     const closeModal = (e: React.MouseEvent) => {
         const target = e.target as HTMLElement;
         if (target.tagName === 'ASIDE' || target.tagName === 'INPUT') {
@@ -96,7 +96,7 @@ export default function LayoutComponent({children}: NodeType) {
             {(loading && today) && <>
                 <HeaderComponent/>
                 <StyledMain>
-                    <AsideComponent/>
+                    {curr && <AsideComponent/>}
                     {children}
                 </StyledMain>
                 <FooterComponent/>
