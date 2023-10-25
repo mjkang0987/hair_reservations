@@ -9,7 +9,8 @@ import styled from 'styled-components';
 
 import {
     asideState,
-    targetStateState
+    targetStateState,
+    viewState
 } from '../recoil/atoms';
 
 import {Icon} from '../components/common/Icons';
