@@ -1,12 +1,15 @@
+import {ViewType} from '../utils/constants';
+
 type CurrentDateType = string | number;
 
 interface SetDateType {
-    currDate: CurrentDateType
-    currYear?: CurrentDateType
-    currMonth?: CurrentDateType
-    setCurr: Function;
-    setView: Function;
-    router: any;
+    type?: string,
+    currDate: CurrentDateType,
+    currYear?: CurrentDateType,
+    currMonth?: CurrentDateType,
+    setCurr: Function,
+    setView: Function,
+    router: any
 }
 
 export const useChangeDay = ({
@@ -19,7 +22,13 @@ export const useChangeDay = ({
     router
 }: SetDateType) => {
     setCurr(new Date(Number(currYear), Number(currMonth), Number(currDate)));
-    setView({type: 'day'});
+    setView({type: type === ViewType.Year ? ViewType.Month : ViewType.Day});
 
-    router.push('/day');
+    if (type === ViewType.Year) {
+        router.push(`/${ViewType.Month}/${currYear}/${Number(currMonth) + 1}`);
+    }
+
+    if (type !== ViewType.Year) {
+        router.push(`/day/${currYear}/${Number(currMonth) + 1}/${currDate}`);
+    }
 };
