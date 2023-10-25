@@ -3,8 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import {
-    useRecoilState,
-    useSetRecoilState
+    useRecoilState
 } from 'recoil';
 
 import styled from 'styled-components';
@@ -15,7 +14,10 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {ASIDE as asides} from '../../utils/constants';
+import {
+    ASIDE as asides,
+    ViewType
+} from '../../utils/constants';
 
 import {InputWrap} from './Input';
 
@@ -26,25 +28,26 @@ interface Props {
 
 export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const setView = useSetRecoilState(viewState);
+    const [view, setView] = useRecoilState(viewState);
 
     const [curr, setCurr] = useRecoilState(targetStateState);
 
-    const setChangeView = ({view}: { view: string }) => {
-        const {
-            fullYear,
-            month,
-            date,
-            day
-        } = curr;
+    const {
+        fullYear,
+        month,
+        date,
+        day
+    } = curr;
 
+    const setChangeView = ({viewType}: { viewType: string }) => {
         setAside({
             ...aside,
             isVisible: !aside.isVisible
         });
-        setView({type: view.toLowerCase()});
 
-        if (view === 'WEEK') {
+        setView({type: viewType.toLowerCase()});
+
+        if (viewType === 'WEEK') {
             setCurr(new Date(fullYear, month, date - day));
         }
     };
@@ -64,7 +67,7 @@ export const AsideComponent = () => {
                 <Link href={`/`}
                       as={`/${a.toLowerCase()}/${fullYear}${a.toLowerCase() !== ViewType.Year ? `/${month + 1}` : ''}${a.toLowerCase() === ViewType.Day ? `/${date}` : ''}`}
                       key={asides[a].id}
-                      onClick={() => setChangeView({view: a})}>
+                      onClick={() => setChangeView({viewType: a})}>
                     <StyledLinkStyle>{asides[a].title}</StyledLinkStyle>
                 </Link>
             )}
