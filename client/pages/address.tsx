@@ -2,7 +2,7 @@ import type {NextPage} from 'next';
 
 import Head from 'next/head';
 
-const AddressBook: NextPage = () => {
+const Address: NextPage = () => {
     return (
         <section>
             <Head>
@@ -13,4 +13,4 @@ const AddressBook: NextPage = () => {
     );
 };
 
-export default AddressBook;
+export default Address;

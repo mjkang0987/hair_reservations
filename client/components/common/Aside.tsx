@@ -76,7 +76,7 @@ export const AsideComponent = () => {
                     <input type="text"
                            placeholder="사용자 검색"/>
                 </InputWrap>
-                <Link href="/addressBook"
+                <Link href="/address"
                       passHref>📖 전체보기</Link>
             </StyledAddressLink>
         </StyledAside>
