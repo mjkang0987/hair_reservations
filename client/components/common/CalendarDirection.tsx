@@ -138,15 +138,3 @@ const StyledButtonWrap = styled.span`
     }
   }
 `;
-
-const StyledButton = styled.button`
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  background-color: #fff;
-  border: none;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, .1);
-  }
-`;
