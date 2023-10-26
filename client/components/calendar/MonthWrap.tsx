@@ -56,8 +56,8 @@ export const MonthWrapComponent = () => {
 
     return (
         <StyledMonthWrap>
-            {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(null).map((_, index) =>
-                <StyledDate key={`prev_${index}`}
+            {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
+                <StyledDate key={`prev_${val + index}`}
                             type="prev">
                     <Num onClick={() => {
                         setDate({
@@ -69,7 +69,7 @@ export const MonthWrapComponent = () => {
                         monthPrevLastNumber) - index}</Num>
                 </StyledDate>).reverse()}
 
-            {new Array(monthLastNumber).fill(null).map((_, index) => <StyledDate key={`curr_${index}`} type="current">
+            {new Array(monthLastNumber).fill(0).map((val, index) => <StyledDate key={`curr_${val + index}`} type="current">
                 <Num onClick={() => {
                     setDate({
                         currDate: index + 1
@@ -78,8 +78,8 @@ export const MonthWrapComponent = () => {
                      isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
             </StyledDate>)}
 
-            {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(null).map((_, index) =>
-                <StyledDate key={`next_${index}`}
+            {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(0).map((val, index) =>
+                <StyledDate key={`next_${val + index}`}
                             type="next">
                     <Num onClick={() => {
                         setDate({
