@@ -3,7 +3,7 @@ import React from 'react';
 
 interface Props {
     children: React.ReactNode | string;
-    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void | any;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const StyledSquareButton = styled.button <Props>`
