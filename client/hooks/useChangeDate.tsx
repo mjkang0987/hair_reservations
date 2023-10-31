@@ -31,4 +31,6 @@ export const useChangeDay = ({
     if (type !== ViewType.Year) {
         router.push(`/day/${currYear}/${Number(currMonth) + 1}/${currDate}`);
     }
+
+    return null;
 };

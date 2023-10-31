@@ -19,4 +19,6 @@ export const useToggleModal = ({
         isVisible,
         isTransitionEnd
     });
+
+    return null;
 };
