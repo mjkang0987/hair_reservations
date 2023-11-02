@@ -1,4 +1,9 @@
-import {ReactNode} from 'react';
+import {
+    ReactNode,
+    useEffect
+} from 'react';
+
+import {useRouter} from 'next/router';
 
 export type NodeType = {
     children: ReactNode
@@ -10,8 +15,8 @@ export interface DateType {
 
 const MAGIC_NUMBER = {
     TIMELINE_DAY_TOP: 60,
-    TIMELINE_TOP: 30
-}
+    TIMELINE_TOP    : 30
+};
 
 export const {
     TIMELINE_DAY_TOP,
@@ -154,4 +159,4 @@ export const setRouter = ({
     const arrayDate = [year, month, date];
     const index = type === ViewType.Year ? 1 : type === ViewType.Day ? arrayDate.length : 2;
     router.push(`/${type}/${arrayDate.slice(0, index).join('/')}`);
-};
+        };
