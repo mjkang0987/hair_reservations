@@ -3,14 +3,13 @@ import React from 'react';
 import {useRouter} from 'next/router';
 
 import {
-    useRecoilState,
     useRecoilValue,
+    useSetRecoilState,
 } from 'recoil';
 
 import styled from 'styled-components';
 
 import {
-    asideState,
     targetState,
     targetStateState,
     todayState,
@@ -24,26 +23,25 @@ import {
     ViewType
 } from '../../utils/constants';
 
-import {Icon} from './Icons';
-import {ButtonText} from './ButtonText';
+import {Icon} from '../common/Icons';
+import {ButtonText} from '../common/ButtonText';
 import {
     ButtonCircle,
     ButtonSquare
-} from './Buttons';
+} from '../common/Buttons';
 
 export const CalendarDirection = () => {
     const router = useRouter();
-    const [aside, setAside] = useRecoilState(asideState);
 
     const today = useRecoilValue(todayState);
 
     const view = useRecoilValue(viewState);
     const {type} = view;
 
-    const curr = useRecoilValue(targetState);
-    const {full, fullYear, month, date, day} = curr;
+    const currValue = useRecoilValue(targetState);
+    const {fullYear, month, date, day} = currValue;
 
-    const [updateCurr, setUpdateCurr] = useRecoilState(targetStateState);
+    const setUpdateCurr = useSetRecoilState(targetStateState);
 
     const controller = ({direction}: { direction: string }) => {
         if (!direction) {

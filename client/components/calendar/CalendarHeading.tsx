@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {useRouter} from 'next/router';
-
 import {
     useRecoilState,
     useRecoilValue,
@@ -10,7 +8,6 @@ import {
 import styled from 'styled-components';
 
 import {
-    asideState,
     targetState,
     targetStateState,
     viewState
@@ -20,29 +17,21 @@ import {
     ViewType
 } from '../../utils/constants';
 
-import {useToggleModal} from '../../hooks/useCloseModal';
-
-import {CalendarDirection} from './CalendarDirection';
-import {Icon} from './Icons';
-import {ButtonText} from './ButtonText';
-
 export const CalendarHeading = () => {
-    const [aside, setAside] = useRecoilState(asideState);
-
     const view = useRecoilValue(viewState);
     const {type} = view;
 
-    const curr = useRecoilValue(targetState);
-    const {full, fullYear, month, date, day} = curr;
+    const currValue = useRecoilValue(targetState);
+    const {full, fullYear, month, date} = currValue;
 
-    const [updateCurr, setUpdateCurr] = useRecoilState(targetStateState);
+    const curr = useRecoilValue(targetStateState);
 
     const setMonth = () => {
         if (type === ViewType.Day || type === ViewType.Month) {
             return Number(month) + 1;
         }
 
-        if (Number(date) + (type === ViewType.Week ? 6 : 2) > updateCurr?.monthLastNumber) {
+        if (Number(date) + (type === ViewType.Week ? 6 : 2) > curr?.monthLastNumber) {
             const calcYear = month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2;
             return `${Number(month) + 1} - ${calcYear}`;
         }
