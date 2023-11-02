@@ -38,7 +38,7 @@ export const TimelineTitleComponent = () => {
 
     return (<StyledTimelineTitle>
             <StyledTimes>
-                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${index}`}>
+                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${t}_${index}`}>
                     <StyledNum>{t}</StyledNum>
                 </StyledTime>)}
             </StyledTimes>

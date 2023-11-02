@@ -53,7 +53,7 @@ export const YearComponents = () => {
     return (
         <StyledYear>
             {new Array(12).fill(null).map((value, index) =>
-                <StyledMonth key={`${value}${index}`}>
+                <StyledMonth key={`${fullYear}_${index}`}>
                     <Num onClick={() => {
                         setDate({
                             currMonth: index,
