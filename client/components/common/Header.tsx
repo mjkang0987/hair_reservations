@@ -21,7 +21,7 @@ import {ButtonText} from './ButtonText';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const curr = useRecoilValue(targetState);
+    const routers = useRecoilValue(routerState);
 
     return (
         <StyledHeader>
@@ -34,8 +34,10 @@ export const HeaderComponent = () => {
                 <Icon iconType="hamburger"/>
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </StyledButton>
-            {curr && <CalendarDirection/>}
-            {curr && <CalendarHeading/>}
+            {routers.isCalendarPath && <>
+                <CalendarDirection/>
+                <CalendarHeading/>
+            </>}
         </StyledHeader>
     );
 };
