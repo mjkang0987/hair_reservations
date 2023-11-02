@@ -26,12 +26,13 @@ import {Num} from './Num';
 export const YearComponents = () => {
     const router = useRouter();
     const today = useRecoilValue(todayState);
-    const [curr, setCurr] = useRecoilState(targetStateState);
+    const currValue = useRecoilValue(targetState);
+    const setCurr = useSetRecoilState(targetStateState);
 
     const {
         fullYear,
         month
-    } = curr;
+    } = currValue;
 
     const setView = useSetRecoilState(viewState);
 
@@ -41,8 +42,8 @@ export const YearComponents = () => {
     }: SetDateType) => {
         useChangeDay({
             type: ViewType.Year,
-            currMonth: currMonth ?? month,
-            currYear : fullYear,
+            currMonth: currMonth ?? Number(month),
+            currYear : Number(fullYear),
             currDate,
             setCurr,
             setView,
@@ -58,7 +59,7 @@ export const YearComponents = () => {
                             currMonth: index,
                             currDate : 1
                         });
-                    }} isToday={isTodayValue(today, fullYear, index, today.getDate())}>{index + 1}</Num>
+                    }} isToday={isTodayValue(today, Number(fullYear), index, today.getDate())}>{index + 1}</Num>
                 </StyledMonth>
             )}
         </StyledYear>

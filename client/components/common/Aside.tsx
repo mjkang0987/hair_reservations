@@ -30,14 +30,11 @@ export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
     const [view, setView] = useRecoilState(viewState);
 
-    const [curr, setCurr] = useRecoilState(targetStateState);
+    const setView = useSetRecoilState(viewState);
 
-    const {
-        fullYear,
-        month,
-        date,
-        day
-    } = curr;
+    const currValue = useRecoilValue(targetState)
+
+    const setCurr = useSetRecoilState(targetStateState);
 
     const setChangeView = ({viewType}: { viewType: string }) => {
         setAside({
@@ -47,8 +44,10 @@ export const AsideComponent = () => {
 
         setView({type: viewType.toLowerCase()});
 
-        if (viewType === 'WEEK') {
-            setCurr(new Date(fullYear, month, date - day));
+        if (viewType === ViewType.Week) {
+            setCurr(new Date(Number(currValue.fullYear), Number(currValue.month), Number(currValue.date) - Number(currValue.day)));
+        }
+    };
 
     const setAsPath = (path: string) => {
         const result: (string | number)[] = [path];
