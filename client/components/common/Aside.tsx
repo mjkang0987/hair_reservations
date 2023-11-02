@@ -3,13 +3,16 @@ import React from 'react';
 import Link from 'next/link';
 
 import {
-    useRecoilState
+    useRecoilState,
+    useRecoilValue,
+    useSetRecoilState
 } from 'recoil';
 
 import styled from 'styled-components';
 
 import {
     asideState,
+    targetState,
     targetStateState,
     viewState
 } from '../../recoil/atoms';
@@ -28,7 +31,6 @@ interface Props {
 
 export const AsideComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const [view, setView] = useRecoilState(viewState);
 
     const setView = useSetRecoilState(viewState);
 

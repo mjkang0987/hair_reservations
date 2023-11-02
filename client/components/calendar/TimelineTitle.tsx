@@ -9,8 +9,7 @@ export const TimelineTitleComponent = () => {
 
     const {
         start,
-        end,
-        is12Hour
+        end
     } = time;
 
     const setTimes = () => {

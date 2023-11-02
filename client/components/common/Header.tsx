@@ -2,16 +2,14 @@ import React from 'react';
 
 import {
     useRecoilState,
-    useRecoilValue,
+    useRecoilValue
 } from 'recoil';
 
 import styled from 'styled-components';
 
 import {
     asideState,
-    targetState,
-    targetStateState,
-    viewState
+    routerState
 } from '../../recoil/atoms';
 
 import {useToggleModal} from '../../hooks/useCloseModal';
