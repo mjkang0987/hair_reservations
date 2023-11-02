@@ -4,7 +4,7 @@ import {ServerStyleSheet} from 'styled-components';
 
 class ReservationDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
-        console.log(ctx);
+        // console.log(ctx);
         const sheet = new ServerStyleSheet();
         const originalRenderPage = ctx.renderPage;
 
@@ -48,6 +48,7 @@ class ReservationDocument extends Document {
                     <meta name="twitter:card" content="summary"/>
                     <meta name="og:url" content="service url"/>
                     <meta name="twitter:image" content="image url"/>
+                    <link rel="shortcut icon" href="/favicon.ico" />
                 </Head>
                 <body>
                     <Main/>

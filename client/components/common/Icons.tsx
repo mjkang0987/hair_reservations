@@ -9,7 +9,6 @@ const StyledIcon = styled.span <Props>`
   flex-shrink: 0;
   display: inline-flex;
   position: relative;
-  width: 40px;
   ${props => props.iconType === 'loading' && `
     position: fixed;
     top: 50%;
@@ -24,86 +23,93 @@ const StyledIcon = styled.span <Props>`
   `}
   
   ${props => props.iconType === 'search' && `
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-    }
+  width: 35px;
+   
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+  }
     
-    &::before {
-      top: 10px;
-      right: 14px;
-      width: 14px;
-      height: 14px;
-      border: solid 1px var(--defaultBlack);
-      border-radius: 100%;
-    }
+  &::before {
+    top: 8px;
+    right: 12px;
+    width: 12px;
+    height: 12px;
+    border: solid 1px var(--black-color);
+    border-radius: 100%;
+  }
     
-    &::after {
-      top: 26px;
-      right: 12px;
-      width: 6px;
-      height: 1px;
-      background-color: var(--defaultBlack);
-      transform: rotate(45deg);
-    }
-  `}
+  &::after {
+    top: 21px;
+    right: 10px;
+    width: 6px;
+    height: 1px;
+    background-color: var(--black-color);
+    transform: rotate(45deg);
+  }
+`}
 
   ${props => props.iconType === 'plus' && `
-    &::after,
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 16px;
-      height: 2px;
-      background-color: var(--defaultBlack);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-    
-    &::before {
-      transform: translate(-50%, -50%);
-    }
-    
-    &:after {
-      transform: translate(-50%, -50%) rotate(90deg);
-    }
-  `};
+  width: 35px;
+  
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 2px;
+    background-color: var(--black-color);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  
+  &::before {
+    transform: translate(-50%, -50%);
+  }
+  
+  &:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+`};
   
   ${props => props.iconType === 'hamburger' && `
+  width: 40px;
     height: 40px;
 
-    &::before {
-      content: "";
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      width: 18px;
-      height: 2px;
-      margin-left: -9px;
-      border-radius: 2px;
-      background-color: var(--defaultBlack);
-      box-shadow: 0 10px 0 0 var(--defaultBlack);
-    }
-  `}
+  &::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    margin-left: -9px;
+    border-radius: 2px;
+    background-color: var(--black-color);
+    box-shadow: 0 10px 0 0 var(--black-color);
+  }
+`}
   
   ${props => props.iconType.includes('Arrow') && `
-    height: 40px;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -${props.iconType === 'rightArrow' ? 8 : 2}px;
-      width: 10px;
-      height: 10px;
-      border: solid var(--defaultBlack);
-      border-width: 1px 1px 0 0;
-      transform: translateY(-50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
-    }
-  `}
+  width: 25px;
+  height: 25px;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    margin-left: ${props.iconType === 'rightArrow' ? -2 : 2}px;
+    border: solid var(--black-color);
+    border-width: 1px 1px 0 0;
+    transform: translate(-50%, -50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
+  }
+`}
 `;
 
 export const Icon: React.FC <Props> = ({iconType}) => {

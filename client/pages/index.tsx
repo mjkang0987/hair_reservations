@@ -1,65 +1,95 @@
-import React from 'react';
-
-import type {NextPage} from 'next';
+import type {
+    NextPage
+} from 'next';
 
 import Head from 'next/head';
 
-import {useRecoilValue} from 'recoil';
+import {
+    useRecoilValue,
+} from 'recoil';
 
 import styled from 'styled-components';
 
-import {asideState} from '../recoil/atoms';
+import {
+    asideState,
+    targetStateState,
+} from '../recoil/atoms';
 
-import {Icon} from '../components/common/Icons';
-import {ButtonText} from '../components/common/ButtonText';
-import {Calendar} from '../components/calendar/Calendar';
+import {CalendarComponent} from '../components/calendar/CalendarWrap';
 
 interface Props {
     isVisible: boolean;
     isTransitionEnd: boolean;
 }
 
-const Home: NextPage = () => {
+const Home: NextPage = ({
+    reservations
+}: any) => {
     const aside = useRecoilValue(asideState);
+    const curr = useRecoilValue(targetStateState);
+
     return (<>
             <Head>
                 <title>RESERVATION</title>
             </Head>
-            <Button type="button"
-                    isVisible={aside.isVisible}>
-                <Icon iconType="plus"/>
-                {aside.isVisible && <ButtonText a11y={false}>일정추가</ButtonText>}
-            </Button>
-            <Section isVisible={aside.isVisible}
-                     isTransitionEnd={aside.isTransitionEnd}>
-                <Calendar/>
-            </Section>
+            <StyledSection isVisible={aside.isVisible}
+                           isTransitionEnd={aside.isTransitionEnd}>
+                {curr && <CalendarComponent/>}
+            </StyledSection>
         </>
     );
 };
 
 export default Home;
 
-const Section = styled.section <Props>`
+const StyledSection = styled.section <Props>`
   flex: 1;
   display: flex;
   flex-direction: column;
   height: 100%;
-  border-left: solid var(--defaultLightGray) ${props => props.isVisible ? `1px` : 0};
+  border-left: solid var(--light-gray-color) ${props => props.isVisible ? `1px` : 0};
 `;
 
-const Button = styled.button <{isVisible: boolean}>`
+const StyledButton = styled.button <{ isVisible: boolean }>`
   display: inline-flex;
   position: absolute;
   top: 10px;
   left: 15px;
   align-items: center;
   justify-content: center;
-  width: ${props => props.isVisible ? '219px' : 'auto'};
+  width: ${props => props.isVisible
+                    ? '189px'
+                    : 'auto'};
   max-width: calc(80% - 30px);
-  height: 40px;
+  height: 35px;
   border: 1px solid #ccc;
-  background-color: var(--defaultWhite);
-  border-radius: 5px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
+  background-color: ${props => props.isVisible
+                               ? 'var(--white-color)'
+                               : 'rgb(255 255 255 / .6)'};
+  border-radius: ${props => props.isVisible
+                            ? '5px'
+                            : '20px'};
+  box-shadow: ${props => props.isVisible
+                         ? '0 0 10px 0 rgba(0, 0, 0, .1)'
+                         : '0 0 10px 0 rgba(0, 0, 0, .2)'};
+  font-size: var(--small-font);
+  z-index: 3;
+  transition: box-shadow .1s ease-in-out;
+
+  &:hover {
+    ${props => !props.isVisible && `
+      box-shadow:  0 0 15px 0 rgba(0, 0, 0, .4);
+    `}
+  }
 `;
+
+export const getStaticProps = (async () => {
+    const res = await fetch('http://localhost:3000/api/hello');
+    const reservations = await res.json() || {};
+
+    return {
+        props: {
+            reservations,
+        }
+    };
+});

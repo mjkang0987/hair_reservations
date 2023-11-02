@@ -2,14 +2,24 @@ import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --defaultFont: 18px;
-    --defaultSmallFont: 16px;
-    --defaultBlack: #222;
-    --defaultGray: #9f9f9f;
-    --defaultDarkGray: #525252;
-    --defaultLightGray: #e4e4e4;
-    --defaultWhite: #fff;
-    --defaultBlue: #00a6e3;
+    --big-font: 24px;
+    --font: 18px;
+    --small-font: 16px;
+    --tiny-font: 14px;
+
+    --black-color: #222;
+    --gray-color: #9f9f9f;
+    --dark-gray-color: #525252;
+    --light-gray-color: #e4e4e4;
+    --white-color: #fff;
+    --blue-color: #00a6e3;
+    --orange-color: #fd7200;
+    
+    --white-color-80: rgb(255 255 255 / .8);
+    --white-color-60: rgb(255 255 255 / .6);
+    --white-color-40: rgb(255 255 255 / .40);
+    
+    --bar-top: 56px;
   }
 
   html,
@@ -55,8 +65,8 @@ export const GlobalStyle = createGlobalStyle`
   button,
   input,
   a {
-    font-size: var(--defaultFont);
-    color: var(--defaultBlack);
+    font-size: var(--font);
+    color: var(--black-color);
   }
 
   button,
@@ -66,6 +76,10 @@ export const GlobalStyle = createGlobalStyle`
     &:active {
       opacity: .6;
     }
+  }
+
+  a {
+    text-decoration: none;
   }
 
   input {
@@ -98,6 +112,16 @@ export const GlobalStyle = createGlobalStyle`
     }
     100% {
       transform: translateX(-100%);
+    }
+  }
+  
+  @keyframes down {
+    0% {
+      transform: translateY(var(--bar-top));
+    }
+    
+    100% {
+      transform: translateY(var(--timeline-height));
     }
   }
 `;
