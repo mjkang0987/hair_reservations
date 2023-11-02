@@ -58,7 +58,7 @@ export const targetStateState = selector({
         const weekFirstDate = new Date(
             Number(fullYear),
             Number(month),
-            Number(date) - Number(day) < 0
+            Number(date) - Number(day) < 1
             ? 1
             : Number(date) - Number(day)
         );
