@@ -165,3 +165,19 @@ export const timeState = atom<TimeType>({
         is12Hour: false
     }
 });
+
+interface RouterType {
+    arrayRouter: string[],
+    isRootPath: boolean,
+    isCalendarPath: boolean,
+}
+
+export const routerState = atom<RouterType>({
+    key    : 'routerState',
+    default: {
+        arrayRouter   : [],
+        isRootPath    : false,
+        isCalendarPath: false
+    }
+});
+
