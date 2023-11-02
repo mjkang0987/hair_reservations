@@ -14,8 +14,8 @@ import {
 
 import {useToggleModal} from '../../hooks/useCloseModal';
 
-import {CalendarDirection} from './CalendarDirection';
-import {CalendarHeading} from './CalendarHeading';
+import {CalendarDirection} from '../calendar/CalendarDirection';
+import {CalendarHeading} from '../calendar/CalendarHeading';
 import {Icon} from './Icons';
 import {ButtonText} from './ButtonText';
 
