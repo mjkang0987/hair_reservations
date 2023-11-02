@@ -49,7 +49,19 @@ export const AsideComponent = () => {
 
         if (viewType === 'WEEK') {
             setCurr(new Date(fullYear, month, date - day));
+
+    const setAsPath = (path: string) => {
+        const result: (string | number)[] = [path];
+
+        if (path !== ViewType.Year) {
+            result.push(Number(currValue.month) + 1);
         }
+
+        if (path === ViewType.Day) {
+            result.push(Number(currValue.date));
+        }
+
+        return result;
     };
 
     return (<StyledAside isVisible={aside.isVisible}
@@ -63,9 +75,9 @@ export const AsideComponent = () => {
                                  isTransitionEnd: true
                              });
                          }}>
-            {curr && Object.keys(asides).map((a) =>
+            {currValue && Object.keys(asides).map((a) =>
                 <Link href={`/`}
-                      as={`/${a.toLowerCase()}/${fullYear}${a.toLowerCase() !== ViewType.Year ? `/${month + 1}` : ''}${a.toLowerCase() === ViewType.Day ? `/${date}` : ''}`}
+                      as={`/${setAsPath(a.toLowerCase()).join('/')}`}
                       key={asides[a].id}
                       onClick={() => setChangeView({viewType: a})}>
                     <StyledLinkStyle>{asides[a].title}</StyledLinkStyle>
