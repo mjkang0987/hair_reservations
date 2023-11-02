@@ -143,11 +143,16 @@ export const isTodayValue = (today: any, fullYear: number, month: number, number
 
 interface RouterType {
     type: string,
-    year: number,
-    month: number,
-    date: number,
+    year: number | null,
+    month: number | null,
+    date: number | null,
     router: any
 }
+
+export const isCalendar = (arrayPath: string[] = ['', '', '', '']) => {
+    const findIndex = Object.keys(ASIDE).findIndex((aside) => aside.toLowerCase() === arrayPath[1]);
+    return findIndex > -1;
+};
 
 export const setRouter = ({
     type,
@@ -157,6 +162,11 @@ export const setRouter = ({
     router
 }: RouterType) => {
     const arrayDate = [year, month, date];
-    const index = type === ViewType.Year ? 1 : type === ViewType.Day ? arrayDate.length : 2;
-    router.push(`/${type}/${arrayDate.slice(0, index).join('/')}`);
-        };
+    const setLength = type === ViewType.Day ? arrayDate.length : 2;
+    const index = type === ViewType.Year ? 1 : setLength;
+    const isCalendarPath = isCalendar(['', type]);
+    const resultPath = isCalendarPath ? `/${type}/${arrayDate.slice(0, index).join('/')}` : `/${type}`;
+    router.push(resultPath);
+};
+
+    };
