@@ -65,7 +65,7 @@ export const MonthWrapComponent = () => {
                             currDate : Number(monthPrevLastNumber) - index
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month, Number(monthPrevLastNumber) - index)}>{Number(
+                         isToday={isTodayValue(today, fullYear, month - 1, Number(monthPrevLastNumber) - index)}>{Number(
                         monthPrevLastNumber) - index}</Num>
                 </StyledDate>).reverse()}
 
@@ -87,7 +87,7 @@ export const MonthWrapComponent = () => {
                             currDate : index + 1
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
+                         isToday={isTodayValue(today, fullYear, month + 1, Number(index) + 1)}>{index + 1}</Num>
                 </StyledDate>)}
         </StyledMonthWrap>
     );
