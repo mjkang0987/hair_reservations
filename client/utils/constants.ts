@@ -169,4 +169,31 @@ export const setRouter = ({
     router.push(resultPath);
 };
 
+interface RouterChangeType {
+    setRouters: Function
+}
+
+export const handleOnload = ({
+    setRouters,
+}: RouterChangeType) => {
+    const getRouterState = (url: string) => {
+        const array = url.split('/');
+
+        setRouters({
+            arrayRouter   : array,
+            isRootPath    : array.join('').length === 0,
+            isCalendarPath: isCalendar(array)
+        });
     };
+
+    const router = useRouter();
+    useEffect(() => {
+        router.events.on('routeChangeComplete', getRouterState);
+        return () => {
+            router.events.off('routeChangeComplete', getRouterState);
+        };
+    }, []);
+
+    return null;
+};
+
