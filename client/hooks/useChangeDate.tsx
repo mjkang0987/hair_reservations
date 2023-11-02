@@ -12,6 +12,28 @@ interface SetDateType {
     router: any
 }
 
+const setCalcDate = (currYear: number, currMonth: number, currDate: number) => {
+    const calcDate = {
+        currYear,
+        currMonth,
+        currDate
+    };
+
+    if (calcDate.currMonth > 12) {
+        calcDate.currYear = currYear + 1;
+        calcDate.currMonth = 0;
+    }
+
+    if (calcDate.currMonth < 0) {
+        calcDate.currYear = currYear - 1;
+        calcDate.currMonth = 11;
+    }
+
+    return {
+        ...calcDate
+    };
+}
+
 export const useChangeDay = ({
     type,
     currDate,
@@ -21,15 +43,18 @@ export const useChangeDay = ({
     setView,
     router
 }: SetDateType) => {
-    setCurr(new Date(Number(currYear), Number(currMonth), Number(currDate)));
+    const newDate = setCalcDate(Number(currYear), Number(currMonth), Number(currDate));
+
+    setCurr(new Date(Number(newDate.currYear), Number(newDate.currMonth), Number(newDate.currDate)));
+
     setView({type: type === ViewType.Year ? ViewType.Month : ViewType.Day});
 
     if (type === ViewType.Year) {
-        router.push(`/${ViewType.Month}/${currYear}/${Number(currMonth) + 1}`);
+        router.push(`/${ViewType.Month}/${newDate.currYear}/${Number(newDate.currMonth) + 1}`);
     }
 
     if (type !== ViewType.Year) {
-        router.push(`/day/${currYear}/${Number(currMonth) + 1}/${currDate}`);
+        router.push(`/day/${newDate.currYear}/${Number(newDate.currMonth) + 1}/${newDate.currDate}`);
     }
 
     return null;
