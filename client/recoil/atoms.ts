@@ -79,18 +79,11 @@ export const targetStateState = selector({
         // console.log(weekFirstNumber, weekLastNumber, weekLastNumber - weekFirstNumber + 1)
 
         const week = () => {
-            const arrWeek = new Array(weekLastNumber + 1 - weekFirstNumber).fill(weekFirstNumber);
-            return arrWeek.reduce((acc, curr, index) => {
-                return [...acc, curr + index];
-            }, []);
+            return new Array(weekLastNumber + 1 - weekFirstNumber).fill(weekFirstNumber).reduce((acc, curr, index) => [...acc, curr + index], []);
         };
 
         const three = () => {
-            const arrThree = [date, Number(date) + 1, Number(date) + 2];
-
-            return arrThree.filter((a, i) => {
-                return Number(a) <= monthLastNumber;
-            });
+            return [date, Number(date) + 1, Number(date) + 2].filter((a, i) => Number(a) <= monthLastNumber);
         };
 
         return {
