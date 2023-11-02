@@ -36,14 +36,13 @@ export const WeekWrapComponent = ({
     const today = useRecoilValue(todayState);
 
     const [curr, setCurr] = useRecoilState(targetStateState);
-    const setView = useSetRecoilState(viewState);
+    const [view, setView] = useRecoilState(viewState);
 
     const {
         fullYear,
         month,
         date,
-        day,
-        weekLastDay,
+        weekFirstNumber,
         monthLastNumber,
         monthPrevLastNumber,
     } = curr;
@@ -62,28 +61,39 @@ export const WeekWrapComponent = ({
         });
     };
 
-    const setNumArr = () => {
-        if (type === ViewType.Week && (weekLastDay < 6)) {
-            return new Array(6 - weekLastDay);
-        }
+    const arrayCurrent = () => {
+        return curr[type]();
+    };
 
-        if (type === ViewType.Three && (monthLastNumber - date < 2)) {
-            return new Array((monthLastNumber - date === 0
-                              ? 2
-                              : monthLastNumber - date));
-        }
+    const arrayPrev = () => {
+        const prevCount = 7 - weekFirstNumber > -1 ? 7 - curr.week().length : 0;
+        return new Array(prevCount).fill(monthPrevLastNumber).reduce((acc, curr, i) => [Number(curr) - i, ...acc], []);
+    };
 
-        return [];
+    const arrayNext = () => {
+        const nextCount = (view.type === ViewType.Week ? 7 : 3) - arrayCurrent().length - (view.type === ViewType.Week ? arrayPrev().length : 0);
+        return new Array(nextCount).fill(1).reduce((acc, curr, i) => [...acc, curr + i], []);
     };
 
     return (<>
-            {type === ViewType.Day && <TimelineComponent fullYear={fullYear}
-                                                         month={month}
-                                                         date={date}
-                                                         isToday={isTodayValue(today, fullYear, month, date)}/>}
+            {view.type === ViewType.Day && <TimelineComponent fullYear={fullYear}
+                                                              month={month}
+                                                              date={date}
+                                                              isToday={isTodayValue(today, fullYear, month, date)}/>}
+            {view.type !== ViewType.Day && <StyledWeeks>
+                {view.type === ViewType.Week && arrayPrev().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
+                    <StyledNumWrap>
+                        <Num onClick={() => {
+                            setDate({
+                                currMonth: month - 1,
+                                currDate: w,
+                            });
+                        }}
+                             isToday={isTodayValue(today, fullYear, month - 1, Number(w))}>{w}</Num>
+                    </StyledNumWrap>
+                </StyledWeek>)}
 
-            {type !== ViewType.Day && <StyledWeeks>
-                {type && curr[type]().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
+                {arrayCurrent().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
                             setDate({
@@ -92,28 +102,24 @@ export const WeekWrapComponent = ({
                         }}
                              isToday={isTodayValue(today, fullYear, month, Number(w))}>{w}</Num>
                     </StyledNumWrap>
-
                     <TimelineComponent fullYear={fullYear}
                                        month={month}
                                        date={Number(w)}
                                        isToday={isTodayValue(today, fullYear, month, Number(w))}/>
                 </StyledWeek>)}
-                {setNumArr().length > 0 && setNumArr().fill(null).map((_, index) => <StyledWeek key={`next_${index}`}>
+
+                {arrayNext().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
                             setDate({
-                                currDate : index + 1,
-                                currMonth: month + 1
+                                currMonth: month + 1,
+                                currDate: w,
                             });
                         }}
-                             isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
+                             isToday={isTodayValue(today, fullYear, month + 1, Number(w))}>{w}</Num>
                     </StyledNumWrap>
-
-                    <TimelineComponent fullYear={fullYear}
-                                       month={month}
-                                       date={Number(index) + 1}
-                                       isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}/>
                 </StyledWeek>)}
+
             </StyledWeeks>}
         </>
     );
