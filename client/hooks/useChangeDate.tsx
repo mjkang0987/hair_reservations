@@ -34,7 +34,7 @@ const setCalcDate = (currYear: number, currMonth: number, currDate: number) => {
     };
 }
 
-export const useChangeDay = ({
+export const useChangeDate = ({
     type,
     currDate,
     currYear,
