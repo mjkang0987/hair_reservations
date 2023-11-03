@@ -1,7 +1,3 @@
-import {useCallback} from 'react';
-
-import {useRouter} from 'next/router';
-
 import styled from 'styled-components';
 
 import {
@@ -25,8 +21,6 @@ import {
 import {Num} from './Num';
 
 export const MonthWrapComponent = () => {
-    const router = useRouter();
-
     const today = useRecoilValue(todayState);
     const [curr, setCurr] = useRecoilState(targetStateState);
 
@@ -53,8 +47,7 @@ export const MonthWrapComponent = () => {
                             currYear : fullYear,
                             currDate : +monthPrevLastNumber - index,
                             setCurr,
-                            setView,
-                            router
+                            setView
                         });
                     }}
                          isToday={isTodayValue(today, fullYear, month - 1, +monthPrevLastNumber - index)}>{Number(
@@ -68,8 +61,7 @@ export const MonthWrapComponent = () => {
                         currYear : fullYear,
                         currDate: index + 1,
                         setCurr,
-                        setView,
-                        router
+                        setView
                     });
                 }}
                      isToday={isTodayValue(today, fullYear, month, +index + 1)}>{index + 1}</Num>
@@ -84,8 +76,7 @@ export const MonthWrapComponent = () => {
                             currYear : fullYear,
                             currDate: index + 1,
                             setCurr,
-                            setView,
-                            router
+                            setView
                         });
                     }}
                          isToday={isTodayValue(today, fullYear, month + 1, +index + 1)}>{index + 1}</Num>

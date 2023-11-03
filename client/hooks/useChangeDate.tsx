@@ -1,3 +1,5 @@
+import {useRouter} from 'next/router';
+
 import {ViewType} from '../utils/constants';
 
 type CurrentDateType = string | number;
@@ -8,8 +10,7 @@ interface SetDateType {
     currYear?: CurrentDateType,
     currMonth?: CurrentDateType,
     setCurr: Function,
-    setView: Function,
-    router: any
+    setView: Function
 }
 
 const setCalcDate = (currYear: number, currMonth: number, currDate: number) => {
@@ -34,19 +35,19 @@ const setCalcDate = (currYear: number, currMonth: number, currDate: number) => {
     };
 }
 
-export const useChangeDay = ({
+export const useChangeDate = ({
     type,
     currDate,
     currYear,
     currMonth,
     setCurr,
-    setView,
-    router
+    setView
 }: SetDateType) => {
     if (!currYear || !currMonth || !currDate) {
         return;
     }
 
+    const router = useRouter();
     const newDate = setCalcDate(+currYear, +currMonth, +currDate);
 
     setCurr(new Date(Number(newDate.currYear), Number(newDate.currMonth), Number(newDate.currDate)));
