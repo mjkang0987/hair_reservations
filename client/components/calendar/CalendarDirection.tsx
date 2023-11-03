@@ -112,7 +112,7 @@ export const CalendarDirection = () => {
     };
 
     return (<StyledButtonWrap>
-            <ButtonSquare onClick={() => {
+            {today && <ButtonSquare onClick={() => {
                 setUpdateCurr(today);
                 setRouter({
                     type,
@@ -123,7 +123,7 @@ export const CalendarDirection = () => {
                 });
             }}>
                 <ButtonText a11y={false}>오늘</ButtonText>
-            </ButtonSquare>
+            </ButtonSquare>}
             <ButtonCircle onClick={() => controller({direction: 'prev'})}>
                 <Icon iconType="leftArrow"/>
                 {type && <ButtonText a11y={true}>이전{A11Y_DIRECTION[type]}</ButtonText>}
