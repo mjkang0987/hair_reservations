@@ -80,7 +80,7 @@ export default function LayoutComponent({children}: NodeType) {
     const isRootPath = array.join('').length === 0;
     const isCalendarPath = isCalendar(array);
 
-    const currDate = !isCalendarPath || isRootPath ? initDate : new Date(Number(array[2]), Number(array[3]) - 1, Number(array[4]) || 1);
+    const currDate = !isCalendarPath || isRootPath ? initDate : new Date(Number(array[2]), Number(array[3]) - 1 || 1, Number(array[4]) || 1);
 
     handleOnload({
         setRouters
