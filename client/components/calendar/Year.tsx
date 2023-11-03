@@ -1,3 +1,5 @@
+import {useRouter} from 'next/router';
+
 import styled from 'styled-components';
 import {
     isTodayValue
@@ -20,6 +22,7 @@ import {
 import {Num} from './Num';
 
 export const YearComponents = () => {
+    const router = useRouter();
     const today = useRecoilValue(todayState);
     const currValue = useRecoilValue(targetState);
     const setCurr = useSetRecoilState(targetStateState);
@@ -40,7 +43,8 @@ export const YearComponents = () => {
                             currYear : fullYear,
                             currDate: 1,
                             setCurr,
-                            setView
+                            setView,
+                            router
                         });
                     }} isToday={isTodayValue(today, +fullYear, m, today.getDate())}>{m + 1}</Num>
                 </StyledMonth>

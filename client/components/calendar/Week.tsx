@@ -1,3 +1,5 @@
+import {useRouter} from 'next/router';
+
 import styled from 'styled-components';
 
 import {
@@ -29,6 +31,8 @@ export const WeekComponent = ({
     currMonth,
     weekDates
 }: WeekDatesType) => {
+    const router = useRouter();
+
     const today = useRecoilValue(todayState);
 
     const [curr, setCurr] = useRecoilState(targetStateState);
@@ -47,7 +51,8 @@ export const WeekComponent = ({
                             currYear : fullYear,
                             currDate: w,
                             setCurr,
-                            setView
+                            setView,
+                            router
                         });
                     }}
                          isToday={isTodayValue(today, fullYear, currMonth, +w)}>{w}</Num>
