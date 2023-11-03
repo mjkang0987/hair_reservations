@@ -1,12 +1,9 @@
 import styled from 'styled-components';
 import {
-    isTodayValue,
-    SetDateType,
-    ViewType
+    isTodayValue
 } from '../../utils/constants';
 
 import {
-    useRecoilState,
     useRecoilValue,
     useSetRecoilState
 } from 'recoil';
@@ -28,24 +25,24 @@ export const YearComponents = () => {
     const setCurr = useSetRecoilState(targetStateState);
 
     const {
-        fullYear,
-        month
+        fullYear
     } = currValue;
 
     const setView = useSetRecoilState(viewState);
+    const months = Array.from({length: 12}, (_, index) => index);
 
     return (<StyledYear>
-            {today && new Array(12).fill(null).map((_, index) =>
-                <StyledMonth key={`${fullYear}_${month + index}`}>
+            {today && months.map((m) =>
+                <StyledMonth key={`${fullYear}_${m}`}>
                     <Num onClick={() => {
-                        useChangeDay({
-                            currMonth: index,
+                        useChangeDate({
+                            currMonth: m,
                             currYear : fullYear,
                             currDate: 1,
                             setCurr,
                             setView
                         });
-                    }} isToday={isTodayValue(today, +fullYear, index, today.getDate())}>{index + 1}</Num>
+                    }} isToday={isTodayValue(today, +fullYear, m, today.getDate())}>{m + 1}</Num>
                 </StyledMonth>
             )}
         </StyledYear>
