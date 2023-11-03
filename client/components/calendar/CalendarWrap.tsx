@@ -12,6 +12,7 @@ import {YearComponents} from './Year';
 import {WeekWrapComponent} from './WeekWrap';
 import {MonthWrapComponent} from './MonthWrap';
 import {TimelineTitleComponent} from './TimelineTitle';
+import {DayComponent} from './Day';
 
 interface DaysType {
     type: string | null;
@@ -27,7 +28,8 @@ export const CalendarComponent = () => {
                 <StyledDaysWrap type={type}>
                     {type !== ViewType.Month && <TimelineTitleComponent/>}
                     {type !== ViewType.Day && <DaysComponent/>}
-                    {type !== ViewType.Month && <WeekWrapComponent type={type}/>}
+                    {type === ViewType.Day && <DayComponent/>}
+                    {(type === ViewType.Week || type === ViewType.Three) && <WeekWrapComponent type={type}/>}
                 </StyledDaysWrap>
 
                 {type === ViewType.Month && <MonthWrapComponent/>}
