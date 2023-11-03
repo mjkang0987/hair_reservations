@@ -43,15 +43,8 @@ export const CalendarDirection = () => {
 
     const setUpdateCurr = useSetRecoilState(targetStateState);
 
-    const controller = ({direction}: { direction: string }) => {
-        if (!direction) {
-            return;
-        }
-
-        const isPrev = direction === 'prev';
-        const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
-
-        if (type === ViewType.Year) {
+    const handlerView = {
+        yearView(isPrev: boolean) {
             setRouter({
                 type,
                 year : +fullYear - (isPrev ? 1 : -1),
@@ -60,43 +53,61 @@ export const CalendarDirection = () => {
                 router
             });
 
-            return setUpdateCurr(`${+fullYear - (isPrev ? 1 : -1)}, ${+month + 1}, ${+date}`);
+            return setUpdateCurr(`${+fullYear - (isPrev
+                                                 ? 1
+                                                 : -1)}, ${+month + 1}, ${+date}`);
+        },
+        monthView(isPrev: boolean) {
+            const temporary = new Date(`${+fullYear}, ${+month + 1}, 1`);
+            const currentDate = new Date(temporary.setMonth(+month - (isPrev
+                                                                      ? 1
+                                                                      : -1)));
+
+            setRouter({
+                type,
+                year : currentDate.getFullYear(),
+                month: currentDate.getMonth() + 1,
+                date : currentDate.getDate(),
+                router
+            });
+
+            return setUpdateCurr(currentDate);
+        },
+        dayView(isPrev: boolean) {
+            const move = Number(ASIDE[type.toUpperCase()].move);
+            const temporary = new Date(`${+fullYear}, ${+month + 1}, ${+date}`);
+            const currentDate = new Date(temporary.setDate(+date - (isPrev ? move : -move) - (type === 'week' ? +day : 0)));
+
+            setRouter({
+                type,
+                year : currentDate.getFullYear(),
+                month: currentDate.getMonth() + 1,
+                date : currentDate.getDate(),
+                router
+            });
+
+            return setUpdateCurr(currentDate);
+        }
+    };
+
+    const controller = ({direction}: { direction: string }) => {
+        if (!direction) {
+            return;
+        }
+
+        const isPrev = direction === 'prev';
+        const isDate = ASIDE.hasOwnProperty(type.toUpperCase());
+
+        if (type === ViewType.Year) {
+            handlerView.yearView(isPrev);
         }
 
         if (type === ViewType.Month) {
-            const temporary = new Date(`${+fullYear}, ${+month + 1}, 1`);
-            const currentDate = new Date(temporary.setMonth(+month - (isPrev ? 1 : -1)));
-
-            setRouter({
-                type,
-                year : currentDate.getFullYear(),
-                month: currentDate.getMonth() + 1,
-                date : currentDate.getDate(),
-                router
-            });
-
-            return setUpdateCurr(currentDate);
+            handlerView.monthView(isPrev);
         }
 
         if (isDate) {
-            if (!type) {
-                return;
-            }
-
-            const move = Number(ASIDE[type.toUpperCase()].move);
-
-            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
-            const currentDate = new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0)));
-
-            setRouter({
-                type,
-                year : currentDate.getFullYear(),
-                month: currentDate.getMonth() + 1,
-                date : currentDate.getDate(),
-                router
-            });
-
-            return setUpdateCurr(currentDate);
+            handlerView.dayView(isPrev);
         }
     };
 
