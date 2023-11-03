@@ -81,7 +81,7 @@ export const WeekWrapComponent = ({
                                                               date={date}
                                                               isToday={isTodayValue(today, fullYear, month, date)}/>}
             {view.type !== ViewType.Day && <StyledWeeks>
-                {view.type === ViewType.Week && arrayPrev().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
+                {view.type === ViewType.Week && arrayPrev().map((w: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
                             setDate({
