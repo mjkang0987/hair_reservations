@@ -43,8 +43,8 @@ export const YearComponents = () => {
     }: SetDateType) => {
         useChangeDay({
             type: ViewType.Year,
-            currMonth: currMonth ?? Number(month),
-            currYear : Number(fullYear),
+            currMonth: currMonth ?? +month,
+            currYear : +fullYear,
             currDate,
             setCurr,
             setView,
@@ -54,13 +54,13 @@ export const YearComponents = () => {
     return (
         <StyledYear>
             {new Array(12).fill(null).map((value, index) =>
-                <StyledMonth key={`${fullYear}_${index}`}>
+                <StyledMonth key={`${fullYear}_${month + index}`}>
                     <Num onClick={() => {
                         setDate({
                             currMonth: index,
                             currDate : 1
                         });
-                    }} isToday={isTodayValue(today, Number(fullYear), index, today.getDate())}>{index + 1}</Num>
+                    }} isToday={isTodayValue(today, +fullYear, index, today.getDate())}>{index + 1}</Num>
                 </StyledMonth>
             )}
         </StyledYear>

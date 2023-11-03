@@ -56,16 +56,16 @@ export const MonthWrapComponent = () => {
 
     return (
         <StyledMonthWrap>
-            {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
+            {+monthFirstDay < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
                 <StyledDate key={`prev_${val + index}`}
                             type="prev">
                     <Num onClick={() => {
                         setDate({
                             currMonth: month - 1,
-                            currDate : Number(monthPrevLastNumber) - index
+                            currDate : +monthPrevLastNumber - index
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month - 1, Number(monthPrevLastNumber) - index)}>{Number(
+                         isToday={isTodayValue(today, fullYear, month - 1, +monthPrevLastNumber - index)}>{Number(
                         monthPrevLastNumber) - index}</Num>
                 </StyledDate>).reverse()}
 
@@ -75,10 +75,10 @@ export const MonthWrapComponent = () => {
                         currDate: index + 1
                     });
                 }}
-                     isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
+                     isToday={isTodayValue(today, fullYear, month, +index + 1)}>{index + 1}</Num>
             </StyledDate>)}
 
-            {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(0).map((val, index) =>
+            {+monthLastDay < 6 && new Array(6 - +monthLastDay).fill(0).map((val, index) =>
                 <StyledDate key={`next_${val + index}`}
                             type="next">
                     <Num onClick={() => {
@@ -87,7 +87,7 @@ export const MonthWrapComponent = () => {
                             currDate : index + 1
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month + 1, Number(index) + 1)}>{index + 1}</Num>
+                         isToday={isTodayValue(today, fullYear, month + 1, +index + 1)}>{index + 1}</Num>
                 </StyledDate>)}
         </StyledMonthWrap>
     );

@@ -28,10 +28,10 @@ export const DaysComponent = () => {
     const daysArr = () => {
         const result = Object.keys(DAYS)
                              .slice(type === ViewType.Three
-                                    ? Number(day)
+                                    ? +day
                                     : 0,
                                  type === ViewType.Three
-                                 ? Number(day) + 3
+                                 ? +day + 3
                                  : 7
                              );
 

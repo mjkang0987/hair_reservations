@@ -43,7 +43,7 @@ export const useChangeDay = ({
     setView,
     router
 }: SetDateType) => {
-    const newDate = setCalcDate(Number(currYear), Number(currMonth), Number(currDate));
+    const newDate = setCalcDate(+currYear, +currMonth, +currDate);
 
     setCurr(new Date(Number(newDate.currYear), Number(newDate.currMonth), Number(newDate.currDate)));
 

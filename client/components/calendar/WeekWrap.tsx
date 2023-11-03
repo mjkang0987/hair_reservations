@@ -67,7 +67,7 @@ export const WeekWrapComponent = ({
 
     const arrayPrev = () => {
         const prevCount = 7 - weekFirstNumber > -1 ? 7 - curr.week().length : 0;
-        return new Array(prevCount).fill(monthPrevLastNumber).reduce((acc, curr, i) => [Number(curr) - i, ...acc], []);
+        return new Array(prevCount).fill(monthPrevLastNumber).reduce((acc, curr, i) => [+curr - i, ...acc], []);
     };
 
     const arrayNext = () => {
@@ -89,7 +89,7 @@ export const WeekWrapComponent = ({
                                 currDate: w,
                             });
                         }}
-                             isToday={isTodayValue(today, fullYear, month - 1, Number(w))}>{w}</Num>
+                             isToday={isTodayValue(today, fullYear, month - 1, +w)}>{w}</Num>
                     </StyledNumWrap>
                 </StyledWeek>)}
 
@@ -100,12 +100,12 @@ export const WeekWrapComponent = ({
                                 currDate: w
                             });
                         }}
-                             isToday={isTodayValue(today, fullYear, month, Number(w))}>{w}</Num>
+                             isToday={isTodayValue(today, fullYear, month, +w)}>{w}</Num>
                     </StyledNumWrap>
                     <TimelineComponent fullYear={fullYear}
                                        month={month}
-                                       date={Number(w)}
-                                       isToday={isTodayValue(today, fullYear, month, Number(w))}/>
+                                       date={+w}
+                                       isToday={isTodayValue(today, fullYear, month, +w)}/>
                 </StyledWeek>)}
 
                 {arrayNext().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
@@ -116,7 +116,7 @@ export const WeekWrapComponent = ({
                                 currDate: w,
                             });
                         }}
-                             isToday={isTodayValue(today, fullYear, month + 1, Number(w))}>{w}</Num>
+                             isToday={isTodayValue(today, fullYear, month + 1, +w)}>{w}</Num>
                     </StyledNumWrap>
                 </StyledWeek>)}
 

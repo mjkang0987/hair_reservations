@@ -54,18 +54,18 @@ export const CalendarDirection = () => {
         if (type === ViewType.Year) {
             setRouter({
                 type,
-                year : Number(fullYear) - (isPrev ? 1 : -1),
-                month: Number(month) + 1,
-                date : Number(date),
+                year : +fullYear - (isPrev ? 1 : -1),
+                month: +month + 1,
+                date : +date,
                 router
             });
 
-            return setUpdateCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
+            return setUpdateCurr(`${+fullYear - (isPrev ? 1 : -1)}, ${+month + 1}, ${+date}`);
         }
 
         if (type === ViewType.Month) {
-            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, 1`);
-            const currentDate = new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1)));
+            const temporary = new Date(`${+fullYear}, ${+month + 1}, 1`);
+            const currentDate = new Date(temporary.setMonth(+month - (isPrev ? 1 : -1)));
 
             setRouter({
                 type,

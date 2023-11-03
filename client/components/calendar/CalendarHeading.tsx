@@ -28,24 +28,24 @@ export const CalendarHeading = () => {
 
     const setMonth = () => {
         if (type === ViewType.Day || type === ViewType.Month) {
-            return Number(month) + 1;
+            return +month + 1;
         }
 
-        if (Number(date) + (type === ViewType.Week ? 6 : 2) > curr?.monthLastNumber) {
-            const calcYear = month === 11 ? `${Number(fullYear) + 1} / 1` : Number(month) + 2;
-            return `${Number(month) + 1} - ${calcYear}`;
+        if (+date + (type === ViewType.Week ? 6 : 2) > curr?.monthLastNumber) {
+            const calcYear = month === 11 ? `${+fullYear + 1} / 1` : +month + 2;
+            return `${+month + 1} - ${calcYear}`;
         }
 
-        return `${Number(month) + 1}`;
+        return `${+month + 1}`;
     }
 
     return (<StyledHeading>
             {full && <StyledDateWrap>
-                <StyledDateElement>{Number(fullYear)}</StyledDateElement>
+                <StyledDateElement>{+fullYear}</StyledDateElement>
                 {type !== ViewType.Year && <StyledDateElement>
                     {setMonth()}
                 </StyledDateElement>}
-                {type === ViewType.Day && <StyledDateElement>{Number(date)}</StyledDateElement>}
+                {type === ViewType.Day && <StyledDateElement>{+date}</StyledDateElement>}
             </StyledDateWrap>}
         </StyledHeading>
     );
