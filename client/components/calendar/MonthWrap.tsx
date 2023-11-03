@@ -1,3 +1,5 @@
+import {useCallback} from 'react';
+
 import {useRouter} from 'next/router';
 
 import styled from 'styled-components';
@@ -40,7 +42,7 @@ export const MonthWrapComponent = () => {
 
     const setView = useSetRecoilState(viewState);
 
-    const setDate = ({
+    const setDate = useCallback(({
         currMonth,
         currDate,
     }: SetDateType) => {
@@ -52,7 +54,7 @@ export const MonthWrapComponent = () => {
             setView,
             router
         });
-    };
+    }, [month, fullYear, setCurr, setView, router]);
 
     return (
         <StyledMonthWrap>
