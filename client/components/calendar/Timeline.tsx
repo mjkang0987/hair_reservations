@@ -45,6 +45,8 @@ export const TimelineComponent = ({
     const minutes = today.getMinutes();
 
     const timing = ((end - hour) * 2 * 60 * 60 + ((60 - minutes) * 60));
+    const top = ((hour - start) * 2 * 60) + (minutes * 2);
+    const full = (end - start - 1) * 2 * 60;
 
     const setMousePositionHandler = (e: React.MouseEvent) => {
         useMousePosition({
@@ -60,8 +62,8 @@ export const TimelineComponent = ({
     return (<StyledTimelineWrap onClick={setMousePositionHandler}
                                 type={type}
                                 timing={timing}
-                                top={((hour - start) * 2 * 60) + (minutes * 2)}
-                                full={(end - start - 1) * 2 * 60}>
+                                top={top}
+                                full={full}>
         {isToday && <StyledBar/>}
     </StyledTimelineWrap>);
 };
