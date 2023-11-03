@@ -92,7 +92,7 @@ export default function LayoutComponent({children}: NodeType) {
         setCurr(currDate);
 
         setRouters({
-            arrayRouter: router.asPath.split('/'),
+            arrayRouter: array,
             isRootPath,
             isCalendarPath
         });
