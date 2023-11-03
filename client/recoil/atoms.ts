@@ -6,7 +6,7 @@ import {
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
-type FullType = any;
+type FullType = Date | null;
 
 interface DateType {
     full: FullType,
