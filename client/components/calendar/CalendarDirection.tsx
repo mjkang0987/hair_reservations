@@ -99,15 +99,15 @@ export const CalendarDirection = () => {
         const isDate = ASIDE.hasOwnProperty(type.toUpperCase());
 
         if (type === ViewType.Year) {
-            handlerView.yearView(isPrev);
+            return handlerView.yearView(isPrev);
         }
 
         if (type === ViewType.Month) {
-            handlerView.monthView(isPrev);
+            return handlerView.monthView(isPrev);
         }
 
         if (isDate) {
-            handlerView.dayView(isPrev);
+            return handlerView.dayView(isPrev);
         }
     };
 
