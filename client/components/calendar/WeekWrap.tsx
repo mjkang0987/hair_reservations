@@ -47,20 +47,6 @@ export const WeekWrapComponent = ({
         monthPrevLastNumber,
     } = curr;
 
-    const setDate = ({
-        currMonth,
-        currDate
-    }: SetDateType) => {
-        useChangeDay({
-            currMonth: currMonth ?? month,
-            currYear : fullYear,
-            currDate,
-            setCurr,
-            setView,
-            router
-        });
-    };
-
     const arrayCurrent = () => {
         return curr[type]();
     };
@@ -84,9 +70,13 @@ export const WeekWrapComponent = ({
                 {view.type === ViewType.Week && arrayPrev().map((w: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
-                            setDate({
+                            useChangeDay({
                                 currMonth: month - 1,
+                                currYear : fullYear,
                                 currDate: w,
+                                setCurr,
+                                setView,
+                                router
                             });
                         }}
                              isToday={isTodayValue(today, fullYear, month - 1, +w)}>{w}</Num>
@@ -96,8 +86,13 @@ export const WeekWrapComponent = ({
                 {arrayCurrent().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
-                            setDate({
-                                currDate: w
+                            useChangeDay({
+                                currMonth: month,
+                                currYear : fullYear,
+                                currDate: w,
+                                setCurr,
+                                setView,
+                                router
                             });
                         }}
                              isToday={isTodayValue(today, fullYear, month, +w)}>{w}</Num>
@@ -111,9 +106,13 @@ export const WeekWrapComponent = ({
                 {arrayNext().map((w: number, index: number) => <StyledWeek key={`week_${w}`}>
                     <StyledNumWrap>
                         <Num onClick={() => {
-                            setDate({
+                            useChangeDay({
                                 currMonth: month + 1,
+                                currYear : fullYear,
                                 currDate: w,
+                                setCurr,
+                                setView,
+                                router
                             });
                         }}
                              isToday={isTodayValue(today, fullYear, month + 1, +w)}>{w}</Num>

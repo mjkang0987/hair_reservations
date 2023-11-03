@@ -37,27 +37,17 @@ export const YearComponents = () => {
 
     const setView = useSetRecoilState(viewState);
 
-    const setDate = ({
-        currMonth,
-        currDate,
-    }: SetDateType) => {
-        useChangeDay({
-            type: ViewType.Year,
-            currMonth: currMonth ?? +month,
-            currYear : +fullYear,
-            currDate,
-            setCurr,
-            setView,
-            router
-        });
-    };
     return (<StyledYear>
             {today && new Array(12).fill(null).map((_, index) =>
                 <StyledMonth key={`${fullYear}_${month + index}`}>
                     <Num onClick={() => {
-                        setDate({
+                        useChangeDay({
                             currMonth: index,
-                            currDate : 1
+                            currYear : fullYear,
+                            currDate: 1,
+                            setCurr,
+                            setView,
+                            router
                         });
                     }} isToday={isTodayValue(today, +fullYear, index, today.getDate())}>{index + 1}</Num>
                 </StyledMonth>

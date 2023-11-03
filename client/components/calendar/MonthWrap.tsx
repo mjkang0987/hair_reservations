@@ -42,29 +42,19 @@ export const MonthWrapComponent = () => {
 
     const setView = useSetRecoilState(viewState);
 
-    const setDate = useCallback(({
-        currMonth,
-        currDate,
-    }: SetDateType) => {
-        useChangeDay({
-            currMonth: currMonth ?? month,
-            currYear : fullYear,
-            currDate,
-            setCurr,
-            setView,
-            router
-        });
-    }, [month, fullYear, setCurr, setView, router]);
-
     return (
         <StyledMonthWrap>
             {+monthFirstDay < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
                 <StyledDate key={`prev_${val + index}`}
                             type="prev">
                     <Num onClick={() => {
-                        setDate({
+                        useChangeDay({
                             currMonth: month - 1,
-                            currDate : +monthPrevLastNumber - index
+                            currYear : fullYear,
+                            currDate : +monthPrevLastNumber - index,
+                            setCurr,
+                            setView,
+                            router
                         });
                     }}
                          isToday={isTodayValue(today, fullYear, month - 1, +monthPrevLastNumber - index)}>{Number(
@@ -73,8 +63,13 @@ export const MonthWrapComponent = () => {
 
             {new Array(monthLastNumber).fill(0).map((val, index) => <StyledDate key={`curr_${val + index}`} type="current">
                 <Num onClick={() => {
-                    setDate({
-                        currDate: index + 1
+                    useChangeDay({
+                        currMonth: month,
+                        currYear : fullYear,
+                        currDate: index + 1,
+                        setCurr,
+                        setView,
+                        router
                     });
                 }}
                      isToday={isTodayValue(today, fullYear, month, +index + 1)}>{index + 1}</Num>
@@ -84,9 +79,13 @@ export const MonthWrapComponent = () => {
                 <StyledDate key={`next_${val + index}`}
                             type="next">
                     <Num onClick={() => {
-                        setDate({
+                        useChangeDay({
                             currMonth: month + 1,
-                            currDate : index + 1
+                            currYear : fullYear,
+                            currDate: index + 1,
+                            setCurr,
+                            setView,
+                            router
                         });
                     }}
                          isToday={isTodayValue(today, fullYear, month + 1, +index + 1)}>{index + 1}</Num>
