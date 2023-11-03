@@ -11,7 +11,7 @@ import {
     useSetRecoilState
 } from 'recoil';
 
-import {useChangeDay} from '../../hooks/useChangeDate';
+import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {
     targetState,

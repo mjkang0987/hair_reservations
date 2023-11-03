@@ -11,11 +11,10 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {useChangeDay} from '../../hooks/useChangeDate';
+import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {
-    isTodayValue,
-    SetDateType
+    isTodayValue
 } from '../../utils/constants';
 
 import {Num} from './Num';
@@ -42,7 +41,7 @@ export const MonthWrapComponent = () => {
                 <StyledDate key={`prev_${val + index}`}
                             type="prev">
                     <Num onClick={() => {
-                        useChangeDay({
+                        useChangeDate({
                             currMonth: month - 1,
                             currYear : fullYear,
                             currDate : +monthPrevLastNumber - index,
@@ -56,7 +55,7 @@ export const MonthWrapComponent = () => {
 
             {new Array(monthLastNumber).fill(0).map((val, index) => <StyledDate key={`curr_${val + index}`} type="current">
                 <Num onClick={() => {
-                    useChangeDay({
+                    useChangeDate({
                         currMonth: month,
                         currYear : fullYear,
                         currDate: index + 1,
@@ -71,7 +70,7 @@ export const MonthWrapComponent = () => {
                 <StyledDate key={`next_${val + index}`}
                             type="next">
                     <Num onClick={() => {
-                        useChangeDay({
+                        useChangeDate({
                             currMonth: month + 1,
                             currYear : fullYear,
                             currDate: index + 1,

@@ -16,7 +16,7 @@ import {
     isTodayValue,
 } from '../../utils/constants';
 
-import {useChangeDay} from '../../hooks/useChangeDate';
+import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {Num} from './Num';
 
@@ -42,7 +42,7 @@ export const WeekComponent = ({
             {weekDates.map((w: number) => <StyledWeek key={`week_${w}`}>
                 <StyledNumWrap>
                     <Num onClick={() => {
-                        useChangeDay({
+                        useChangeDate({
                             currMonth,
                             currYear : fullYear,
                             currDate: w,
