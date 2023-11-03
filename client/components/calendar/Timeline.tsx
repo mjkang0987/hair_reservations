@@ -43,8 +43,9 @@ export const TimelineComponent = ({
     const today = new Date();
     const hour = today.getHours();
     const minutes = today.getMinutes();
+    const seconds = today.getSeconds();
 
-    const timing = ((end - hour) * 2 * 60 * 60 + ((60 - minutes) * 60));
+    const timing = ((end - hour) * 60 * 60) - (minutes * 60) - seconds;
     const top = ((hour - start) * 2 * 60) + (minutes * 2);
     const full = (end - start - 1) * 2 * 60;
 
