@@ -51,9 +51,8 @@ export const YearComponents = () => {
             router
         });
     };
-    return (
-        <StyledYear>
-            {new Array(12).fill(null).map((value, index) =>
+    return (<StyledYear>
+            {today && new Array(12).fill(null).map((_, index) =>
                 <StyledMonth key={`${fullYear}_${month + index}`}>
                     <Num onClick={() => {
                         setDate({
