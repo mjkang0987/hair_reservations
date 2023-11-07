@@ -15,10 +15,6 @@ import {
 
 import {TimelineComponent} from './Timeline';
 
-interface WeekType {
-    type: string
-}
-
 export const DayComponent = () => {
     const today = useRecoilValue(todayState);
     const curr = useRecoilValue(targetStateState);
