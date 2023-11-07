@@ -52,10 +52,10 @@ export const AsideComponent = () => {
     };
 
     const setAsPath = (path: string) => {
-        const result: (string | number)[] = [path];
+        let result: (string | number)[] = [path, currValue.fullYear];
 
         if (path !== ViewType.Year) {
-            result.push(Number(currValue.month) + 1);
+            result.push(Number(currValue.month + 1));
         }
 
         if (path === ViewType.Day) {
