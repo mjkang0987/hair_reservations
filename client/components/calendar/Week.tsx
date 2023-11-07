@@ -20,6 +20,7 @@ import {
 
 import {useChangeDate} from '../../hooks/useChangeDate';
 
+import {TimelineComponent} from './Timeline';
 import {Num} from './Num';
 
 interface WeekDatesType {
@@ -57,6 +58,10 @@ export const WeekComponent = ({
                     }}
                          isToday={isTodayValue(today, fullYear, currMonth, +w)}>{w}</Num>
                 </StyledNumWrap>
+                <TimelineComponent fullYear={fullYear}
+                                   month={currMonth}
+                                   date={+w}
+                                   isToday={isTodayValue(today, fullYear, currMonth, +w)}/>
             </StyledWeek>)}
         </>
     );
