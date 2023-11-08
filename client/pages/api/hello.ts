@@ -11,6 +11,5 @@ export default (
     res: NextApiResponse<ReservationType>
 ) => {
 
-    console.log(res)
     res.status(200).json(reservations);
 }
