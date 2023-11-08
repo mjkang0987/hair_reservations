@@ -1,3 +1,5 @@
+import {useCallback} from 'react';
+
 import {useRouter} from 'next/router';
 
 import styled from 'styled-components';
@@ -13,11 +15,10 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {useChangeDay} from '../../hooks/useChangeDate';
+import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {
-    isTodayValue,
-    SetDateType
+    isTodayValue
 } from '../../utils/constants';
 
 import {Num} from './Num';
@@ -40,54 +41,53 @@ export const MonthWrapComponent = () => {
 
     const setView = useSetRecoilState(viewState);
 
-    const setDate = ({
-        currMonth,
-        currDate,
-    }: SetDateType) => {
-        useChangeDay({
-            currMonth: currMonth ?? month,
-            currYear : fullYear,
-            currDate,
-            setCurr,
-            setView,
-            router
-        });
-    };
-
     return (
         <StyledMonthWrap>
-            {Number(monthFirstDay) < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
+            {+monthFirstDay < 7 && new Array(monthFirstDay).fill(0).map((val, index) =>
                 <StyledDate key={`prev_${val + index}`}
                             type="prev">
                     <Num onClick={() => {
-                        setDate({
+                        useChangeDate({
                             currMonth: month - 1,
-                            currDate : Number(monthPrevLastNumber) - index
+                            currYear : fullYear,
+                            currDate : +monthPrevLastNumber - index,
+                            setCurr,
+                            setView,
+                            router
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month - 1, Number(monthPrevLastNumber) - index)}>{Number(
+                         isToday={isTodayValue(today, fullYear, month - 1, +monthPrevLastNumber - index)}>{Number(
                         monthPrevLastNumber) - index}</Num>
                 </StyledDate>).reverse()}
 
             {new Array(monthLastNumber).fill(0).map((val, index) => <StyledDate key={`curr_${val + index}`} type="current">
                 <Num onClick={() => {
-                    setDate({
-                        currDate: index + 1
+                    useChangeDate({
+                        currMonth: month,
+                        currYear : fullYear,
+                        currDate: index + 1,
+                        setCurr,
+                        setView,
+                        router
                     });
                 }}
-                     isToday={isTodayValue(today, fullYear, month, Number(index) + 1)}>{index + 1}</Num>
+                     isToday={isTodayValue(today, fullYear, month, +index + 1)}>{index + 1}</Num>
             </StyledDate>)}
 
-            {Number(monthLastDay) < 6 && new Array(6 - Number(monthLastDay)).fill(0).map((val, index) =>
+            {+monthLastDay < 6 && new Array(6 - +monthLastDay).fill(0).map((val, index) =>
                 <StyledDate key={`next_${val + index}`}
                             type="next">
                     <Num onClick={() => {
-                        setDate({
+                        useChangeDate({
                             currMonth: month + 1,
-                            currDate : index + 1
+                            currYear : fullYear,
+                            currDate: index + 1,
+                            setCurr,
+                            setView,
+                            router
                         });
                     }}
-                         isToday={isTodayValue(today, fullYear, month + 1, Number(index) + 1)}>{index + 1}</Num>
+                         isToday={isTodayValue(today, fullYear, month + 1, +index + 1)}>{index + 1}</Num>
                 </StyledDate>)}
         </StyledMonthWrap>
     );

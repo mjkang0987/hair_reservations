@@ -19,8 +19,8 @@ function App({Component, pageProps}: AppProps) {
             <Head>
                 <title>RESERVATION</title>
             </Head>
+            <GlobalStyle/>
             <LayoutComponent>
-                <GlobalStyle/>
                 <Component {...pageProps} />
             </LayoutComponent>
         </RecoilRoot>

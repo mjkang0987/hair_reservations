@@ -2,18 +2,15 @@ import {useRouter} from 'next/router';
 
 import styled from 'styled-components';
 import {
-    isTodayValue,
-    SetDateType,
-    ViewType
+    isTodayValue
 } from '../../utils/constants';
 
 import {
-    useRecoilState,
     useRecoilValue,
     useSetRecoilState
 } from 'recoil';
 
-import {useChangeDay} from '../../hooks/useChangeDate';
+import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {
     targetState,
@@ -31,36 +28,25 @@ export const YearComponents = () => {
     const setCurr = useSetRecoilState(targetStateState);
 
     const {
-        fullYear,
-        month
+        fullYear
     } = currValue;
 
     const setView = useSetRecoilState(viewState);
+    const months = Array.from({length: 12}, (_, index) => index);
 
-    const setDate = ({
-        currMonth,
-        currDate,
-    }: SetDateType) => {
-        useChangeDay({
-            type: ViewType.Year,
-            currMonth: currMonth ?? Number(month),
-            currYear : Number(fullYear),
-            currDate,
-            setCurr,
-            setView,
-            router
-        });
-    };
-    return (
-        <StyledYear>
-            {new Array(12).fill(null).map((value, index) =>
-                <StyledMonth key={`${fullYear}_${index}`}>
+    return (<StyledYear>
+            {today && months.map((m) =>
+                <StyledMonth key={`${fullYear}_${m}`}>
                     <Num onClick={() => {
-                        setDate({
-                            currMonth: index,
-                            currDate : 1
+                        useChangeDate({
+                            currMonth: m,
+                            currYear : fullYear,
+                            currDate: 1,
+                            setCurr,
+                            setView,
+                            router
                         });
-                    }} isToday={isTodayValue(today, Number(fullYear), index, today.getDate())}>{index + 1}</Num>
+                    }} isToday={isTodayValue(today, +fullYear, m, today.getDate())}>{m + 1}</Num>
                 </StyledMonth>
             )}
         </StyledYear>

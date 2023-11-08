@@ -14,9 +14,10 @@ export const TimelineTitleComponent = () => {
 
     const setTimes = () => {
         const arr = new Array((end - start + 1)).fill(start);
+        const result = [];
 
-        return arr.reduce((acc, _, index) => {
-            const num = (start + index);
+        for (let i = 0; i < arr.length; i++) {
+            const num = start + i;
 
             const isMorning = num < 12
                               ? '오전'
@@ -27,17 +28,17 @@ export const TimelineTitleComponent = () => {
             const isSingle = String(isHalf + 1).length < 2
                              ? 0
                              : '';
-            const result = [`${isMorning} ${isSingle}${isHalf}:00`];
 
+            result.push(`${isMorning} ${isSingle}${isHalf}:00`);
             result.push(`${isMorning} ${isSingle}${isHalf}:30`);
+        }
 
-            return [...acc, ...result];
-        }, []);
+        return result;
     };
 
     return (<StyledTimelineTitle>
             <StyledTimes>
-                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${t}_${index}`}>
+                {setTimes().map((t: string, index: number) => <StyledTime key={`time_${t}`}>
                     <StyledNum>{t}</StyledNum>
                 </StyledTime>)}
             </StyledTimes>

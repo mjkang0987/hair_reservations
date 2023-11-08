@@ -34,7 +34,7 @@ const setCalcDate = (currYear: number, currMonth: number, currDate: number) => {
     };
 }
 
-export const useChangeDay = ({
+export const useChangeDate = ({
     type,
     currDate,
     currYear,
@@ -43,7 +43,11 @@ export const useChangeDay = ({
     setView,
     router
 }: SetDateType) => {
-    const newDate = setCalcDate(Number(currYear), Number(currMonth), Number(currDate));
+    if (!currYear || !currMonth || !currDate) {
+        return;
+    }
+
+    const newDate = setCalcDate(+currYear, +currMonth, +currDate);
 
     setCurr(new Date(Number(newDate.currYear), Number(newDate.currMonth), Number(newDate.currDate)));
 

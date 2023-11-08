@@ -6,14 +6,14 @@ import {
 
 RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
-type FullType = any;
+type FullType = Date | null;
 
 interface DateType {
     full: FullType,
-    fullYear: null | number;
-    month: null | number;
-    date: null | number;
-    day: null | number;
+    fullYear: number;
+    month: number;
+    date: number;
+    day: number;
 }
 
 export const todayState = atom<FullType>({
@@ -25,10 +25,10 @@ export const targetState = atom<DateType>({
     key    : 'targetState',
     default: {
         full    : null,
-        fullYear: null,
-        month   : null,
-        date    : null,
-        day     : null
+        fullYear: 0,
+        month   : 0,
+        date    : 0,
+        day     : 0
     }
 });
 
@@ -43,9 +43,9 @@ export const targetStateState = selector({
 
         const {full, fullYear, month, date, day} = targetDate;
 
-        const monthLastDate = new Date(Number(fullYear), Number(month) + 1, 0);
-        const monthFirstDate = new Date(Number(fullYear), Number(month), 1);
-        const monthPrevLastDate = new Date(Number(fullYear), Number(month), 0);
+        const monthLastDate = new Date(+fullYear, +month + 1, 0);
+        const monthFirstDate = new Date(+fullYear, +month, 1);
+        const monthPrevLastDate = new Date(+fullYear, +month, 0);
 
         const monthFirstDay = monthFirstDate.getDay();
         const monthLastDay = monthLastDate.getDay();
@@ -56,21 +56,21 @@ export const targetStateState = selector({
         const weekLength = 7;
 
         const weekFirstDate = new Date(
-            Number(fullYear),
-            Number(month),
-            Number(date) - Number(day) < 1
+            +fullYear,
+            +month,
+            +date - +day < 1
             ? 1
-            : Number(date) - Number(day)
+            : +date - +day
         );
 
         const weekFirstNumber = weekFirstDate.getDate();
 
         const weekLastDate = new Date(
-            Number(fullYear),
-            Number(month),
-            Number(weekFirstNumber) + 6 > monthLastNumber
+            +fullYear,
+            +month,
+            +weekFirstNumber + 6 > monthLastNumber
             ? monthLastNumber
-            : Number(date) + (6 - Number(day))
+            : +date + (6 - +day)
         );
 
         const weekFirstDay = weekFirstDate.getDay();
@@ -83,7 +83,7 @@ export const targetStateState = selector({
         };
 
         const three = () => {
-            return [date, Number(date) + 1, Number(date) + 2].filter((a, i) => Number(a) <= monthLastNumber);
+            return [date, +date + 1, +date + 2].filter((a, i) => +a <= monthLastNumber);
         };
 
         return {

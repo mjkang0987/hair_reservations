@@ -16,6 +16,22 @@ interface DaysType {
     type: string | null;
 }
 
+const getDaysInRange = (day: number, type: string) => {
+    const keys = Object.keys(DAYS);
+    const start = type === ViewType.Three ? +day : 0;
+    const end = type === ViewType.Three ? +day + 3 : 7;
+
+    const result = keys.slice(start, end);
+
+    if (result.length < 3) {
+        return new Array(3 - result.length).fill(null).reduce((acc, _, i) => {
+            return [...acc, keys[i]];
+        }, [...result]);
+    }
+
+    return result;
+};
+
 export const DaysComponent = () => {
     const target = useRecoilValue(targetStateState);
     const {
@@ -25,27 +41,9 @@ export const DaysComponent = () => {
     const view = useRecoilValue(viewState);
     const {type} = view;
 
-    const daysArr = () => {
-        const result = Object.keys(DAYS)
-                             .slice(type === ViewType.Three
-                                    ? Number(day)
-                                    : 0,
-                                 type === ViewType.Three
-                                 ? Number(day) + 3
-                                 : 7
-                             );
-
-        if (result.length < 3) {
-            return new Array(3 - result.length).fill(null).reduce((acc, curr, i) => {
-                return [...acc, Object.keys(DAYS)[i]];
-            }, [...result]);
-        }
-
-        return result;
-    };
 
     return (<StyledDays type={type}>
-            {daysArr().map((day: string) =>
+            {getDaysInRange(day, type).map((day: string) =>
                 <StyledDay key={DAYS[day].id}>
                     {DAYS[day].ko}
                 </StyledDay>)}

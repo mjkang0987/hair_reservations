@@ -43,29 +43,25 @@ export const CalendarDirection = () => {
 
     const setUpdateCurr = useSetRecoilState(targetStateState);
 
-    const controller = ({direction}: { direction: string }) => {
-        if (!direction) {
-            return;
-        }
-
-        const isPrev = direction === 'prev';
-        const isDate = Object.keys(ASIDE).slice(0, 3).find((aside) => aside.toLowerCase() === type);
-
-        if (type === ViewType.Year) {
+    const handlerView = {
+        yearView(isPrev: boolean) {
             setRouter({
                 type,
-                year : Number(fullYear) - (isPrev ? 1 : -1),
-                month: Number(month) + 1,
-                date : Number(date),
+                year : +fullYear - (isPrev ? 1 : -1),
+                month: +month + 1,
+                date : +date,
                 router
             });
 
-            return setUpdateCurr(`${Number(fullYear) - (isPrev ? 1 : -1)}, ${Number(month) + 1}, ${Number(date)}`);
-        }
-
-        if (type === ViewType.Month) {
-            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, 1`);
-            const currentDate = new Date(temporary.setMonth(Number(month) - (isPrev ? 1 : -1)));
+            return setUpdateCurr(`${+fullYear - (isPrev
+                                                 ? 1
+                                                 : -1)}, ${+month + 1}, ${+date}`);
+        },
+        monthView(isPrev: boolean) {
+            const temporary = new Date(`${+fullYear}, ${+month + 1}, 1`);
+            const currentDate = new Date(temporary.setMonth(+month - (isPrev
+                                                                      ? 1
+                                                                      : -1)));
 
             setRouter({
                 type,
@@ -76,17 +72,11 @@ export const CalendarDirection = () => {
             });
 
             return setUpdateCurr(currentDate);
-        }
-
-        if (isDate) {
-            if (!type) {
-                return;
-            }
-
+        },
+        dayView(isPrev: boolean) {
             const move = Number(ASIDE[type.toUpperCase()].move);
-
-            const temporary = new Date(`${Number(fullYear)}, ${Number(month) + 1}, ${Number(date)}`);
-            const currentDate = new Date(temporary.setDate(Number(date) - (isPrev ? move : -move) - (type === 'week' ? Number(day) : 0)));
+            const temporary = new Date(`${+fullYear}, ${+month + 1}, ${+date}`);
+            const currentDate = new Date(temporary.setDate(+date - (isPrev ? move : -move) - (type === 'week' ? +day : 0)));
 
             setRouter({
                 type,
@@ -100,8 +90,29 @@ export const CalendarDirection = () => {
         }
     };
 
+    const controller = ({direction}: { direction: string }) => {
+        if (!direction) {
+            return;
+        }
+
+        const isPrev = direction === 'prev';
+        const isDate = ASIDE.hasOwnProperty(type.toUpperCase());
+
+        if (type === ViewType.Year) {
+            return handlerView.yearView(isPrev);
+        }
+
+        if (type === ViewType.Month) {
+            return handlerView.monthView(isPrev);
+        }
+
+        if (isDate) {
+            return handlerView.dayView(isPrev);
+        }
+    };
+
     return (<StyledButtonWrap>
-            <ButtonSquare onClick={() => {
+            {today && <ButtonSquare onClick={() => {
                 setUpdateCurr(today);
                 setRouter({
                     type,
@@ -112,7 +123,7 @@ export const CalendarDirection = () => {
                 });
             }}>
                 <ButtonText a11y={false}>오늘</ButtonText>
-            </ButtonSquare>
+            </ButtonSquare>}
             <ButtonCircle onClick={() => controller({direction: 'prev'})}>
                 <Icon iconType="leftArrow"/>
                 {type && <ButtonText a11y={true}>이전{A11Y_DIRECTION[type]}</ButtonText>}
