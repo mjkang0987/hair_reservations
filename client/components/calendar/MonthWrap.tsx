@@ -1,16 +1,10 @@
-import {useRouter} from 'next/router';
-
 import styled from 'styled-components';
 
 import {
-    useRecoilState,
     useRecoilValue,
-    useSetRecoilState
 } from 'recoil';
 import {
     targetStateState,
-    todayState,
-    viewState
 } from '../../recoil/atoms';
 
 import {MonthComponent} from './Month';
