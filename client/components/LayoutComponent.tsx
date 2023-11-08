@@ -53,7 +53,6 @@ export default function LayoutComponent({children}: NodeType) {
     const setCurr = useSetRecoilState(targetStateState);
     const setView = useSetRecoilState(viewState);
 
-
     const isomorphicEffect = useIsomorphicEffect();
 
     const initDate: Date = new Date();
