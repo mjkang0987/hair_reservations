@@ -9,10 +9,8 @@ import styled from 'styled-components';
 
 import {
     asideState,
-    routerState
+    targetState
 } from '../../recoil/atoms';
-
-import {useToggleModal} from '../../hooks/useCloseModal';
 
 import {CalendarDirection} from '../calendar/CalendarDirection';
 import {CalendarHeading} from '../calendar/CalendarHeading';
@@ -21,20 +19,15 @@ import {ButtonText} from './ButtonText';
 
 export const HeaderComponent = () => {
     const [aside, setAside] = useRecoilState(asideState);
-    const routers = useRecoilValue(routerState);
+    const currValue = useRecoilValue(targetState);
 
     return (
         <StyledHeader>
-            <StyledButton type="button" onClick={(event: React.MouseEvent) => useToggleModal({
-                event,
-                setAside,
-                isVisible: !aside.isVisible,
-                isTransitionEnd: false
-            })}>
+            <StyledButton type="button" onClick={() => setAside({isVisible: !aside.isVisible, isTransitionEnd: false})}>
                 <Icon iconType="hamburger"/>
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </StyledButton>
-            {routers.isCalendarPath && <>
+            {currValue !== null && <>
                 <CalendarDirection/>
                 <CalendarHeading/>
             </>}

@@ -89,20 +89,6 @@ export default function LayoutComponent({children}: NodeType) {
         setLoading(true);
         setToday(initDate);
         setCurr(currDate);
-
-        setRouters({
-            arrayRouter: array,
-            isRootPath,
-            isCalendarPath
-        });
-
-        setRouter({
-            type : isRootPath ? ViewType.Week : array[1],
-            year : currDate.getFullYear(),
-            month: currDate.getMonth() + 1,
-            date : currDate.getDate(),
-            router
-        });
     }, []);
 
     useEffect(() => {
