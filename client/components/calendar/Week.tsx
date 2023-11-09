@@ -1,5 +1,3 @@
-import {useRouter} from 'next/router';
-
 import styled from 'styled-components';
 
 import {
@@ -16,9 +14,8 @@ import {
 
 import {
     isTodayValue,
+    ViewType,
 } from '../../utils/constants';
-
-import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {TimelineComponent} from './Timeline';
 import {Num} from './Num';
@@ -32,8 +29,6 @@ export const WeekComponent = ({
     currMonth,
     weekDates
 }: WeekDatesType) => {
-    const router = useRouter();
-
     const today = useRecoilValue(todayState);
 
     const [curr, setCurr] = useRecoilState(targetStateState);
@@ -47,14 +42,8 @@ export const WeekComponent = ({
             {weekDates.map((w: number) => <StyledWeek key={`week_${w}`}>
                 <StyledNumWrap>
                     <Num onClick={() => {
-                        useChangeDate({
-                            currMonth,
-                            currYear : fullYear,
-                            currDate: w,
-                            setCurr,
-                            setView,
-                            router
-                        });
+                        setCurr(new Date(fullYear, currMonth, w));
+                        setView({type: ViewType.Day});
                     }}
                          isToday={isTodayValue(today, fullYear, currMonth, +w)}>{w}</Num>
                 </StyledNumWrap>
