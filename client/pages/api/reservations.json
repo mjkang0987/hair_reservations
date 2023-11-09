@@ -2,13 +2,13 @@
     "reservations": [
         {
             "id": 2023,
-            "_2023": [
+            "items": [
                 {
                     "id": 11,
-                    "_11": [
+                    "items": [
                         {
                             "id": 7,
-                            "_7": [
+                            "items": [
                                 {
                                     "id": 0,
                                     "startHours": 10,
