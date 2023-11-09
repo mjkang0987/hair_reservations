@@ -167,7 +167,7 @@ export const timeState = atom<TimeType>({
 });
 
 interface RouterType {
-    arrayRouter: string[],
+    arrayRouter: Array<string | number>,
     isRootPath: boolean,
     isCalendarPath: boolean,
 }
