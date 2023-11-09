@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import styled from 'styled-components';
 
@@ -32,7 +32,7 @@ export const TimelineComponent = ({
     const {type} = view;
 
     const time = useRecoilValue(timeState);
-
+    const [eventType, setEventType] = useState<null | React.MouseEvent>(null);
     const [position, setPosition] = useRecoilState(mousePositionState);
 
     const {
@@ -49,18 +49,16 @@ export const TimelineComponent = ({
     const top = ((hour - start) * 2 * 60) + (minutes * 2);
     const full = (end - start - 1) * 2 * 60;
 
-    const setMousePositionHandler = (e: React.MouseEvent) => {
-        useMousePosition({
-            event: e,
-            type,
-            setPosition,
-            fullYear,
-            month,
-            date
-        });
-    };
+    useMousePosition({
+        event: eventType,
+        type,
+        setPosition,
+        fullYear,
+        month,
+        date
+    });
 
-    return (<StyledTimelineWrap onClick={setMousePositionHandler}
+    return (<StyledTimelineWrap onClick={(e) => setEventType(e)}
                                 type={type}
                                 timing={timing}
                                 top={top}
