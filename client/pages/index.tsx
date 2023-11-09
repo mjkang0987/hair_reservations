@@ -50,13 +50,13 @@ const StyledSection = styled.section <Props>`
   border-left: solid var(--light-gray-color) ${props => props.isVisible ? `1px` : 0};
 `;
 
-export const getStaticProps = (async () => {
+export const getServerSideProps = (async () => {
     const res = await fetch('http://localhost:3000/api/hello');
-    const reservations = await res.json() || {};
+    const data = await res.json() || {};
 
     return {
         props: {
-            reservations,
+            data,
         }
     };
 });
