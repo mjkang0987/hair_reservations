@@ -1,29 +1,40 @@
 {
     "reservations": [
         {
-            "id": 2023,
-            "items": [
-                {
-                    "id": 11,
-                    "items": [
-                        {
-                            "id": 7,
-                            "items": [
-                                {
-                                    "id": 0,
-                                    "startHours": 10,
-                                    "startMinutes": 0,
-                                    "endHours": 10,
-                                    "endMinutes": 30,
-                                    "service": "test",
-                                    "name": "name",
-                                    "tel": "01012345678"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "id": 2023107,
+            "year": 2023,
+            "month": 10,
+            "date": 7,
+            "startHours": 10,
+            "startMinutes": 0,
+            "endHours": 10,
+            "endMinutes": 30,
+            "service": "test",
+            "name": "name"
+        },
+        {
+            "id": 2023107,
+            "year": 2023,
+            "month": 10,
+            "date": 7,
+            "startHours": 11,
+            "startMinutes": 0,
+            "endHours": 11,
+            "endMinutes": 30,
+            "service": "test2",
+            "name": "name"
+        },
+        {
+            "id": 2023117,
+            "year": 2023,
+            "month": 11,
+            "date": 7,
+            "startHours": 10,
+            "startMinutes": 0,
+            "endHours": 10,
+            "endMinutes": 30,
+            "service": "test",
+            "name": "name"
         }
     ]
 }
