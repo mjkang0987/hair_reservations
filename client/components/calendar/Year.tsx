@@ -1,16 +1,14 @@
-import {useRouter} from 'next/router';
-
 import styled from 'styled-components';
+
 import {
-    isTodayValue
+    isTodayValue,
+    ViewType
 } from '../../utils/constants';
 
 import {
     useRecoilValue,
     useSetRecoilState
 } from 'recoil';
-
-import {useChangeDate} from '../../hooks/useChangeDate';
 
 import {
     targetState,
@@ -22,35 +20,27 @@ import {
 import {Num} from './Num';
 
 export const YearComponents = () => {
-    const router = useRouter();
     const today = useRecoilValue(todayState);
     const currValue = useRecoilValue(targetState);
     const setCurr = useSetRecoilState(targetStateState);
+    const setView = useSetRecoilState(viewState);
 
     const {
         fullYear
     } = currValue;
 
-    const setView = useSetRecoilState(viewState);
     const months = Array.from({length: 12}, (_, index) => index);
 
     return (<StyledYear>
             {today && months.map((m) =>
                 <StyledMonth key={`${fullYear}_${m}`}>
                     <Num onClick={() => {
-                        useChangeDate({
-                            currMonth: m,
-                            currYear : fullYear,
-                            currDate: 1,
-                            setCurr,
-                            setView,
-                            router
-                        });
+                        setCurr(new Date(fullYear, m, 1));
+                        setView({type: ViewType.Month});
                     }} isToday={isTodayValue(today, +fullYear, m, today.getDate())}>{m + 1}</Num>
                 </StyledMonth>
             )}
-        </StyledYear>
-    );
+        </StyledYear>);
 };
 
 const StyledYear = styled.ul `

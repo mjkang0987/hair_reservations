@@ -25,10 +25,6 @@ import {
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
 
 import {
-    useToggleModal
-} from '../hooks/useCloseModal';
-
-import {
     handleOnload,
     isCalendar,
     NodeType,
@@ -51,7 +47,7 @@ export default function LayoutComponent({children}: NodeType) {
     const [routers, setRouters] = useRecoilState(routerState);
     const currValue = useRecoilValue(targetState);
     const setCurr = useSetRecoilState(targetStateState);
-    const setView = useSetRecoilState(viewState);
+    const [view, setView] = useRecoilState(viewState);
 
     const isomorphicEffect = useIsomorphicEffect();
 
@@ -67,12 +63,10 @@ export default function LayoutComponent({children}: NodeType) {
             return;
         }
 
-        useToggleModal({
-            event          : e,
-            setAside,
-            isVisible      : !aside.isVisible,
-            isTransitionEnd: false
-        });
+        setAside({
+            isTransitionEnd: false,
+            isVisible: false
+        })
     };
 
     const array = router.asPath.split('/');
@@ -89,15 +83,47 @@ export default function LayoutComponent({children}: NodeType) {
         setLoading(true);
         setToday(initDate);
         setCurr(currDate);
-    }, []);
 
-    useEffect(() => {
         setView({
             type: isRootPath || !isCalendarPath ? ViewType.Week : array[1]
         });
+    }, []);
+
+    useEffect(() => {
     }, [routers, setRouters]);
 
-    return (<StyledWrapper onClick={closeModal}>
+    useEffect(() => {
+        if (currValue.full === null) {
+            return;
+        }
+
+        let changeRouter: Array<string | number> = [''];
+
+        if (view.type === ViewType.Year) {
+            changeRouter = [...changeRouter, ViewType.Month, currValue.month + 1];
+        }
+
+        if (view.type !== ViewType.Year) {
+            changeRouter = [...changeRouter, ViewType.Day, currValue.fullYear, currValue.month + 1, currValue.date]
+        }
+
+        setRouters({
+            arrayRouter: changeRouter,
+            isRootPath,
+            isCalendarPath
+        });
+
+        setRouter({
+            type : view.type,
+            year : currValue.fullYear,
+            month: currValue.month + 1,
+            date : currValue.date,
+            router
+        });
+    }, [currValue, currValue]);
+
+
+    return (<StyledWrapper onClick={(e) => closeModal(e)}>
             {!loading && <Icon iconType="loading"/>}
             <HeaderComponent/>
             {currValue.full !== null && <>

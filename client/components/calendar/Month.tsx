@@ -1,5 +1,3 @@
-import {useRouter} from 'next/router';
-
 import styled from 'styled-components';
 
 import {
@@ -13,10 +11,9 @@ import {
     viewState
 } from '../../recoil/atoms';
 
-import {useChangeDate} from '../../hooks/useChangeDate';
-
 import {
-    isTodayValue
+    isTodayValue,
+    ViewType
 } from '../../utils/constants';
 
 import {Num} from './Num';
@@ -32,8 +29,6 @@ export const MonthComponent = ({
     currMonth,
     type
 }: MonthType) => {
-    const router = useRouter();
-
     const today = useRecoilValue(todayState);
     const [curr, setCurr] = useRecoilState(targetStateState);
 
@@ -44,17 +39,10 @@ export const MonthComponent = ({
     const setView = useSetRecoilState(viewState);
 
     return (<>
-        {monthDates.map((val, index) => <StyledDate key={`month_${val + index}`}
-                                                    type={type}>
+        {monthDates.map((val, index) => <StyledDate key={`month_${val + index}`} type={type}>
             <Num onClick={() => {
-                useChangeDate({
-                    currMonth: currMonth,
-                    currYear : fullYear,
-                    currDate : val,
-                    setCurr,
-                    setView,
-                    router
-                });
+                setCurr(new Date(fullYear, currMonth, val));
+                setView({type: ViewType.Day});
             }}
                  isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
         </StyledDate>)}
