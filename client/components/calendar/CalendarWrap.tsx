@@ -1,9 +1,14 @@
 import styled from 'styled-components';
 
-import {useRecoilValue} from 'recoil';
 import {
+    useRecoilValue
+} from 'recoil';
+import {
+    targetState,
     viewState
 } from '../../recoil/atoms';
+
+import {useCurrentReservations} from '../../hooks/useCurrentReservations';
 
 import {ViewType} from '../../utils/constants';
 
@@ -21,6 +26,19 @@ interface DaysType {
 export const CalendarComponent = () => {
     const view = useRecoilValue(viewState);
     const {type} = view;
+
+    const currValue = useRecoilValue(targetState);
+
+    const {
+        fullYear,
+        month
+    } = currValue;
+
+    useCurrentReservations({
+        fullYear,
+        month,
+        dependencies: [fullYear, month]
+    });
 
     return (
         <>
