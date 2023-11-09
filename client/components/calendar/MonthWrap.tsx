@@ -32,11 +32,10 @@ export const MonthWrapComponent = () => {
         return +monthLastDay < 6 && new Array(6 - +monthLastDay).fill(0).reduce((acc, _, i) => [...acc, i + 1], []);
     };
 
-    return (
-        <StyledMonthWrap>
-            <MonthComponent monthDates={arrayPrev()} currMonth={month - 1} type="prev"/>
+    return (<StyledMonthWrap>
+            {arrayPrev() && <MonthComponent monthDates={arrayPrev()} currMonth={month - 1} type="prev"/>}
             <MonthComponent monthDates={arrayCurrent()} currMonth={month} type="current"/>
-            <MonthComponent monthDates={arrayNext()} currMonth={month + 1} type="next"/>
+            {arrayNext() && <MonthComponent monthDates={arrayNext()} currMonth={month + 1} type="next"/>}
         </StyledMonthWrap>
     );
 };

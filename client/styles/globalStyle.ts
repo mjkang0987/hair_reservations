@@ -7,17 +7,17 @@ export const GlobalStyle = createGlobalStyle`
     --small-font: 16px;
     --tiny-font: 14px;
 
-    --black-color: #222;
-    --gray-color: #9f9f9f;
-    --dark-gray-color: #525252;
-    --light-gray-color: #e4e4e4;
-    --white-color: #fff;
-    --blue-color: #00a6e3;
-    --orange-color: #fd7200;
+    --black-color: hsl(0, 0%, 13%);
+    --gray-color: hsl(0, 0%, 62%);
+    --dark-gray-color: hsl(0, 0%, 32%);
+    --light-gray-color: hsl(0, 0%, 89%);
+    --white-color: hsl(0, 0%, 100%);
+    --blue-color: hsl(196, 100%, 45%);
+    --orange-color: hsl(27, 100%, 50%);
     
-    --white-color-80: rgb(255 255 255 / .8);
-    --white-color-60: rgb(255 255 255 / .6);
-    --white-color-40: rgb(255 255 255 / .40);
+    --white-color-80: hsla(0, 0%, 100%, .8);
+    --white-color-60: hsla(0, 0%, 100%, .6);
+    --white-color-40: hsla(0, 0%, 100%, .4);
     
     --bar-top: 56px;
   }
