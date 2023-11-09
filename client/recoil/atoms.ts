@@ -79,7 +79,7 @@ export const targetStateState = selector({
         // console.log(weekFirstNumber, weekLastNumber, weekLastNumber - weekFirstNumber + 1)
 
         const week = () => {
-            return new Array(weekLastNumber + 1 - weekFirstNumber).fill(weekFirstNumber).reduce((acc, curr, index) => [...acc, curr + index], []);
+            return new Array(weekLastNumber + 1 - weekFirstNumber).fill(weekFirstNumber).reduce((acc, curr, index) => [...acc, curr + index],                 []);
         };
 
         const three = () => {
@@ -205,3 +205,15 @@ export const currReservationsState = atom<ReservationsType[]>({
 
 });
 
+interface MousePositionType {
+    x: number;
+    y: number;
+}
+
+export const mousePositionState = atom<MousePositionType>({
+    key    : 'mousePositionState',
+    default: {
+        x: 0,
+        y: 0
+    }
+});
