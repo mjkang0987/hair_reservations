@@ -181,3 +181,27 @@ export const routerState = atom<RouterType>({
     }
 });
 
+interface ReservationsType {
+    id: number;
+    year: number;
+    month: number;
+    date: number;
+    startHours: number;
+    startMinutes: number;
+    endHour: number;
+    endMinutes: number;
+    service: string;
+    name: string;
+}
+
+export const reservationsState = atom<ReservationsType[]>({
+    key    : 'reservationsState',
+    default: []
+});
+
+export const currReservationsState = atom<ReservationsType[]>({
+    key    : 'currReservationsState',
+    default: []
+
+});
+
