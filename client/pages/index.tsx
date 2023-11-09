@@ -1,18 +1,22 @@
-import type {
-    NextPage
-} from 'next';
+import {useEffect} from 'react';
+
+import type {NextPage} from 'next';
 
 import Head from 'next/head';
 
 import {
+    useRecoilState,
     useRecoilValue,
+    useSetRecoilState,
 } from 'recoil';
 
 import styled from 'styled-components';
 
 import {
     asideState,
-    targetStateState,
+    currReservationsState,
+    reservationsState,
+    targetState
 } from '../recoil/atoms';
 
 import {CalendarComponent} from '../components/calendar/CalendarWrap';
@@ -23,10 +27,18 @@ interface Props {
 }
 
 const Home: NextPage = ({
-    reservations
+    data
 }: any) => {
     const aside = useRecoilValue(asideState);
-    const curr = useRecoilValue(targetStateState);
+    const currValue = useRecoilValue(targetState);
+
+    const setReservations = useSetRecoilState(reservationsState);
+
+    useEffect(() => {
+        if (data.reservations) {
+            setReservations([...data.reservations]);
+        }
+    }, []);
 
     return (<>
             <Head>
@@ -34,7 +46,7 @@ const Home: NextPage = ({
             </Head>
             <StyledSection isVisible={aside.isVisible}
                            isTransitionEnd={aside.isTransitionEnd}>
-                {curr && <CalendarComponent/>}
+                {currValue.full && <CalendarComponent/>}
             </StyledSection>
         </>
     );
