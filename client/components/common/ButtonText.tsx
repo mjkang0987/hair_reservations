@@ -11,6 +11,7 @@ const StyledButtonText = styled.span <Props>`
   display: flex;
   position: relative;
   font-size: var(--small-font);
+  pointer-events: none;
   ${props => props.a11y&& `
       overflow: hidden;
       position: absolute;

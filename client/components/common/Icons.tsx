@@ -9,6 +9,7 @@ const StyledIcon = styled.span <Props>`
   flex-shrink: 0;
   display: inline-flex;
   position: relative;
+  pointer-events: none;
   ${props => props.iconType === 'loading' && `
     position: fixed;
     top: 50%;
