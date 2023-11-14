@@ -10,7 +10,7 @@ import {
     reservationsState
 } from '../recoil/atoms';
 
-interface UseCurrentReservations {
+interface UseCurrentReservationsType {
     fullYear: number;
     month: number;
     date?: number;
@@ -22,7 +22,7 @@ export const useCurrentReservations = ({
     month,
     date = 0,
     dependencies
-}: UseCurrentReservations) => {
+}: UseCurrentReservationsType) => {
     const reservations = useRecoilValue(reservationsState);
     const setCurrReservations = useSetRecoilState(currReservationsState);
     const arrayFilter = [fullYear, month, date].slice(0, date === 0 ? 2 : 3);
@@ -32,7 +32,8 @@ export const useCurrentReservations = ({
             return r.year === arrayFilter[0] && r.month === arrayFilter[1]
         });
 
-        setCurrReservations([...arrayResult]);
+        setCurrReservations(arrayResult);
     }, [reservations, ...dependencies]);
+
     return null;
 };

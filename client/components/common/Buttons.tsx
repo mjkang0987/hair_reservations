@@ -1,22 +1,26 @@
 import styled from 'styled-components';
+
 import React from 'react';
 
 interface Props {
     children: React.ReactNode | string;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+    padding?: Array<number | string>
+    fontSize?: string
+    height?: string
 }
 
 const StyledSquareButton = styled.button <Props>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 35px;
-  padding: 0 15px;
+  height: ${props => props.height ? props.height : '35px'};
+  padding: ${props => props.padding ? props.padding.join(' ') : '0 15px'};
   border: 1px solid #ccc;
   background-color: var(--white-color);
   border-radius: 5px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .1);
-  font-size: var(--small-font);
+  font-size: ${props => props.fontSize ? props.fontSize : 'var(--small-font)'};
 `;
 
 export const ButtonSquare: React.FC<Props> = ({children, ...props}) => {

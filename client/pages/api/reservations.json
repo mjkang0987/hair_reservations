@@ -10,7 +10,8 @@
             "endHours": 10,
             "endMinutes": 30,
             "service": "test",
-            "name": "name"
+            "name": "name",
+            "color": 0
         },
         {
             "id": 2023107,
@@ -22,7 +23,8 @@
             "endHours": 11,
             "endMinutes": 30,
             "service": "test2",
-            "name": "name"
+            "name": "name",
+            "color":  "1"
         },
         {
             "id": 2023117,
@@ -34,7 +36,8 @@
             "endHours": 10,
             "endMinutes": 30,
             "service": "test",
-            "name": "name"
+            "name": "name",
+            "color":  "0"
         }
     ]
 }

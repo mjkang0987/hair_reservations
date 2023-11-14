@@ -181,7 +181,7 @@ export const routerState = atom<RouterType>({
     }
 });
 
-interface ReservationsType {
+export interface ReservationsType {
     id: number;
     year: number;
     month: number;

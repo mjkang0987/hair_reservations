@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 interface Props {
     children: React.ReactNode | string
-    a11y: boolean
+    a11y: boolean;
+    fontSize?: string;
 }
 
 const StyledButtonText = styled.span <Props>`
   display: flex;
   position: relative;
-  font-size: var(--small-font);
+  font-size: ${props => props.fontSize ? props.fontSize : 'var(--small-font)'};
   pointer-events: none;
   ${props => props.a11y&& `
       overflow: hidden;
@@ -25,6 +26,6 @@ const StyledButtonText = styled.span <Props>`
   `};
 `;
 
-export const ButtonText: React.FC <Props> = ({children, a11y}) => {
-    return <StyledButtonText a11y={a11y}>{children}</StyledButtonText>;
+export const ButtonText: React.FC <Props> = ({children, ...props}) => {
+    return <StyledButtonText {...props}>{children}</StyledButtonText>;
 };
