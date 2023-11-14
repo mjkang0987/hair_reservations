@@ -36,7 +36,7 @@ export const CalendarComponent = () => {
 
     useCurrentReservations({
         fullYear,
-        month,
+        month: month + 1,
         dependencies: [fullYear, month]
     });
 
