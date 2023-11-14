@@ -25,12 +25,18 @@ import {
 import {useIsomorphicEffect} from '../hooks/useIsomorphicEffect';
 
 import {
-    handleOnload,
-    isCalendar,
     NodeType,
-    setRouter,
     ViewType
 } from '../utils/constants';
+
+import {
+    handleOnload,
+    setRouter,
+} from '../utils/utils';
+
+import {
+    isCalendar,
+} from '../utils/utils';
 
 import {HeaderComponent} from './common/Header';
 import {AsideComponent} from './common/Aside';
