@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -13,7 +14,7 @@ import {
     ViewType
 } from '../../utils/constants';
 
-import {WeekComponent} from './Week';
+import {DateComponent} from './Date';
 
 interface WeekType {
     type: string
@@ -46,9 +47,9 @@ export const WeekWrapComponent = ({
     };
 
     return (<StyledWeeks>
-            {view.type === ViewType.Week && <WeekComponent weekDates={arrayPrev()} currMonth={month -1} />}
-            <WeekComponent weekDates={arrayCurrent()} currMonth={month} />
-            <WeekComponent weekDates={arrayNext()} currMonth={month + 1} />
+            {view.type === ViewType.Week && <DateComponent arrayDates={arrayPrev()} currMonth={month -1} type={ViewType.Week}/>}
+            <DateComponent arrayDates={arrayCurrent()} currMonth={month} type={view.type} />
+            <DateComponent arrayDates={arrayNext()} currMonth={month + 1} type={view.type} />
         </StyledWeeks>
     );
 };

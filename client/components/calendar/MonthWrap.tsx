@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 import {
@@ -7,7 +8,9 @@ import {
     targetStateState,
 } from '../../recoil/atoms';
 
-import {MonthComponent} from './Month';
+import {ReservationComponent} from '../reservation/Reservation';
+import {DateComponent} from './Date';
+import {ViewType} from '../../utils/constants';
 
 export const MonthWrapComponent = () => {
     const curr = useRecoilValue(targetStateState);
@@ -21,7 +24,7 @@ export const MonthWrapComponent = () => {
     } = curr;
 
     const arrayPrev = () => {
-        return +monthFirstDay < 7 && new Array(monthFirstDay).fill(0).reduce((acc, curr, i) => [+monthPrevLastNumber - i, ...acc], []);
+        return +monthFirstDay < 7 && new Array(monthFirstDay).fill(0).reduce((acc, _, i) => [+monthPrevLastNumber - i, ...acc], []);
     };
 
     const arrayCurrent = () => {
@@ -33,9 +36,11 @@ export const MonthWrapComponent = () => {
     };
 
     return (<StyledMonthWrap>
-            {arrayPrev() && <MonthComponent monthDates={arrayPrev()} currMonth={month - 1} type="prev"/>}
-            <MonthComponent monthDates={arrayCurrent()} currMonth={month} type="current"/>
-            {arrayNext() && <MonthComponent monthDates={arrayNext()} currMonth={month + 1} type="next"/>}
+            {arrayPrev() && <DateComponent arrayDates={arrayPrev()}
+                                            currMonth={month - 1}
+                                            type={ViewType.Month}/>}
+            <DateComponent arrayDates={arrayCurrent()} currMonth={month} type={ViewType.Month}/>
+            {arrayNext() && <DateComponent arrayDates={arrayNext()} currMonth={month + 1} type={ViewType.Month}/>}
         </StyledMonthWrap>
     );
 };
@@ -46,24 +51,4 @@ const StyledMonthWrap = styled.ul`
   grid-template-columns: repeat(7, 1fr);
   align-items: stretch;
   height: 100%;
-`;
-
-const StyledDate = styled.li<{ type: string }>`
-  padding: 5px;
-  text-align: center;
-  border-right: 1px solid var(--light-gray-color);
-  border-top: 1px solid var(--light-gray-color);
-
-  &:nth-child(7n) {
-    border-right: none;
-  }
-
-  &:nth-child(-n+7) {
-    border-top: none;
-  }
-
-  ${props => (props.type === 'prev' || props.type === 'next') && `button {
-    color: var(--gray-color);
-  }
-  `}
 `;
