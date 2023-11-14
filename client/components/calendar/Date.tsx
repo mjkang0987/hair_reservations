@@ -15,10 +15,14 @@ import {
 } from '../../recoil/atoms';
 
 import {
-    isTodayValue,
     NodeType,
     ViewType
 } from '../../utils/constants';
+
+import {
+    isTodayValue,
+    filterReservations
+} from '../../utils/utils';
 
 import {Num} from './Num';
 import {ReservationComponent} from '../reservation/Reservation';

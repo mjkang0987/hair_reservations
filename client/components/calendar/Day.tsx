@@ -10,8 +10,8 @@ import {
 } from '../../recoil/atoms';
 
 import {
-    isTodayValue,
-} from '../../utils/constants';
+    isTodayValue
+} from '../../utils/utils';
 
 import {TimelineComponent} from './Timeline';
 

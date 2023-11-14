@@ -19,9 +19,14 @@ import {
 import {
     A11Y_DIRECTION,
     ASIDE,
-    setRouter,
     ViewType
 } from '../../utils/constants';
+
+import {
+    setRouter,
+} from '../../utils/utils';
+
+
 
 import {Icon} from '../common/Icons';
 import {ButtonText} from '../common/ButtonText';

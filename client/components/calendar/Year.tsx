@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
 import {
-    isTodayValue,
     ViewType
 } from '../../utils/constants';
+
+import {
+    isTodayValue
+} from '../../utils/utils';
 
 import {
     useRecoilValue,
