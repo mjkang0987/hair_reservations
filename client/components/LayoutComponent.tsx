@@ -120,7 +120,7 @@ export default function LayoutComponent({children}: NodeType) {
             date : currValue.date,
             router
         });
-    }, [currValue, currValue]);
+    }, [currValue, setCurr]);
 
 
     return (<StyledWrapper onClick={(e) => closeModal(e)}>
