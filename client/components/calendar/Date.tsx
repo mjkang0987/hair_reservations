@@ -9,6 +9,7 @@ import {
 } from 'recoil';
 import {
     currReservationsState,
+    reservationsState,
     targetStateState,
     todayState,
     viewState
@@ -31,23 +32,36 @@ interface MonthType {
     arrayDates: number[];
     currMonth: number;
     type: string;
-    children?: any
 }
 
 export const DateComponent = ({
     arrayDates,
     currMonth,
-    type,
-    children
+    type
 }: MonthType) => {
     const today = useRecoilValue(todayState);
     const [curr, setCurr] = useRecoilState(targetStateState);
+
+    const reservations = useRecoilValue(reservationsState);
+    const currReservations = useRecoilValue(currReservationsState);
 
     const {
         fullYear
     } = curr;
 
     const setView = useSetRecoilState(viewState);
+
+    const filterItems = ({
+        month,
+        date
+    }: {month: number; date: number}) => {
+        return filterReservations({
+            reservations: currReservations,
+            fullYear,
+            currMonth: month,
+            currDate: date
+        })
+    };
 
     return (<>
         {arrayDates.map((val, index) => <StyledDate key={`month_${val + index}`} type={type}>
@@ -58,9 +72,14 @@ export const DateComponent = ({
                 }}
                      isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
             </StyledNumWrap>
-            {children && <StyledReserveWrap>
-                {children}
-            </StyledReserveWrap>}
+            {currReservations.length > 0 && <>
+                <ReservationComponent items={filterReservations({
+                    reservations: currReservations,
+                    fullYear,
+                    currMonth: currMonth + 1,
+                    currDate: val
+                })}/>
+            </>}
         </StyledDate>)}
     </>);
 };
@@ -87,6 +106,19 @@ const StyledDate = styled.li<{ type: string }>`
     width: 1px;
     height: 100%;
     background-color: var(--light-gray-color);
+  }
+  
+  > span {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .8) 100%);
+      pointer-events: none;
+    }
   }
   
   button {
@@ -116,19 +148,4 @@ const StyledNumWrap = styled.span`
   width: 100%;
   background-color: var(--white-color-80);
   z-index: 1;
-
-  &:after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .8) 100%);
-    pointer-events: none;
-  }
-`;
-
-const StyledReserveWrap = styled.ul`
-  padding-top: 10px;
 `;
