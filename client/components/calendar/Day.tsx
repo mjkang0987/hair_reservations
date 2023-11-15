@@ -32,12 +32,12 @@ export const DayComponent = () => {
                                month={month}
                                date={date}
                                isToday={isTodayValue(today, fullYear, month, date)}>
-            <ReservationComponent items={filterReservations({
-                reservations: currReservations,
-                fullYear,
-                currMonth: month + 1,
-                currDate: date
-            })}/>
+                <ReservationComponent items={filterReservations({
+                    reservations: currReservations,
+                    fullYear,
+                    currMonth: month + 1,
+                    currDate: date
+                })}/>
             </TimelineComponent>
         </>
     );
