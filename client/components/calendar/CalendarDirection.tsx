@@ -148,7 +148,12 @@ const StyledButtonWrap = styled.span`
 
   button {
     &:first-child {
-      margin-right: 40px;
+      @media (max-width: 767px) {
+        margin-right: 15px;
+      }
+      @media (min-width: 768px) {
+        margin-right: 40px;
+      }
     }
   }
 `;

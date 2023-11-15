@@ -65,7 +65,12 @@ const StyledDateWrap = styled.span`
 
 const StyledDateElement = styled.span`
   display: inline-flex;
-  font-size: 26px;
+  @media (max-width: 767px) {
+    font-size: var(--font);
+  }
+  @media (min-width: 768px) {
+    font-size: var(--bigger-font);
+  }
 
   + span {
     &:before {
