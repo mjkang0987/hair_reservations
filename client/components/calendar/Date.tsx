@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import React, {useEffect} from 'react';
 
 import styled from 'styled-components';
 
@@ -25,6 +25,7 @@ import {
     filterReservations
 } from '../../utils/utils';
 
+import {TimelineComponent} from './Timeline';
 import {Num} from './Num';
 import {ReservationComponent} from '../reservation/Reservation';
 
@@ -72,14 +73,24 @@ export const DateComponent = ({
                 }}
                      isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
             </StyledNumWrap>
-            {currReservations.length > 0 && <>
+            {type !== ViewType.Month && <TimelineComponent fullYear={fullYear}
+                               month={currMonth}
+                               date={+val}
+                                                          isToday={isTodayValue(today, fullYear, currMonth, +val)}>
                 <ReservationComponent items={filterReservations({
                     reservations: currReservations,
                     fullYear,
                     currMonth: currMonth + 1,
                     currDate: val
                 })}/>
-            </>}
+            </TimelineComponent>}
+
+            {type === ViewType.Month && <ReservationComponent items={filterReservations({
+                reservations: currReservations,
+                fullYear,
+                currMonth: currMonth + 1,
+                currDate: val
+            })}/>}
         </StyledDate>)}
     </>);
 };

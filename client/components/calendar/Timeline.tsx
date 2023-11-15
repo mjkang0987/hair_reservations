@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+import React, {
+    ReactNode,
+    useState
+} from 'react';
 
 import styled from 'styled-components';
 
@@ -22,11 +25,12 @@ import {
 import {useMousePosition} from '../../hooks/useMousePosition';
 
 export const TimelineComponent = ({
+    children,
     fullYear,
     month,
     date,
     isToday
-}: { isToday: boolean, fullYear: number, month: number, date: number }) => {
+}: { isToday: boolean, fullYear: number, month: number, date: number; children?: ReactNode }) => {
 
     const view = useRecoilValue(viewState);
     const {type} = view;
@@ -63,6 +67,7 @@ export const TimelineComponent = ({
                                 timing={timing}
                                 top={top}
                                 full={full}>
+            {children}
         {isToday && <StyledBar/>}
     </StyledTimelineWrap>);
 };
