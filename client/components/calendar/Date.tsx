@@ -118,10 +118,6 @@ const StyledDate = styled.li<{ type: string }>`
       pointer-events: none;
     }
   }
-  
-  button {
-    font-size: var(--default-font);
-  }
   ` : `
   display: flex;
   flex-direction: column;
@@ -138,6 +134,15 @@ const StyledDate = styled.li<{ type: string }>`
     border-top: none;
   }
   `};
+
+  button {
+    @media (max-width: 767px) {
+      font-size: var(--tiny-font);
+    }
+    @media (min-width: 768px) {
+      font-size: var(--default-font);
+    }
+  }
 `;
 
 const StyledNumWrap = styled.span`

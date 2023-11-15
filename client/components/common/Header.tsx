@@ -36,11 +36,17 @@ export const HeaderComponent = () => {
 const StyledHeader = styled.header`
   display: flex;
   align-items: center;
-  gap: 20px;
   width: 100%;
   padding: 8px 15px 7px;
   box-sizing: border-box;
   border-bottom: solid 1px var(--light-gray-color);
+
+  @media (max-width: 767px) {
+    gap: 8px;
+  }
+  @media (min-width: 768px) {
+    gap: 20px;
+  }
 `;
 
 const StyledButton = styled.button`

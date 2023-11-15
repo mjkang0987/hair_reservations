@@ -18,6 +18,16 @@ const StyledSquareButton = styled.button <Props>`
   height: ${props => props.height
                      ? props.height
                      : '35px'};
+  @media (max-width: 767px) {
+    padding: ${props => props.padding
+                        ? props.padding.join(' ')
+                        : '0 8px'};
+  }
+  @media (min-width: 768px) {
+    padding: ${props => props.padding
+                        ? props.padding.join(' ')
+                        : '0 15px'};
+  }
   padding: ${props => props.padding
                       ? props.padding.join(' ')
                       : '0 15px'};

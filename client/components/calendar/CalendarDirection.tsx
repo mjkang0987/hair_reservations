@@ -149,7 +149,7 @@ const StyledButtonWrap = styled.span`
   button {
     &:first-child {
       @media (max-width: 767px) {
-        margin-right: 15px;
+        margin-right: 4px;
       }
       @media (min-width: 768px) {
         margin-right: 40px;
