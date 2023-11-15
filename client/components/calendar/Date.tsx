@@ -123,6 +123,8 @@ const StyledDate = styled.li<{ type: string }>`
     font-size: var(--default-font);
   }
   ` : `
+  display: flex;
+  flex-direction: column;
   padding: 5px;
   text-align: center;
   border-right: 1px solid var(--light-gray-color);
