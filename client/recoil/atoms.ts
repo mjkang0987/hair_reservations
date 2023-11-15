@@ -192,6 +192,7 @@ export interface ReservationsType {
     endMinutes: number;
     service: string;
     name: string;
+    color: string;
 }
 
 export const reservationsState = atom<ReservationsType[]>({
