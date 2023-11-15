@@ -43,7 +43,6 @@ export const DateComponent = ({
     const today = useRecoilValue(todayState);
     const [curr, setCurr] = useRecoilState(targetStateState);
 
-    const reservations = useRecoilValue(reservationsState);
     const currReservations = useRecoilValue(currReservationsState);
 
     const {
@@ -51,18 +50,6 @@ export const DateComponent = ({
     } = curr;
 
     const setView = useSetRecoilState(viewState);
-
-    const filterItems = ({
-        month,
-        date
-    }: {month: number; date: number}) => {
-        return filterReservations({
-            reservations: currReservations,
-            fullYear,
-            currMonth: month,
-            currDate: date
-        })
-    };
 
     return (<>
         {arrayDates.map((val, index) => <StyledDate key={`month_${val + index}`} type={type}>
