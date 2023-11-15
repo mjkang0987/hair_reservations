@@ -48,7 +48,7 @@ export const TimelineTitleComponent = () => {
 
 const StyledTimelineTitle = styled.div`
   flex-shrink: 0;
-  width: 120px;
+  width: 80px;
   border-right: 1px solid var(--light-gray-color);
   box-sizing: border-box;
 `;
@@ -82,6 +82,7 @@ const StyledNum = styled.span`
   width: 100%;
   height: 60px;
   padding: 0 10px;
+  text-align: center;
   font-size: var(--tiny-font);
   color: var(--gray-color);
 `;
