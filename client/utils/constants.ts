@@ -129,4 +129,13 @@ export const enum ViewType {
     Day = 'day'
 }
 
-
+export const COLORS = [
+    'var(--first-color)',
+    'var(--second-color)',
+    'var(--third-color)',
+    'var(--fourth-color)',
+    'var(--fifth-color)',
+    'var(--sixth-color)',
+    'var(--seventh-color)',
+    'var(--eighth-color)'
+];

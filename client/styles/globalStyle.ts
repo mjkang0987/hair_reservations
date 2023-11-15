@@ -14,12 +14,21 @@ export const GlobalStyle = createGlobalStyle`
     --white-color: hsl(0, 0%, 100%);
     --blue-color: hsl(196, 100%, 45%);
     --orange-color: hsl(27, 100%, 50%);
-    
+
     --white-color-80: hsla(0, 0%, 100%, .8);
     --white-color-60: hsla(0, 0%, 100%, .6);
     --white-color-40: hsla(0, 0%, 100%, .4);
-    
+
     --bar-top: 56px;
+
+    --first-color: hsl(0, 100%, 91%);
+    --second-color: hsl(187, 82%, 89%);
+    --third-color: hsl(334, 100%, 84%);
+    --fourth-color: hsl(127, 100%, 87%);
+    --fifth-color: hsl(52, 100%, 87%);
+    --sixth-color: hsl(223, 100%, 87%);
+    --seventh-color: hsl(25, 100%, 87%);
+    --eighth-color: hsl(285, 100%, 87%);
   }
 
   html,
@@ -114,12 +123,12 @@ export const GlobalStyle = createGlobalStyle`
       transform: translateX(-100%);
     }
   }
-  
+
   @keyframes down {
     0% {
       transform: translateY(var(--bar-top));
     }
-    
+
     100% {
       transform: translateY(var(--timeline-height));
     }
