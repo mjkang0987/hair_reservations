@@ -8,7 +8,6 @@ import {
     targetStateState,
 } from '../../recoil/atoms';
 
-import {ReservationComponent} from '../reservation/Reservation';
 import {DateComponent} from './Date';
 import {ViewType} from '../../utils/constants';
 
