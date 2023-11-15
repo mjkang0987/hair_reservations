@@ -72,12 +72,13 @@ const StyledDays = styled.ul <DaysType>`
 
 const StyledDay = styled.li`
   flex: 1;
-  text-align: center;
+  height: 35px;
   padding: 10px 0 5px;
   font-size: var(--small-font);
   color: var(--black-color);
   border-right: 1px solid var(--light-gray-color);
   box-sizing: border-box;
+  text-align: center;
 
   &:nth-child(7) {
     border-right: none;
