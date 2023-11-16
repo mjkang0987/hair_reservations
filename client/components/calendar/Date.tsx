@@ -107,6 +107,8 @@ const StyledDate = styled.li<{ type: string }>`
   }
   
   > span {
+    background-color: var(--white-color-80);
+  
     &:after {
       content: "";
       position: absolute;
@@ -121,10 +123,18 @@ const StyledDate = styled.li<{ type: string }>`
   ` : `
   display: flex;
   flex-direction: column;
-  padding: 5px;
   text-align: center;
   border-right: 1px solid var(--light-gray-color);
   border-top: 1px solid var(--light-gray-color);
+  
+  @media (max-width: 767px) {
+    padding: 2px;
+    font-size: var(--tiny-font);
+  }
+  @media (min-width: 768px) {
+    padding: 5px;
+    font-size: var(--default-font);
+  }
   
   &:nth-child(7n) {
     border-right: none;
@@ -149,8 +159,13 @@ const StyledNumWrap = styled.span`
   display: flex;
   justify-content: center;
   position: sticky;
-  top: 35px;
   width: 100%;
-  background-color: var(--white-color-80);
   z-index: 1;
+
+  @media (max-width: 767px) {
+    top: 30px;
+  }
+  @media (min-width: 768px) {
+    top: 35px;
+  }
 `;
