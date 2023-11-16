@@ -9,14 +9,12 @@ import {
 } from 'recoil';
 import {
     currReservationsState,
-    reservationsState,
     targetStateState,
     todayState,
     viewState
 } from '../../recoil/atoms';
 
 import {
-    NodeType,
     ViewType
 } from '../../utils/constants';
 
