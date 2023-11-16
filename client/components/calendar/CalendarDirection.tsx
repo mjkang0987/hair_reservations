@@ -26,8 +26,6 @@ import {
     setRouter,
 } from '../../utils/utils';
 
-
-
 import {Icon} from '../common/Icons';
 import {ButtonText} from '../common/ButtonText';
 import {
