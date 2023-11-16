@@ -188,7 +188,7 @@ export interface ReservationsType {
     date: number;
     startHours: number;
     startMinutes: number;
-    endHour: number;
+    endHours: number;
     endMinutes: number;
     service: string;
     name: string;
