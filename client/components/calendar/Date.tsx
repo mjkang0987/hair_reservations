@@ -27,7 +27,7 @@ import {
 
 import {TimelineComponent} from './Timeline';
 import {Num} from './Num';
-import {ReservationComponent} from '../reservation/Reservation';
+import {ReservationsComponents} from '../reservation/Reservations';
 
 interface MonthType {
     arrayDates: number[];
@@ -64,7 +64,7 @@ export const DateComponent = ({
                                month={currMonth}
                                date={+val}
                                                           isToday={isTodayValue(today, fullYear, currMonth, +val)}>
-                <ReservationComponent items={filterReservations({
+                <ReservationsComponents items={filterReservations({
                     reservations: currReservations,
                     fullYear,
                     currMonth: currMonth + 1,
@@ -72,7 +72,7 @@ export const DateComponent = ({
                 })}/>
             </TimelineComponent>}
 
-            {type === ViewType.Month && <ReservationComponent items={filterReservations({
+            {type === ViewType.Month && <ReservationsComponents items={filterReservations({
                 reservations: currReservations,
                 fullYear,
                 currMonth: currMonth + 1,

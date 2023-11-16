@@ -139,3 +139,9 @@ export const COLORS = [
     'var(--seventh-color)',
     'var(--eighth-color)'
 ];
+
+export const HEIGHTS = {
+    TIMELINE   : 61,
+    TIMELINES  : 1350,
+    RESERVATION: 20
+};

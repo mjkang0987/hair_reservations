@@ -1,40 +1,35 @@
-import styled from 'styled-components';
-
-import {
-    ReservationsType
-} from '../../recoil/atoms';
-
 import {ButtonSquare} from '../common/Buttons';
 import {ButtonText} from '../common/ButtonText';
 
-export const ReservationComponent = ({
-    items
-}: { items: ReservationsType[] }) => {
-    return (<ul>
-        {items.length > 0 && <StyledReserve>
-            {items.map(item => <ButtonSquare key={`${item.id}_${item.startHours}`}
-                                             padding={[0, '5px']}
-                                             height={'auto'}>
-                <ButtonText a11y={false}
-                            fontSize={'var(--tiny-font)'}>{item.name} - {item.service}</ButtonText>
-            </ButtonSquare>)}
-        </StyledReserve>}
-    </ul>);
+interface ReservationType {
+    key: string;
+    padding: (number | string)[];
+    height: string;
+    backgroundColor: string;
+    transform: string;
+    fontSize: string;
+    text: string | string[];
+    method: Function;
+}
+
+export const Reservation = ({
+    padding,
+    height,
+    backgroundColor,
+    transform,
+    fontSize,
+    text,
+    method
+}: ReservationType) => {
+    return (<ButtonSquare padding={padding}
+                          height={height}
+                          backgroundColor={backgroundColor}
+                          transform={transform}
+                          onClick={method()}>
+        {!Array.isArray(text) && <ButtonText a11y={false}
+                                                 fontSize={fontSize}>{text}</ButtonText>}
+        {Array.isArray(text) && text.map((t) => <ButtonText key={t}
+                                                            a11y={false}
+                                                            fontSize={fontSize}>{t}</ButtonText>)}
+    </ButtonSquare>);
 };
-
-const StyledReserve = styled.li`
-  width: 100%;
-
-  button {
-    width: 100%;
-    text-align: left;
-
-    > span {
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 1;
-      overflow: hidden;
-      word-break: break-all;
-    }
-  }
-`;

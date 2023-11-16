@@ -9,6 +9,7 @@ interface Props {
     fontSize?: string;
     height?: string;
     backgroundColor?: string;
+    transform?: string;
 }
 
 const StyledSquareButton = styled.button <Props>`
@@ -40,6 +41,9 @@ const StyledSquareButton = styled.button <Props>`
   font-size: ${props => props.fontSize
                         ? props.fontSize
                         : 'var(--small-font)'};
+  ${props => props.transform && `
+    transform: ${props.transform}
+  `}
 `;
 
 export const ButtonSquare: React.FC<Props> = ({children, ...props}) => {

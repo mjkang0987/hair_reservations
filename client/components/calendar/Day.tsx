@@ -14,7 +14,7 @@ import {
 } from '../../utils/utils';
 
 import {TimelineComponent} from './Timeline';
-import {ReservationComponent} from '../reservation/Reservation';
+import {ReservationsComponents} from '../reservation/Reservations';
 
 export const DayComponent = () => {
     const today = useRecoilValue(todayState);
@@ -32,7 +32,7 @@ export const DayComponent = () => {
                                month={month}
                                date={date}
                                isToday={isTodayValue(today, fullYear, month, date)}>
-                <ReservationComponent items={filterReservations({
+                <ReservationsComponents items={filterReservations({
                     reservations: currReservations,
                     fullYear,
                     currMonth: month + 1,
