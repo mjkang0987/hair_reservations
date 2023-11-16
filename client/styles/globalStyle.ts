@@ -2,6 +2,7 @@ import {createGlobalStyle} from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
+    --bigger-font: 26px;
     --big-font: 24px;
     --font: 18px;
     --small-font: 16px;
@@ -23,12 +24,12 @@ export const GlobalStyle = createGlobalStyle`
 
     --first-color: hsl(0, 100%, 91%);
     --second-color: hsl(187, 82%, 89%);
-    --third-color: hsl(334, 100%, 84%);
+    --third-color: hsl(271, 100%, 91%);
     --fourth-color: hsl(127, 100%, 87%);
     --fifth-color: hsl(52, 100%, 87%);
     --sixth-color: hsl(223, 100%, 87%);
     --seventh-color: hsl(25, 100%, 87%);
-    --eighth-color: hsl(285, 100%, 87%);
+    --eighth-color: hsl(93, 100%, 93%);
   }
 
   html,
