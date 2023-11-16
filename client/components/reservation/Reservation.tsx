@@ -27,7 +27,7 @@ export const Reservation = ({
                           transform={transform}
                           onClick={method()}>
         {!Array.isArray(text) && <ButtonText a11y={false}
-                                                 fontSize={fontSize}>{text}</ButtonText>}
+                                             fontSize={fontSize}>{text}</ButtonText>}
         {Array.isArray(text) && text.map((t) => <ButtonText key={t}
                                                             a11y={false}
                                                             fontSize={fontSize}>{t}</ButtonText>)}

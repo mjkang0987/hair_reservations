@@ -46,26 +46,32 @@ export const ReservationsComponents = ({
         startMinutes,
         endHours,
         endMinutes
-    }: TimeStartType&TimeEndType) => {
-        return `${((endHours - startHours) * 120) + ((endMinutes - startMinutes) * 2)}px`
-    }
+    }: TimeStartType & TimeEndType) => {
+        return `${((endHours - startHours) * 120) + ((endMinutes - startMinutes) * 2)}px`;
+    };
 
     const setTimePosition = ({
         startHours,
         startMinutes
     }: TimeStartType) => {
         return ((startHours - 10) * 120) + (startMinutes * 2);
-    }
+    };
 
     const setTimeText = ({
         startHours,
         startMinutes
     }: TimeStartType) => {
-        const hours = startHours < 12 ? `오전 ${startHours}` : `오후 ${(startHours - 12).toString().length === 0 ? `0${(startHours - 12)}` : startHours - 12}`;
-        const minutes = startMinutes.toString().length === 1 ? `0${startMinutes}` : startMinutes
+        const hours = startHours < 12
+                      ? `오전 ${startHours}`
+                      : `오후 ${(startHours - 12).toString().length === 0
+                              ? `0${(startHours - 12)}`
+                              : startHours - 12}`;
+        const minutes = startMinutes.toString().length === 1
+                        ? `0${startMinutes}`
+                        : startMinutes;
 
         return `${hours}:${minutes}`;
-    }
+    };
 
     useEffect(() => {
         if (!reservationsRef.current) {
@@ -82,17 +88,44 @@ export const ReservationsComponents = ({
         setOverIndex(findIndex);
     }, [height, setHeight]);
 
-    const filterItems = view.type === ViewType.Month ? items.slice(0, overIndex === -1 ? items.length : overIndex) : items;
+    const filterItems = view.type === ViewType.Month
+                        ? items.slice(
+            0,
+            overIndex === -1
+            ? items.length
+            : overIndex
+        )
+                        : items;
 
-    return (<StyledReserveWrap ref={reservationsRef} type={view.type}>
-        {height !== 0 && filterItems.map((item, i) => <Reservation key={`${item.id}_${item.startHours}_${item.startMinutes}`}
-                                                   padding={[0, '5px']}
-                                                   height={view.type === ViewType.Month ? '20px' : setTimeHeight({startHours: item.startHours, startMinutes: item.startMinutes, endHours: item.endHours, endMinutes: item.endMinutes})}
-                                                   backgroundColor={COLORS[+item.color]}
-                                                   transform={`translate(0, ${view.type === ViewType.Month ? HEIGHTS.RESERVATION * i : setTimePosition({startHours: item.startHours, startMinutes: item.startMinutes})}px)`}
-                                                   method={() => {}}
-                                                   fontSize={'var(--tiny-font)'}
-                                                   text={view.type === ViewType.Month ? `${item.name} - ${item.service}` : [setTimeText({startHours: item.startHours, startMinutes: item.startMinutes}), item.name, item.service]}/>
+    return (<StyledReserveWrap ref={reservationsRef}
+                               type={view.type}>
+        {height !== 0 && filterItems.map((item, i) =>
+            <Reservation key={`${item.id}_${item.startHours}_${item.startMinutes}`}
+                         padding={[0, '5px']}
+                         height={view.type === ViewType.Month
+                                 ? '20px'
+                                 : setTimeHeight({
+                                 startHours: item.startHours,
+                                 startMinutes: item.startMinutes,
+                                 endHours: item.endHours,
+                                 endMinutes: item.endMinutes
+                             })}
+                         backgroundColor={COLORS[+item.color]}
+                         transform={`translate(0, ${view.type === ViewType.Month
+                                                    ? HEIGHTS.RESERVATION * i
+                                                    : setTimePosition({
+                                 startHours: item.startHours,
+                                 startMinutes: item.startMinutes
+                             })}px)`}
+                         method={() => {}}
+                         fontSize={'var(--tiny-font)'}
+                         text={view.type === ViewType.Month
+                               ? `${item.name} - ${item.service}`
+                               : [
+                                 setTimeText({startHours: item.startHours, startMinutes: item.startMinutes}),
+                                 item.name,
+                                 item.service
+                             ]}/>
         )}
         {items.length - filterItems.length > 0 && <ButtonSquare padding={[0, '5px']}
                                                                 height={'20px'}
@@ -103,7 +136,7 @@ export const ReservationsComponents = ({
     </StyledReserveWrap>);
 };
 
-const StyledReserveWrap = styled.div<{type: string}>`
+const StyledReserveWrap = styled.div<{ type: string }>`
   flex: 1;
   display: flex;
   position: relative;
@@ -123,7 +156,7 @@ const StyledReserveWrap = styled.div<{type: string}>`
       overflow: hidden;
       text-align: center;
     `};
-    
+
     @media (max-width: 767px) {
       > span {
         ${props => props.type === ViewType.Week && `
@@ -136,7 +169,7 @@ const StyledReserveWrap = styled.div<{type: string}>`
           }`}
       }
     }
-    
+
     @media (min-width: 768px) {
       > span {
         display: block;
