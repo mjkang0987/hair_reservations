@@ -203,7 +203,6 @@ export const reservationsState = atom<ReservationsType[]>({
 export const currReservationsState = atom<ReservationsType[]>({
     key    : 'currReservationsState',
     default: []
-
 });
 
 interface MousePositionType {
