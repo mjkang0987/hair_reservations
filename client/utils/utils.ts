@@ -101,4 +101,40 @@ export const filterReservations = ({
     }
 
     return reservations.filter((reservation) => reservation.id === Number(`${obj.year}${obj.month}${obj.date}`)) || [];
+};
+
+export interface TimeStartType {
+    startHours: number;
+    startMinutes: number;
 }
+
+export interface TimeEndType {
+    endHours: number;
+    endMinutes: number;
+}
+
+export const setTimeText = ({
+    startHours,
+    startMinutes
+}: TimeStartType) => {
+    const hours = startHours < 12
+                  ? `오전 ${startHours}`
+                  : `오후 ${(startHours - 12).toString().length === 0
+                          ? `0${(startHours - 12)}`
+                          : startHours - 12}`;
+    const minutes = startMinutes.toString().length === 1
+                    ? `0${startMinutes}`
+                    : startMinutes;
+
+    return `${hours}:${minutes}`;
+};
+
+export const setTimeHeight = ({
+    startHours,
+    startMinutes,
+    endHours,
+    endMinutes
+}: TimeStartType & TimeEndType) => {
+    return `${((endHours - startHours) * 120) + ((endMinutes - startMinutes) * 2)}px`;
+};
+

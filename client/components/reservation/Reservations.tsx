@@ -14,14 +14,16 @@ import {
 } from '../../recoil/atoms';
 
 import {
-    COLORS,
     HEIGHTS,
     ViewType
 } from '../../utils/constants';
 
-import {ButtonSquare} from '../common/Buttons';
-import {ButtonText} from '../common/ButtonText';
+import {
+    TimeStartType
+} from '../../utils/utils';
+
 import {Reservation} from './Reservation';
+import {RestReservationsComponent} from './ReservationsRest';
 
 export const ReservationsComponents = ({
     items
@@ -31,46 +33,11 @@ export const ReservationsComponents = ({
     const [overIndex, setOverIndex] = useState(-1);
     const reservationsRef = useRef<HTMLDivElement | null>(null);
 
-    interface TimeStartType {
-        startHours: number;
-        startMinutes: number;
-    }
-
-    interface TimeEndType {
-        endHours: number;
-        endMinutes: number;
-    }
-
-    const setTimeHeight = ({
-        startHours,
-        startMinutes,
-        endHours,
-        endMinutes
-    }: TimeStartType & TimeEndType) => {
-        return `${((endHours - startHours) * 120) + ((endMinutes - startMinutes) * 2)}px`;
-    };
-
     const setTimePosition = ({
         startHours,
         startMinutes
     }: TimeStartType) => {
         return ((startHours - 10) * 120) + (startMinutes * 2);
-    };
-
-    const setTimeText = ({
-        startHours,
-        startMinutes
-    }: TimeStartType) => {
-        const hours = startHours < 12
-                      ? `오전 ${startHours}`
-                      : `오후 ${(startHours - 12).toString().length === 0
-                              ? `0${(startHours - 12)}`
-                              : startHours - 12}`;
-        const minutes = startMinutes.toString().length === 1
-                        ? `0${startMinutes}`
-                        : startMinutes;
-
-        return `${hours}:${minutes}`;
     };
 
     useEffect(() => {
@@ -101,38 +68,15 @@ export const ReservationsComponents = ({
                                type={view.type}>
         {height !== 0 && filterItems.map((item, i) =>
             <Reservation key={`${item.id}_${item.startHours}_${item.startMinutes}`}
-                         padding={[0, '5px']}
-                         height={view.type === ViewType.Month
-                                 ? '20px'
-                                 : setTimeHeight({
-                                 startHours: item.startHours,
-                                 startMinutes: item.startMinutes,
-                                 endHours: item.endHours,
-                                 endMinutes: item.endMinutes
-                             })}
-                         backgroundColor={COLORS[+item.color]}
                          transform={`translate(0, ${view.type === ViewType.Month
                                                     ? HEIGHTS.RESERVATION * i
                                                     : setTimePosition({
-                                 startHours: item.startHours,
+                                 startHours  : item.startHours,
                                  startMinutes: item.startMinutes
                              })}px)`}
-                         method={() => {}}
-                         fontSize={'var(--tiny-font)'}
-                         text={view.type === ViewType.Month
-                               ? `${item.name} - ${item.service}`
-                               : [
-                                 setTimeText({startHours: item.startHours, startMinutes: item.startMinutes}),
-                                 item.name,
-                                 item.service
-                             ]}/>
-        )}
-        {items.length - filterItems.length > 0 && <ButtonSquare padding={[0, '5px']}
-                                                                height={'20px'}
-                                                                transform={`translate(0, ${HEIGHTS.RESERVATION * (filterItems.length)}px)`}>
-            <ButtonText a11y={false}
-                        fontSize={'var(--tiny-font)'}>{items.length - filterItems.length}개 더보기</ButtonText>
-        </ButtonSquare>}
+                         item={item}/>)}
+        {items.length - filterItems.length > 0 && <RestReservationsComponent items={items}
+                                                                             filterItems={filterItems}/>}
     </StyledReserveWrap>);
 };
 
