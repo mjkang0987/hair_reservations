@@ -40,7 +40,7 @@ export const setRouter = ({
 };
 
 interface RouterChangeType {
-    setRouters: Function
+    setRouters: Function;
 }
 
 export const handleOnload = ({
@@ -85,9 +85,9 @@ export const filterReservations = ({
     }
 
     const obj = {
-        year: fullYear,
+        year : fullYear,
         month: currMonth,
-        date: currDate
+        date : currDate
     };
 
     if (obj.month > 12) {
@@ -97,7 +97,7 @@ export const filterReservations = ({
 
     if (obj.month < 1) {
         obj.year = obj.year - 1;
-        obj.month = 12
+        obj.month = 12;
     }
 
     return reservations.filter((reservation) => reservation.id === Number(`${obj.year}${obj.month}${obj.date}`)) || [];
