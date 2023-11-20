@@ -63,3 +63,19 @@ const StyledCircleButton = styled.button <Props>`
 export const ButtonCircle: React.FC<Props> = ({children, ...props}) => {
     return <StyledCircleButton type="button" {...props}>{children}</StyledCircleButton>;
 };
+
+const StyledIconButton = styled.button <Props>`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: var(--transparent-color);
+  border-radius: 20px;
+`;
+
+export const ButtonIcon: React.FC<Props> = ({children, ...props}) => {
+    return <StyledIconButton type="button" {...props}>{children}</StyledIconButton>;
+};
