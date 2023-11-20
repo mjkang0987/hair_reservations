@@ -15,6 +15,7 @@ import {
 
 import {
     asideState,
+    portalState,
     routerState,
     targetState,
     targetStateState,
@@ -47,6 +48,7 @@ import {ButtonText} from './common/ButtonText';
 export default function LayoutComponent({children}: NodeType) {
     const router = useRouter();
 
+    const setPortal = useSetRecoilState(portalState);
     const [loading, setLoading] = useState(false);
     const [aside, setAside] = useRecoilState(asideState);
     const setToday = useSetRecoilState(todayState);
@@ -90,9 +92,12 @@ export default function LayoutComponent({children}: NodeType) {
         setToday(initDate);
         setCurr(currDate);
 
+        setPortal(document.getElementById('portal'));
+
         setView({
             type: isRootPath || !isCalendarPath ? ViewType.Week : array[1]
         });
+
     }, []);
 
     useEffect(() => {

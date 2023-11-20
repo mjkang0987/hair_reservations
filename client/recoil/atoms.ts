@@ -205,6 +205,11 @@ export const currReservationsState = atom<ReservationsType[]>({
     default: []
 });
 
+export const portalState = atom<Element | null>({
+    key    : 'portalState',
+    default: null
+});
+
 interface MousePositionType {
     x: number;
     y: number;
