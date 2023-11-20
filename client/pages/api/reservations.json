@@ -10,7 +10,8 @@
             "endHours": 10,
             "endMinutes": 20,
             "service": "서비스 이름 노출",
-            "name": "name",
+            "name": "가나다",
+            "tel": "000-0000-0000",
             "color": 0
         },
         {
@@ -23,7 +24,8 @@
             "endHours": 11,
             "endMinutes": 30,
             "service": "test2",
-            "name": "name",
+            "name": "name1",
+            "tel": "000-0000-0000",
             "color":  "1"
         },
         {
@@ -36,7 +38,8 @@
             "endHours": 14,
             "endMinutes": 30,
             "service": "test3",
-            "name": "name",
+            "name": "namㅈe",
+            "tel": "000-0000-0000",
             "color":  "2"
         },
         {
@@ -49,7 +52,8 @@
             "endHours": 16,
             "endMinutes": 30,
             "service": "test test test test",
-            "name": "name",
+            "name": "name3",
+            "tel": "000-0000-0000",
             "color":  "3"
         },
         {
@@ -63,6 +67,7 @@
             "endMinutes": 30,
             "service": "test2test2test2test2test2test2",
             "name": "name",
+            "tel": "000-0000-0000",
             "color":  "4"
         },
         {
@@ -76,6 +81,7 @@
             "endMinutes": 30,
             "service": "test2test2test2",
             "name": "name",
+            "tel": "000-0000-0000",
             "color":  "5"
         },
         {
@@ -89,6 +95,7 @@
             "endMinutes": 0,
             "service": "test12312382828",
             "name": "name",
+            "tel": "000-0000-0000",
             "color":  "6"
         },
         {
@@ -102,6 +109,7 @@
             "endMinutes": 30,
             "service": "test12823838383299",
             "name": "name",
+            "tel": "000-0000-0000",
             "color":  "7"
         },
         {
@@ -115,6 +123,7 @@
             "endMinutes": 30,
             "service": "test",
             "name": "name",
+            "tel": "000-0000-0000",
             "color":  "0"
         }
     ]
