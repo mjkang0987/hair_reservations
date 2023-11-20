@@ -19,7 +19,10 @@ export const GlobalStyle = createGlobalStyle`
     --white-color-80: hsla(0, 0%, 100%, .8);
     --white-color-60: hsla(0, 0%, 100%, .6);
     --white-color-40: hsla(0, 0%, 100%, .4);
+    --white-color-20: hsla(0, 0%, 100%, .2);
 
+    --transparent-color-: hsla(0, 0%, 100%, 0);
+    
     --bar-top: 56px;
 
     --first-color: hsl(0, 100%, 91%);
