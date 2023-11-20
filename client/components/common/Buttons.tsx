@@ -29,9 +29,6 @@ const StyledSquareButton = styled.button <Props>`
                         ? props.padding.join(' ')
                         : '0 15px'};
   }
-  padding: ${props => props.padding
-                      ? props.padding.join(' ')
-                      : '0 15px'};
   border: 1px solid #ccc;
   background-color: ${props => props.backgroundColor
                                ? props.backgroundColor
