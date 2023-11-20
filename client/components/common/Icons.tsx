@@ -111,8 +111,35 @@ const StyledIcon = styled.span <Props>`
     transform: translate(-50%, -50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
   }
 `}
+  
+  ${props => props.iconType === 'close' && `
+  width: 25px;
+  height: 25px;
+  transform: rotate(45deg);
+  
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 2px;
+    background-color: var(--black-color);
+    border-radius: 2px;
+    pointer-events: none;
+  }
+  
+  &::before {
+    transform: translate(-50%, -50%);
+  }
+  
+  &:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+`}
 `;
 
 export const Icon: React.FC <Props> = ({iconType}) => {
-    return <StyledIcon iconType={iconType}/>;
+    return <StyledIcon aria-hidden={true} iconType={iconType}><span className="a11y">{iconType} icon</span></StyledIcon>;
 };
