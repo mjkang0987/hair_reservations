@@ -22,7 +22,7 @@ const StyledIcon = styled.span <Props>`
     height: 50px;
     animation: spin 1s cubic-bezier(.09, .49, .85, .42) infinite;
   `}
-  
+
   ${props => props.iconType === 'search' && `
   width: 35px;
    
@@ -75,7 +75,7 @@ const StyledIcon = styled.span <Props>`
     transform: translate(-50%, -50%) rotate(90deg);
   }
 `};
-  
+
   ${props => props.iconType === 'hamburger' && `
   width: 40px;
     height: 40px;
@@ -93,7 +93,7 @@ const StyledIcon = styled.span <Props>`
     box-shadow: 0 10px 0 0 var(--black-color);
   }
 `}
-  
+
   ${props => props.iconType.includes('Arrow') && `
   width: 25px;
   height: 25px;
@@ -111,7 +111,7 @@ const StyledIcon = styled.span <Props>`
     transform: translate(-50%, -50%) rotate(${props.iconType === 'rightArrow' ? 45 : -135}deg);      
   }
 `}
-  
+
   ${props => props.iconType === 'close' && `
   width: 25px;
   height: 25px;
@@ -123,10 +123,9 @@ const StyledIcon = styled.span <Props>`
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 13px;
+    width: 16px;
     height: 2px;
     background-color: var(--black-color);
-    border-radius: 2px;
     pointer-events: none;
   }
   
@@ -140,6 +139,6 @@ const StyledIcon = styled.span <Props>`
 `}
 `;
 
-export const Icon: React.FC <Props> = ({iconType}) => {
+export const Icon: React.FC<Props> = ({iconType}) => {
     return <StyledIcon aria-hidden={true} iconType={iconType}><span className="a11y">{iconType} icon</span></StyledIcon>;
 };
