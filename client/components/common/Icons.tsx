@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import React from 'react';
 
 interface Props {
-    iconType: string
+    iconType: string;
 }
 
 const StyledIcon = styled.span <Props>`
