@@ -23,6 +23,7 @@ import {ButtonSquare} from '../common/Buttons';
 import {ButtonText} from '../common/ButtonText';
 import {ModalComponent} from '../modal/Modal';
 import {ModalReservation} from '../modal/ModalReservation';
+import {ModalReservationControls} from '../modal/ModalReservationControls';
 
 interface ReservationType {
     transform: string;
@@ -69,6 +70,7 @@ export const Reservation = ({
 
         {(isOpen && portal) && createPortal(<ModalComponent isOpen={isOpen}
                                                             handlerModalClose={() => setIsOpen(false)}
+                                                            controls={<ModalReservationControls controls={['delete', 'modify']}/>}
                                                             body={<ModalReservation item={item}/>}/>, portal)}
 
     </>);

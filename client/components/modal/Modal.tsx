@@ -15,6 +15,7 @@ import {Icon} from '../common/Icons';
 interface ModalType {
     title?: string | React.ReactElement;
     body?: string | React.ReactNode | React.ReactElement;
+    controls?: string | React.ReactNode | React.ReactElement;
     isOpen: boolean;
     handlerModalClose: Function
 }
@@ -22,6 +23,7 @@ interface ModalType {
 export const ModalComponent = ({
     title,
     body,
+    controls,
     isOpen,
     handlerModalClose
 }: ModalType) => {
@@ -52,6 +54,7 @@ export const ModalComponent = ({
                     onClick={() => handlerModalClose()}>
             <Icon iconType="close"/>
         </ButtonIcon>
+        {controls}
     </StyledModal>);
 };
 
