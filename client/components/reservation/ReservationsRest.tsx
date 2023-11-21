@@ -14,9 +14,7 @@ import {ButtonText} from '../common/ButtonText';
 import {ButtonSquare} from '../common/Buttons';
 import {ModalComponent} from '../modal/Modal';
 import {ModalReservations} from '../modal/ModalReservations';
-import {
-    ModalReservationsTitle
-} from '../modal/ModalReservationsTitle';
+import {ModalReservationsTitle} from '../modal/ModalReservationsTitle';
 
 interface RestReservationsType {
     items: ReservationsType[];
