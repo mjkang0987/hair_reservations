@@ -137,8 +137,27 @@ const StyledIcon = styled.span <Props>`
     transform: translate(-50%, -50%) rotate(90deg);
   }
 `}
+
+  ${props => props.iconType === 'modify' && `
+  width: 25px;
+  height: 25px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' fill='none' viewBox='0 0 48 48'%3E%3Cpath fill='%23fff' fill-opacity='.01' d='M0 0h48v48H0z'/%3E%3Cpath fill='%23FFFFFF' stroke='%23000' stroke-linejoin='round' stroke-width='4' d='M5.325 43.5h8.485l31.113-31.113-8.486-8.485L5.325 35.015V43.5Z'/%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='4' d='m27.952 12.387 8.485 8.486'/%3E%3C/svg%3E");
+  background-size: 18px auto;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+`}
+
+  ${props => props.iconType === 'delete' && `
+  width: 25px;
+  height: 25px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='25' viewBox='0 -0.5 21 21'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M7.35 16h2.1V8h-2.1v8Zm4.2 0h2.1V8h-2.1v8Zm-6.3 2h10.5V6H5.25v12Zm2.1-14h6.3V2h-6.3v2Zm8.4 0V0H5.25v4H0v2h3.15v14h14.7V6H21V4h-5.25Z'/%3E%3C/svg%3E");;
+  background-size: 18px auto;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+`}
 `;
 
 export const Icon: React.FC<Props> = ({iconType}) => {
-    return <StyledIcon aria-hidden={true} iconType={iconType}><span className="a11y">{iconType} icon</span></StyledIcon>;
+    return <StyledIcon aria-hidden={true}
+                       iconType={iconType}><span className="a11y">{iconType} icon</span></StyledIcon>;
 };
