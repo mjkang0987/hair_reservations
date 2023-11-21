@@ -34,7 +34,7 @@ export const ModalReservation = ({item}: { item: ReservationsType }) => {
                 </ButtonSquare>
             </StyledItem>
             <StyledItem>
-                <a href={`tel:${item.tel}`}>{item.tel}</a>
+                <StyledTel href={`tel:${item.tel}`}>{item.tel}</StyledTel>
             </StyledItem>
         </StyledItems>
     );
@@ -49,6 +49,10 @@ const StyledItem = styled.li`
   + li {
     margin-top: 10px;
   }
+`;
+
+const StyledTel = styled.a`
+  text-decoration: underline;
 `;
 
 const StyledService = styled.strong`
