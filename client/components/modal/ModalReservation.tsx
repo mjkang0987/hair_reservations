@@ -15,7 +15,7 @@ import React from 'react';
 
 export const ModalReservation = ({item}: { item: ReservationsType }) => {
     return (<StyledItems>
-            <StyledItem><StyledService>{item.service}</StyledService></StyledItem>
+            <StyledService>{item.service}</StyledService>
             <StyledItem>
                 {setTimeText({
                     startHours  : item.startHours,
@@ -25,33 +25,33 @@ export const ModalReservation = ({item}: { item: ReservationsType }) => {
                 startMinutes: item.endMinutes
             })}
             </StyledItem>
-            <StyledItem>
-                <ButtonSquare padding={['5px']}
-                              height={'30px'}
-                              backgroundColor={COLORS[+item.color]}>
-                    <ButtonText a11y={false}
-                                fontSize={'var(--font)'}>{item.name}</ButtonText>
-                </ButtonSquare>
-            </StyledItem>
-            <StyledItem>
-                <StyledTel href={`tel:${item.tel}`}>{item.tel}</StyledTel>
-            </StyledItem>
+            <ButtonSquare padding={['5px']}
+                          height={'30px'}
+                          backgroundColor={COLORS[+item.color]}>
+                <ButtonText a11y={false}
+                            fontSize={'var(--font)'}>{item.name}</ButtonText>
+            </ButtonSquare>
+            <StyledTel href={`tel:${item.tel}`}>{item.tel}</StyledTel>
         </StyledItems>
     );
 };
 
-const StyledItems = styled.ul`
-`;
+const StyledItems = styled.div`
+  display: flex;
+  flex-direction: column;
 
-const StyledItem = styled.li`
-  word-break: break-all;
-  
-  + li {
+  > button {
     margin-top: 10px;
+    align-self: flex-start;
   }
 `;
 
+const StyledItem = styled.div`
+  margin-top: 10px;
+`;
+
 const StyledTel = styled.a`
+  margin-top: 10px;
   text-decoration: underline;
 `;
 
