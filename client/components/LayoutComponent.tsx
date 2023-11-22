@@ -72,7 +72,6 @@ export default function LayoutComponent({children}: NodeType) {
         }
 
         setAside({
-            isTransitionEnd: false,
             isVisible: false
         })
     };

@@ -128,15 +128,13 @@ export const targetStateState = selector({
 });
 
 interface AsideType {
-    isVisible: boolean;
-    isTransitionEnd: boolean;
+    isVisible: boolean
 }
 
 export const asideState = atom<AsideType>({
     key    : 'asideState',
     default: {
-        isVisible      : false,
-        isTransitionEnd: true
+        isVisible      : false
     }
 });
 

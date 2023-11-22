@@ -21,7 +21,7 @@ export const HeaderComponent = () => {
 
     return (
         <StyledHeader>
-            <StyledButton type="button" onClick={() => setAside({isVisible: !aside.isVisible, isTransitionEnd: false})}>
+            <StyledButton type="button" onClick={() => setAside({isVisible: !aside.isVisible})}>
                 <Icon iconType="hamburger"/>
                 <ButtonText a11y={true}>보기 옵션 {aside.isVisible ? '닫기' : '열기'}</ButtonText>
             </StyledButton>

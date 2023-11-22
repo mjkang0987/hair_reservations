@@ -26,7 +26,6 @@ import {InputWrap} from './Input';
 
 interface Props {
     isVisible: boolean;
-    isTransitionEnd: boolean;
 }
 
 export const AsideComponent = () => {
@@ -40,7 +39,6 @@ export const AsideComponent = () => {
 
     const setChangeView = ({viewType}: { viewType: string }) => {
         setAside({
-            ...aside,
             isVisible: !aside.isVisible
         });
 
@@ -65,17 +63,7 @@ export const AsideComponent = () => {
         return result;
     };
 
-    return (<StyledAside isVisible={aside.isVisible}
-                         isTransitionEnd={aside.isTransitionEnd}
-                         className={!aside.isTransitionEnd
-                                    ? 'animate'
-                                    : ''}
-                         onAnimationEnd={() => {
-                             setAside({
-                                 ...aside,
-                                 isTransitionEnd: true
-                             });
-                         }}>
+    return (<StyledAside isVisible={aside.isVisible}>
             {currValue && Object.keys(asides).map((a) =>
                 <Link href={`/`}
                       as={`/${setAsPath(a.toLowerCase()).join('/')}`}
@@ -101,7 +89,7 @@ const StyledAside = styled.aside <Props>`
   display: flex;
   flex-direction: column;
   gap: 6px;
-  ${props => (!props.isVisible && props.isTransitionEnd) && 'display: none'};
+  ${props => (!props.isVisible) && 'display: none'};
   position: absolute;
   top: 0;
   left: 0;
@@ -114,16 +102,6 @@ const StyledAside = styled.aside <Props>`
   background-color: #fff;
   box-shadow: 10px 0 10px 0 rgba(0 0 0 / .1);
   z-index: 2;
-  
-  &.animate {
-    animation-name: asideHide;
-    animation-duration: .4s;
-    animation-timing-function: ease-in-out;
-    animation-direction: ${props => props.isVisible
-                                    ? 'reverse'
-                                    : 'normal'};
-    animation-fill-mode: forward;
-  }
 `;
 
 const StyledLinkStyle = styled.span`
