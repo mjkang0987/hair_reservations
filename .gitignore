@@ -3,10 +3,6 @@
 
 node_modules/
 
-package-lock.json
-
-client/pnpm-lock.yaml
-
 client/.next/
 
 client/next-env.d.ts
