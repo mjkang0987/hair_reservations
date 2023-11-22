@@ -1,14 +1,10 @@
 import styled from 'styled-components';
 
 import {ReservationsType} from '../../recoil/atoms';
-import {
-    setTimeHeight,
-    setTimeText
-} from '../../utils/utils';
-import {
-    COLORS,
-    ViewType
-} from '../../utils/constants';
+
+import {setTimeText} from '../../utils/utils';
+import {COLORS} from '../../utils/constants';
+
 import {ButtonText} from '../common/ButtonText';
 import {ButtonSquare} from '../common/Buttons';
 import React from 'react';
