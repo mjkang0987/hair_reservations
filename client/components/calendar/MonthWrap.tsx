@@ -1,15 +1,18 @@
 import React from 'react';
+
 import styled from 'styled-components';
 
 import {
     useRecoilValue,
 } from 'recoil';
+
 import {
     targetStateState,
 } from '../../recoil/atoms';
 
-import {DateComponent} from './Date';
 import {ViewType} from '../../utils/constants';
+
+import {DateComponent} from './Date';
 
 export const MonthWrapComponent = () => {
     const curr = useRecoilValue(targetStateState);
@@ -36,10 +39,14 @@ export const MonthWrapComponent = () => {
 
     return (<StyledMonthWrap>
             {arrayPrev() && <DateComponent arrayDates={arrayPrev()}
-                                            currMonth={month - 1}
-                                            type={ViewType.Month}/>}
-            <DateComponent arrayDates={arrayCurrent()} currMonth={month} type={ViewType.Month}/>
-            {arrayNext() && <DateComponent arrayDates={arrayNext()} currMonth={month + 1} type={ViewType.Month}/>}
+                                           currMonth={month - 1}
+                                           type={ViewType.Month}/>}
+            <DateComponent arrayDates={arrayCurrent()}
+                           currMonth={month}
+                           type={ViewType.Month}/>
+            {arrayNext() && <DateComponent arrayDates={arrayNext()}
+                                           currMonth={month + 1}
+                                           type={ViewType.Month}/>}
         </StyledMonthWrap>
     );
 };
