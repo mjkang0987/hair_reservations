@@ -9,6 +9,7 @@ import {
 } from 'recoil';
 import {
     currReservationsState,
+    ReservationsType,
     targetStateState,
     todayState,
     viewState
@@ -49,6 +50,20 @@ export const DateComponent = ({
 
     const setView = useSetRecoilState(viewState);
 
+    let items: ReservationsType[] | [] = [];
+
+    const setFilterItems = (val: number) => {
+        const filterItems = filterReservations({
+            reservations: currReservations,
+            fullYear,
+            currMonth   : currMonth + 1,
+            currDate    : +val
+        });
+
+        items = [...filterItems];
+        return items;
+    };
+
     return (<>
         {arrayDates.map((val, index) => <StyledDate key={`month_${val + index}`} type={type}>
             <StyledNumWrap>
@@ -59,23 +74,13 @@ export const DateComponent = ({
                      isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
             </StyledNumWrap>
             {type !== ViewType.Month && <TimelineComponent fullYear={fullYear}
-                               month={currMonth}
-                               date={+val}
-                                                          isToday={isTodayValue(today, fullYear, currMonth, +val)}>
-                <ReservationsComponents items={filterReservations({
-                    reservations: currReservations,
-                    fullYear,
-                    currMonth: currMonth + 1,
-                    currDate: val
-                })}/>
+                                                           month={currMonth}
+                                                           date={+val}
+                                                           isToday={isTodayValue(today, fullYear, currMonth, +val)}>
+                {setFilterItems(val).length > 0 && <ReservationsComponents items={items}/>}
             </TimelineComponent>}
 
-            {type === ViewType.Month && <ReservationsComponents items={filterReservations({
-                reservations: currReservations,
-                fullYear,
-                currMonth: currMonth + 1,
-                currDate: val
-            })}/>}
+            {(type === ViewType.Month && setFilterItems(val).length > 0) && <ReservationsComponents items={items}/>}
         </StyledDate>)}
     </>);
 };
