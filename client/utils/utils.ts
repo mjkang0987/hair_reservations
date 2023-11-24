@@ -100,7 +100,7 @@ export const filterReservations = ({
         obj.month = 12;
     }
 
-    return reservations.filter((reservation) => reservation.id === Number(`${obj.year}${obj.month}${obj.date}`)) || [];
+    return reservations.filter((reservation) => Number(`${reservation.year}${reservation.month}${reservation.date}`) === Number(`${obj.year}${obj.month}${obj.date}`)) || [];
 };
 
 export interface TimeStartType {
