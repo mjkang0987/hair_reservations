@@ -56,12 +56,7 @@ export const ReservationsComponents = ({
     }, [height, setHeight]);
 
     const filterItems = view.type === ViewType.Month
-                        ? items.slice(
-            0,
-            overIndex === -1
-            ? items.length
-            : overIndex
-        )
+                        ? items.slice(0, overIndex === -1 ? items.length : overIndex)
                         : items;
 
     return (<StyledReserveWrap ref={reservationsRef}
@@ -75,8 +70,9 @@ export const ReservationsComponents = ({
                                  startMinutes: item.startMinutes
                              })}px)`}
                          item={item}/>)}
-        {items.length - filterItems.length > 0 && <RestReservationsComponent items={items}
-                                                                             filterItems={filterItems}/>}
+        {items.length - filterItems.length > 0 &&
+            <RestReservationsComponent items={items}
+                                       filterItems={filterItems}/>}
     </StyledReserveWrap>);
 };
 

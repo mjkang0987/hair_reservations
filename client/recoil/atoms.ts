@@ -128,13 +128,13 @@ export const targetStateState = selector({
 });
 
 interface AsideType {
-    isVisible: boolean
+    isVisible: boolean;
 }
 
 export const asideState = atom<AsideType>({
     key    : 'asideState',
     default: {
-        isVisible      : false
+        isVisible: false
     }
 });
 
