@@ -1,4 +1,7 @@
-import React, {useEffect} from 'react';
+import React, {
+    useEffect,
+    useRef
+} from 'react';
 
 import styled from 'styled-components';
 
@@ -9,6 +12,7 @@ import {
 } from 'recoil';
 import {
     currReservationsState,
+    dragTargetState,
     ReservationsType,
     targetStateState,
     todayState,
@@ -44,6 +48,9 @@ export const DateComponent = ({
 
     const currReservations = useRecoilValue(currReservationsState);
 
+    const setDragTarget = useSetRecoilState(dragTargetState);
+    const reservationRef = useRef<HTMLSpanElement[] | null[]>([]);
+
     const {
         fullYear
     } = curr;
@@ -64,29 +71,55 @@ export const DateComponent = ({
         return items;
     };
 
-    return (<>
-        {arrayDates.map((val, index) => <StyledDate key={`month_${val + index}`} type={type}>
-            <StyledNumWrap>
-                <Num onClick={() => {
-                    setCurr(new Date(fullYear, currMonth, val));
-                    setView({type: ViewType.Day});
-                }}
-                     isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
-            </StyledNumWrap>
-            {type !== ViewType.Month && <TimelineComponent fullYear={fullYear}
-                                                           month={currMonth}
-                                                           date={+val}
-                                                           isToday={isTodayValue(today, fullYear, currMonth, +val)}>
-                {setFilterItems(val).length > 0 && <ReservationsComponents items={items}/>}
-            </TimelineComponent>}
+    interface DragOverType {
+        event: React.MouseEvent;
+        index: number;
+        date: number;
+    }
 
-            {(type === ViewType.Month && setFilterItems(val).length > 0) && <ReservationsComponents items={items}/>}
-        </StyledDate>)}
+    const handlerDragOver = ({event, index, date}: DragOverType) => {
+        event.preventDefault();
+        setDragTarget({
+            element  : reservationRef.current[index],
+            arrayDate: [fullYear, currMonth, date]
+        });
+    };
+
+    return (<>
+        {arrayDates.map((val, index) =>
+            <StyledDate key={`month_${val + index}`}
+                        type={type}
+                        ref={(element) => reservationRef.current[index] = element}
+                        onDragOver={(e) => {
+                            handlerDragOver({
+                                event: e,
+                                index,
+                                date: +val
+                            });
+                        }}>
+                <StyledNumWrap>
+                    <Num onClick={() => {
+                        setCurr(new Date(fullYear, currMonth, val));
+                        setView({type: ViewType.Day});
+                    }}
+                         isToday={isTodayValue(today, fullYear, currMonth, +val)}>{val}</Num>
+                </StyledNumWrap>
+                {type !== ViewType.Month &&
+                    <TimelineComponent fullYear={fullYear}
+                                       month={currMonth}
+                                       date={+val}
+                                       isToday={isTodayValue(today, fullYear, currMonth, +val)}>
+                        {setFilterItems(val).length > 0 && <ReservationsComponents items={items}/>}
+                    </TimelineComponent>}
+
+                {(type === ViewType.Month && setFilterItems(val).length > 0) && <ReservationsComponents items={items}/>}
+            </StyledDate>)}
     </>);
 };
 
 const StyledDate = styled.li<{ type: string }>`
-  ${props => props.type !== ViewType.Month ? `
+  ${props => props.type !== ViewType.Month
+             ? `
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,7 +156,8 @@ const StyledDate = styled.li<{ type: string }>`
       pointer-events: none;
     }
   }
-  ` : `
+  `
+             : `
   display: flex;
   flex-direction: column;
   text-align: center;

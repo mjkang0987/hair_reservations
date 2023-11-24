@@ -209,6 +209,19 @@ export const portalState = atom<Element | null>({
     default: null
 });
 
+interface DragType {
+    element: Element | null;
+    arrayDate: number[] | [];
+}
+
+export const dragTargetState = atom<DragType>({
+    key    : 'dragTargetState',
+    default: {
+        element  : null,
+        arrayDate: []
+    }
+});
+
 interface MousePositionType {
     x: number;
     y: number;

@@ -4,6 +4,7 @@ import {createPortal} from 'react-dom';
 import {useRecoilValue} from 'recoil';
 
 import {
+    dragTargetState,
     portalState,
     ReservationsType,
     viewState
@@ -37,6 +38,7 @@ export const Reservation = ({
     const portal = useRecoilValue(portalState);
     const [isOpen, setIsOpen] = useState(false);
     const view = useRecoilValue(viewState);
+    const dragTarget = useRecoilValue(dragTargetState);
 
     const handlerOpenModal = () => {
         setIsOpen(true);
@@ -50,8 +52,20 @@ export const Reservation = ({
             item.service
         ];
 
+    const handlerDrag = (e: React.MouseEvent) => {
+    };
+
+    const handlerDragStart = (e: React.MouseEvent) => {
+        console.log('start', e)
+    };
+
+    const handlerDragEnd = (e: React.MouseEvent) => {
+        console.log(dragTarget.arrayDate)
+    }
+
     return (<>
-        <ButtonSquare padding={[0, '5px']}
+        <ButtonSquare draggable={true}
+                      padding={[0, '5px']}
                       height={view.type === ViewType.Month
                               ? '20px'
                               : setTimeHeight({
@@ -62,7 +76,10 @@ export const Reservation = ({
                           })}
                       backgroundColor={COLORS[+item.color]}
                       transform={transform}
-                      onClick={() => handlerOpenModal()}>
+                      onClick={() => handlerOpenModal()}
+                      onDragStart={(e) => handlerDragStart(e)}
+                      onDrag={(e) => handlerDrag(e)}
+                      onDragEnd={(e) => handlerDragEnd(e)}>
             {text.map((t) => <ButtonText key={t}
                                          a11y={false}
                                          fontSize={'var(--tiny-font)'}>{t}</ButtonText>)}

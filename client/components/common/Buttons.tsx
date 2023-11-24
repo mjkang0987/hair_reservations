@@ -10,6 +10,11 @@ interface Props {
     height?: string;
     backgroundColor?: string;
     transform?: string;
+    draggable?: boolean;
+    onDrag?: (event: React.MouseEvent) => void;
+    onDragOver?: (event: React.MouseEvent) => void;
+    onDragStart?: (event: React.MouseEvent) => void;
+    onDragEnd?: (event: React.MouseEvent) => void;
 }
 
 const StyledSquareButton = styled.button <Props>`
