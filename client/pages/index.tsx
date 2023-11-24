@@ -5,7 +5,6 @@ import type {NextPage} from 'next';
 import Head from 'next/head';
 
 import {
-    useRecoilState,
     useRecoilValue,
     useSetRecoilState,
 } from 'recoil';
@@ -14,7 +13,6 @@ import styled from 'styled-components';
 
 import {
     asideState,
-    currReservationsState,
     reservationsState,
     targetState
 } from '../recoil/atoms';
@@ -23,7 +21,6 @@ import {CalendarComponent} from '../components/calendar/CalendarWrap';
 
 interface Props {
     isVisible: boolean;
-    isTransitionEnd: boolean;
 }
 
 const Home: NextPage = ({
@@ -44,8 +41,7 @@ const Home: NextPage = ({
             <Head>
                 <title>RESERVATION</title>
             </Head>
-            <StyledSection isVisible={aside.isVisible}
-                           isTransitionEnd={aside.isTransitionEnd}>
+            <StyledSection isVisible={aside.isVisible}>
                 {currValue.full && <CalendarComponent/>}
             </StyledSection>
         </>
