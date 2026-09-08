@@ -136,7 +136,7 @@ export const CustomerDetail = ({customer, reservationMap, onClose, onReservation
             }
         }
 
-        list.sort((a, b) => a.date.localeCompare(b.date) || a.startTime.localeCompare(b.startTime));
+        list.sort((a, b) => b.date.localeCompare(a.date) || b.startTime.localeCompare(a.startTime));
         return list;
     }, [reservationMap, customer.id]);
 
